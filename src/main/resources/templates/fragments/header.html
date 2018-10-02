@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+
+<!--     Meta     -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="author" content="Cluster Research" />
+<meta name="genre" content="Servicios" />
+<meta name="geo.placename" content="Colombia" />
+<meta name="geo.position" content="4.687771;-74.070650" />
+<meta name="geo.region" content="CO" />
+<meta name="google" content="notranslate" />
+<meta name="ICBM" content="4.687771, -74.070650" />
+<meta name="language" content="spanish" />
+
+<meta name="description" content="Metodología INLab">
+<meta name="keywords" content="Metodología INLab">
+
+<meta name="robots" content="index" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="INLAB RESEARCH" />
+<meta property="og:description" content="Metodología INLab" />
+<meta property="og:url" content="http://www.inlab.com.co/" />
+<meta property="og:site_name" content="INLAB RESEARCH" />
+<meta property="og:locale" content="es_CO" />
+<meta property="og:locale:alternate" content="es_CO" />
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+	name='viewport' />
+
+<!--     CSS     -->
+<link rel="icon" type="image/png" href="/img/icons/inlab_favicon.ico">
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/fonts/iconic/css/material-design-iconic-font.min.css"
+	rel="stylesheet" />
+<link href="/Assets/animate/animate.css" rel="stylesheet"
+	type="text/css" />
+<link href="/Assets/css-hamburgers/hamburgers.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/Assets/animsition/css/animsition.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/Assets/select2/select2.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/Assets/daterangepicker/daterangepicker.css"
+	rel="stylesheet" type="text/css" />
+<link href="/css/util.css" rel="stylesheet" type="text/css" />
+<link href="/css/login.css" rel="stylesheet" type="text/css" />
+
+<title>INLAB RESEARCH</title>
+
+
+<script>
+	function validate() {
+		var user = document.getElementById("user").value;
+		var password = document.getElementById("pass").value;
+		if (password == "") {
+			alert("Por favor complete la información");
+			return false;
+		}
+		if (password == "inlab01" && user == "inlab01") {
+			//alert("Contraseña correcta");
+			//window.location.replace("http://www.inlab.com.co/Home/PanelPrincipal");
+			window.location.replace("/Home/PanelPrincipal");
+
+			return false;
+		}
+		if (password == "inlab02" && user == "inlab02") {
+			//alert("Contraseña correcta");
+			//window.location.replace("http://www.inlab.com.co/Home/PanelPrincipal");
+			window.location.replace("/homeCliente.html");
+
+			return false;
+		} else {
+			alert("Datos incorrectos, por favor intente nuevamente");
+			document.getElementById("inlab_login_form").reset();
+		}
+	}
+</script>
+
+
+</head>
+</html>
