@@ -89,6 +89,12 @@ public class User implements Serializable, UserDetails, GrantedAuthority {
 	public String getAuthority() {
 		return roleName;
 	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return password;
+	}
 	
 	
 
