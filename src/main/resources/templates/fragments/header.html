@@ -50,35 +50,5 @@
 
 <title>INLAB RESEARCH</title>
 
-
-<script>
-	function validate() {
-		var user = document.getElementById("user").value;
-		var password = document.getElementById("pass").value;
-		if (password == "") {
-			alert("Por favor complete la información");
-			return false;
-		}
-		if (password == "inlab01" && user == "inlab01") {
-			//alert("Contraseña correcta");
-			//window.location.replace("http://www.inlab.com.co/Home/PanelPrincipal");
-			window.location.replace("/Home/PanelPrincipal");
-
-			return false;
-		}
-		if (password == "inlab02" && user == "inlab02") {
-			//alert("Contraseña correcta");
-			//window.location.replace("http://www.inlab.com.co/Home/PanelPrincipal");
-			window.location.replace("/homeCliente.html");
-
-			return false;
-		} else {
-			alert("Datos incorrectos, por favor intente nuevamente");
-			document.getElementById("inlab_login_form").reset();
-		}
-	}
-</script>
-
-
 </head>
 </html>

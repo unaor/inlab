@@ -1,69 +1,75 @@
 package com.example.duobot.inlab.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.duobot.inlab.dao.InlabUserService;
+
 @Controller
 public class LoginController {
-	
-	@RequestMapping(value={"/", "/login"})
-    public String login() {
-        return "loginCliente";
-    }
-	
+
+	@Autowired
+	InlabUserService userService;
+
+	@RequestMapping(value = { "/", "/login" })
+	public String login() {
+		return "loginCliente";
+	}
+
 	@RequestMapping(value = "/hello")
-    public String welcome() {
-        return "hello";
-    }
-	
+	public String welcome() {
+		return "hello";
+	}
+
 	@RequestMapping(value = "/loginCliente")
-    public String loginCliente() {
-        return "loginCliente";
-    }
+	public String loginCliente() {
+		return "loginCliente";
+	}
 
 	@RequestMapping(value = "/homeCliente")
-    public String homeCliente() {
-        return "homeCliente";
-    }
-	
+	public String homeCliente() {
+		return "homeCliente";
+	}
+
 	@RequestMapping(value = "/video")
-    public String video() {
-        return "video";
-    }
-	
+	public String video() {
+		return "video";
+	}
+
 	@RequestMapping(value = "/mediciones")
-    public String mediciones() {
-        return "mediciones";
-    }
-	
+	public String mediciones() {
+		return "mediciones";
+	}
+
 	@RequestMapping(value = "/insight")
-    public String insight() {
-        return "insight";
-    }
-	
+	public String insight() {
+		return "insight";
+	}
+
 	@RequestMapping(value = "/social")
-    public String social() {
-        return "social";
-    }
-	
+	public String social() {
+		return "social";
+	}
+
 	@RequestMapping(value = "/galeria")
-    public String galeria() {
-        return "galeria";
-    }
-	
+	public String galeria() {
+		return "galeria";
+	}
+
 	@RequestMapping(value = "/bi")
-    public String bi() {
-        return "bi";
-    }
-	
+	public String bi() {
+		return "bi";
+	}
+
 	@RequestMapping(value = "/emociones")
-    public String emociones() {
-        return "emociones";
-    }
-	
+	public String emociones() {
+		return "emociones";
+	}
+
 	@RequestMapping(value = "/homeAdmin")
-    public String homeAdmin() {
-        return "homeAdmin";
-    }
-	
+	public String homeAdmin() {
+		return "homeAdmin";
+	}
+
 }

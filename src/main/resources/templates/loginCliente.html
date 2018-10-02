@@ -5,9 +5,9 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-
+				<div class="alert alert-danger" th:if="${param.error}">Email/contraseña incorrecto</div>
 				<form name="form" id="inlab_login_form"
-					class="login100-form validate-form" action="javascript:validate();">
+					class="login100-form validate-form" th:action="@{/login}" method="post">
 					<!--<span class="login100-form-title p-b-26">
                         Bienvenido
                     </span>-->
@@ -17,14 +17,14 @@
 
 					<div class="wrap-input100 validate-input"
 						data-validate="Escriba el usuario">
-						<input class="input100" type="text" id="user" name="user">
+						<input class="input100" type="text" id="user" name="username">
 						<span class="focus-input100" data-placeholder="Usuario"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input"
 						data-validate="Escriba el password">
 						<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
-						</span> <input class="input100" type="password" id="pass" name="pass">
+						</span> <input class="input100" type="password" id="pass" name="password">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
@@ -32,7 +32,7 @@
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 
-							<button class="login100-form-btn" onclick="validate()">
+							<button class="login100-form-btn" type="submit">
 								Entrar</button>
 						</div>
 					</div>
