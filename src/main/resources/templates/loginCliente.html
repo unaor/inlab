@@ -2,165 +2,174 @@
 <html>
 <head>
 
-    <!--     Meta     -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="author" content="Cluster Research" />
-    <meta name="genre" content="Servicios" />
-    <meta name="geo.placename" content="Colombia" />
-    <meta name="geo.position" content="4.687771;-74.070650" />
-    <meta name="geo.region" content="CO" />
-    <meta name="google" content="notranslate" />
-    <meta name="ICBM" content="4.687771, -74.070650" />
-    <meta name="language" content="spanish" />
+<!--     Meta     -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="author" content="Cluster Research" />
+<meta name="genre" content="Servicios" />
+<meta name="geo.placename" content="Colombia" />
+<meta name="geo.position" content="4.687771;-74.070650" />
+<meta name="geo.region" content="CO" />
+<meta name="google" content="notranslate" />
+<meta name="ICBM" content="4.687771, -74.070650" />
+<meta name="language" content="spanish" />
 
-    <meta name="description" content="Metodología INLab">
-    <meta name="keywords" content="Metodología INLab">
+<meta name="description" content="Metodología INLab">
+<meta name="keywords" content="Metodología INLab">
 
-    <meta name="robots" content="index" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="INLAB RESEARCH" />
-    <meta property="og:description" content="Metodología INLab" />
-    <meta property="og:url" content="http://www.inlab.com.co/" />
-    <meta property="og:site_name" content="INLAB RESEARCH" />
-    <meta property="og:locale" content="es_CO" />
-    <meta property="og:locale:alternate" content="es_CO" />
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    
-    <!--     CSS     -->
-    <link rel="icon" type="image/png" href="../img/icons/inlab_favicon.ico">
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="../fonts/iconic/css/material-design-iconic-font.min.css" rel="stylesheet" />
-    <link href="../Assets/animate/animate.css" rel="stylesheet" />
-    <link href="../Assets/css-hamburgers/hamburgers.min.css" rel="stylesheet" />
-    <link href="../Assets/animsition/css/animsition.min.css" rel="stylesheet" />
-    <link href="../Assets/select2/select2.min.css" rel="stylesheet" />
-    <link href="../Assets/daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="../css/util.css" rel="stylesheet" />
-    <link href="../css/login.css" rel="stylesheet" />
+<meta name="robots" content="index" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="INLAB RESEARCH" />
+<meta property="og:description" content="Metodología INLab" />
+<meta property="og:url" content="http://www.inlab.com.co/" />
+<meta property="og:site_name" content="INLAB RESEARCH" />
+<meta property="og:locale" content="es_CO" />
+<meta property="og:locale:alternate" content="es_CO" />
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+	name='viewport' />
 
-    <title>
-        INLAB RESEARCH
-    </title>
+<!--     CSS     -->
+<link rel="icon" type="image/png" href="/img/icons/inlab_favicon.ico">
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/fonts/iconic/css/material-design-iconic-font.min.css"
+	rel="stylesheet" />
+<link href="/Assets/animate/animate.css" rel="stylesheet"
+	type="text/css" />
+<link href="/Assets/css-hamburgers/hamburgers.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/Assets/animsition/css/animsition.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/Assets/select2/select2.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/Assets/daterangepicker/daterangepicker.css"
+	rel="stylesheet" type="text/css" />
+<link href="/css/util.css" rel="stylesheet" type="text/css" />
+<link href="/css/login.css" rel="stylesheet" type="text/css" />
+
+<title>INLAB RESEARCH</title>
 
 
-   <script>
-       
+<script>
+	function validate() {
+		var user = document.getElementById("user").value;
+		var password = document.getElementById("pass").value;
+		if (password == "") {
+			alert("Por favor complete la información");
+			return false;
+		}
+		if (password == "inlab01" && user == "inlab01") {
+			//alert("Contraseña correcta");
+			//window.location.replace("http://www.inlab.com.co/Home/PanelPrincipal");
+			window.location.replace("/Home/PanelPrincipal");
 
-       function validate() {
-           var user = document.getElementById("user").value;
-           var password = document.getElementById("pass").value;
-           if (password == "") {
-               alert("Por favor complete la información");
-               return false;
-           }
-           if (password == "inlab01" && user == "inlab01") {
-               //alert("Contraseña correcta");
-               //window.location.replace("http://www.inlab.com.co/Home/PanelPrincipal");
-               window.location.replace("/Home/PanelPrincipal");
+			return false;
+		}
+		if (password == "inlab02" && user == "inlab02") {
+			//alert("Contraseña correcta");
+			//window.location.replace("http://www.inlab.com.co/Home/PanelPrincipal");
+			window.location.replace("/homeCliente.html");
 
-               return false;
-           }
-           if (password == "inlab02" && user == "inlab02") {
-               //alert("Contraseña correcta");
-               //window.location.replace("http://www.inlab.com.co/Home/PanelPrincipal");
-               window.location.replace("/homeCliente.html");
-
-               return false;
-           }
-           else {
-               alert("Datos incorrectos, por favor intente nuevamente");
-               document.getElementById("inlab_login_form").reset();
-           }
-       }
-
-   </script>
+			return false;
+		} else {
+			alert("Datos incorrectos, por favor intente nuevamente");
+			document.getElementById("inlab_login_form").reset();
+		}
+	}
+</script>
 
 
 </head>
 <body>
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                
-                <form name="form" id="inlab_login_form" class="login100-form validate-form" action="javascript:validate();">
-                    <!--<span class="login100-form-title p-b-26">
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+
+				<form name="form" id="inlab_login_form"
+					class="login100-form validate-form" action="javascript:validate();">
+					<!--<span class="login100-form-title p-b-26">
                         Bienvenido
                     </span>-->
-                    <span class="login100-form-title p-b-10">
-                        <img width="200" src="../img/inlab_naranja.png" />
-                    </span>
+					<span class="login100-form-title p-b-10"> <img width="200"
+						src="/img/inlab_naranja.png" />
+					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Escriba el usuario">
-                        <input class="input100" type="text" id="user" name="user">
-                        <span class="focus-input100" data-placeholder="Usuario"></span>
-                    </div>
+					<div class="wrap-input100 validate-input"
+						data-validate="Escriba el usuario">
+						<input class="input100" type="text" id="user" name="user">
+						<span class="focus-input100" data-placeholder="Usuario"></span>
+					</div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Escriba el password">
-                        <span class="btn-show-pass">
-                            <i class="zmdi zmdi-eye"></i>
-                        </span>
-                        <input class="input100" type="password" id="pass" name="pass">
-                        <span class="focus-input100" data-placeholder="Password"></span>
-                    </div>
+					<div class="wrap-input100 validate-input"
+						data-validate="Escriba el password">
+						<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
+						</span> <input class="input100" type="password" id="pass" name="pass">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
 
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
 
-                            <button class="login100-form-btn" onclick="validate()">
-                                Entrar
-                            </button>
-                        </div>
-                    </div>
-                    <br />
-                    
-                    
-                    <span class="login100-form-title p-t-10">
-                        <img width="200" src="../img/pie_inlab.png" />
-                    </span>
-                </form>
-            </div>
-            <footer class="footer text-center">
-                <img width="250" src="../img/cr_bl.png" />
-                <br />
-                <span id="copyright">&copy; <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span>
-            </footer>
-        </div>
-    </div>
-
-
-    <div id="dropDownSelect1"></div>
-    
+							<button class="login100-form-btn" onclick="validate()">
+								Entrar</button>
+						</div>
+					</div>
+					<br /> <span class="login100-form-title p-t-10"> <img
+						width="200" src="/img/pie_inlab.png" />
+					</span>
+				</form>
+			</div>
+			<footer class="footer text-center">
+				<img width="250" src="/img/cr_bl.png" /> <br /> <span
+					id="copyright">&copy; <script>
+						document.getElementById('copyright').appendChild(
+								document.createTextNode(new Date()
+										.getFullYear()))
+					</script></span>
+			</footer>
+		</div>
+	</div>
 
 
-    <script src="../assets/jquery/jquery-3.2.1.min.js"></script>
-    <script src="../assets/animsition/js/animsition.min.js"></script>
-    <script src="../assets/bootstrap/js/popper.js"></script>
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/select2/select2.min.js"></script>
-    <script src="../assets/daterangepicker/moment.min.js"></script>
-    <script src="../assets/daterangepicker/daterangepicker.js"></script>
-    <script src="../assets/countdowntime/countdowntime.js"></script>
-    <script src="../js/login.js"></script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125107929-1"></script>
-    <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-125107929-1');
-    </script>    
+	<div id="dropDownSelect1"></div>
 
 
-<!-- Visual Studio Browser Link -->
-<script type="application/json" id="__browserLink_initializationData">
+
+	<script src="/Assets/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/Assets/animsition/js/animsition.min.js"></script>
+	<script src="/Assets/bootstrap/js/popper.js"></script>
+	<script src="/Assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/Assets/select2/select2.min.js"></script>
+	<script src="/Assets/daterangepicker/moment.min.js"></script>
+	<script src="/Assets/daterangepicker/daterangepicker.js"></script>
+	<script src="/Assets/countdowntime/countdowntime.js"></script>
+	<script src="/js/login.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async
+		src="https://www.googletagmanager.com/gtag/js?id=UA-125107929-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-125107929-1');
+	</script>
+
+
+	<!-- Visual Studio Browser Link -->
+	<script type="application/json" id="__browserLink_initializationData">
     {"appName":"Firefox","requestId":"6b59d798b7584666a9bf5bc8dc765572"}
 </script>
-<script type="text/javascript" src="http://localhost:55698/328311dc0e16460681218069e4756074/browserLink" async="async"></script>
-<!-- End Browser Link -->
+	<script type="text/javascript"
+		src="http://localhost:55698/328311dc0e16460681218069e4756074/browserLink"
+		async="async"></script>
+	<!-- End Browser Link -->
 
 </body>
 </html>

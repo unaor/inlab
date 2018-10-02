@@ -18,8 +18,9 @@ public class InlabSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-				.antMatchers("/").permitAll().anyRequest().authenticated().and().formLogin().defaultSuccessUrl("/hello", true)
-				.loginPage("/login").permitAll().and().logout().permitAll();
+				.antMatchers("/Assets/**", "/fonts/**", "/img/**").permitAll().antMatchers("/").permitAll().anyRequest().authenticated().and()
+				.formLogin().defaultSuccessUrl("/hello", true).loginPage("/login").permitAll().and().logout()
+				.permitAll();
 	}
 
 	@Bean
@@ -30,5 +31,5 @@ public class InlabSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		return new InMemoryUserDetailsManager(user);
 	}
-	
+
 }
