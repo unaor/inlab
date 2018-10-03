@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,23 +34,26 @@ public class User implements Serializable, UserDetails {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	@Getter
 	@Setter
-	@JsonIgnore
 	private Integer userId;
 	
 	@Setter
+	@NotNull
 	private String userName;
 	
 	@Getter
 	@Setter
 	@Email
+	@NotNull
 	private String email;
 	
 	@Setter
 	@JsonIgnore
+	@NotNull
 	private String password;
 	
 	@Getter
 	@Setter
+	@NotNull
 	private String roleName;
 	
 	@Setter
