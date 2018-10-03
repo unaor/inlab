@@ -15,6 +15,8 @@ import javax.validation.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +25,7 @@ import lombok.Setter;
 @Table(name="USERS",
 uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
 @NoArgsConstructor
-public class User implements Serializable, UserDetails, GrantedAuthority {
+public class User implements Serializable, UserDetails {
 
 	private static final long serialVersionUID = -2970340426497543512L;
 	
@@ -31,6 +33,7 @@ public class User implements Serializable, UserDetails, GrantedAuthority {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Integer userId;
 	
 	@Setter
@@ -41,22 +44,21 @@ public class User implements Serializable, UserDetails, GrantedAuthority {
 	@Email
 	private String email;
 	
-	@Getter
 	@Setter
+	@JsonIgnore
 	private String password;
 	
 	@Getter
 	@Setter
 	private String roleName;
 	
-	@Getter
 	@Setter
-	private boolean enable;
+	private boolean enabled;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<User> roles = new ArrayList<User>();
-		roles.add(this);
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(new Role(roleName));
 		return roles;
 	}
 
@@ -82,17 +84,11 @@ public class User implements Serializable, UserDetails, GrantedAuthority {
 
 	@Override
 	public boolean isEnabled() {
-		return enable;
-	}
-
-	@Override
-	public String getAuthority() {
-		return roleName;
+		return enabled;
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return password;
 	}
 	

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.duobot.inlab.dao.InlabUserService;
+import com.example.duobot.inlab.model.User;
 
 @Controller
 public class LoginController {
