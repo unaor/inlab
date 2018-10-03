@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<header th:insert="fragments/headerCliente.html :: header"> </header>
+<hgroup th:insert="fragments/cliente/headCliente.html :: headCliente"> </hgroup>
 
 <body class="sidebar-mini">
-
-<!-- SIDEBAR    -->
-<hgroup th:insert="fragments/sidebarCliente.html :: sidebar"> </hgroup>
-
-<!-- /SIDEBAR    -->
-
-
-<!-- TOPBAR    -->
-<hgroup th:insert="fragments/topbarCliente.html :: topbar"> </hgroup>
+<div class="wrapper">
+	<!--NAV-->
+		<!-- SIDEBAR    -->
+		<aside th:insert="fragments/cliente/asideCliente.html :: asideCliente"> </aside>
+		<!-- /SIDEBAR    -->
+	<!-- TOPBAR    -->
+	<!--/NAV-->
+    <!--MAIN-->
+    <div class="main-panel">
+       <!-- HEADER -->
+       <nav th:insert="fragments/nav.html :: nav"> </nav>
+       <!-- /HEADER -->
             
 <!-- /TOPBAR    -->
-
 <!-- CONTENT    -->
             
             <!--CONTAINER-->
             <div class="panel-header panel-header-sm">
             </div>
-            
-
-
             <div class="content">
 				<div class="row">
 				    <div class="col-lg-4">
@@ -285,13 +284,23 @@
 				    </div>
 				</div>
             </div>
-            <!--/CONTAINER-->
-            
+     <!--/CONTAINER-->
 <!-- /CONTENT   -->
 
 
 <!--FOOTER-->
-<footer th:insert="fragments/footerCliente.html :: footer"> </footer>
+<footer th:insert="fragments/footer.html :: footer"> </footer>
+<!--/FOOTER-->
+
+
+        </div>
+        <!--/MAIN-->
+</div>
+<!-- /BODY -->
+
+
+<var th:insert="fragments/scripts.html :: var"> </var>
+
 
 
 </body>

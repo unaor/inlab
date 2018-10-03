@@ -1,16 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<header th:insert="fragments/headerAdmin.html :: header"> </header>
+<hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
 
 <body class="sidebar-mini">
 
-<!-- SIDEBAR    -->
-<hgroup th:insert="fragments/sidebarAdmin.html :: sidebar"> </hgroup>
-<!-- /SIDEBAR    -->
+<script>
+
+
+$(document).ready(function(){
+
+    jQuery.support.cors = true;
+    
+    $.ajax({ 
+ 	   type: "GET",
+ 	   dataType: "json",
+ 	   url: "/api/user",
+ 	   success: function(data){ 
+
+        console.log(data);
+        	
+        var trHTML = '';
+                
+        $.each(data, function (i, item) {
+        	
+        	alert(item.enabled);
+        	alert(item.username);
+            
+            trHTML += '<tr><td>' + item.username + '</td><td>' + item.enabled + '</td></tr>';
+        });
+        
+        $('#tbUsuarios').append(trHTML);
+        
+        },
+        
+        error: function (msg) {
+            
+            alert(msg.responseText);
+        }
+    });
+})
+
+</script>
+
+
+    <div class="wrapper">
+        <!--NAV-->
+        <!-- SIDEBAR    -->
+		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin"> </aside>
+		<!-- /SIDEBAR    -->
+
 
 <!-- TOPBAR    -->
-<hgroup th:insert="fragments/topbarAdmin.html :: topbar"> </hgroup>
+
+    <!--/NAV-->
+    <!--MAIN-->
+    <div class="main-panel">
+       <!-- HEADER -->
+       <nav th:insert="fragments/nav.html :: nav"> </nav>
+       <!-- /HEADER -->
+            
 <!-- /TOPBAR    -->
 
 <!-- CONTENT    -->            
@@ -44,7 +92,15 @@
                   <div class="tab-content text-center">
                     <div class="tab-pane active" id="home" role="tabpanel">
                       <!-- CONTENIDO TAB 1 -->
-                      
+                      <div class="table-responsive">
+                      	
+		                  <table class="table" id="tbUsuarios">
+		                      <tr>
+		                      	<th>Usuario</th>
+		                      	<th>Activo</th>
+		                    </tr>
+		                  </table>
+		                </div>
                       <form class="form" method="" action="">
 		                <div class="card-header text-center">
 		                  <h3 class="card-title title-up">Crear | Editar</h3>
@@ -128,9 +184,20 @@
             
 <!-- /CONTENT   -->
 
-
 <!--FOOTER-->
-<footer th:insert="fragments/footerAdmin.html :: footer"> </footer>
+<footer th:insert="fragments/footer.html :: footer"> </footer>
+<!--/FOOTER-->
+
+
+        </div>
+        <!--/MAIN-->
+</div>
+<!-- /BODY -->
+
+
+<var th:insert="fragments/scripts.html :: var"> </var>
+
+
 
 </body>
 </html>
