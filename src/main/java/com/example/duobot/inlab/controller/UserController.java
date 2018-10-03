@@ -39,7 +39,7 @@ public class UserController {
 	@PostMapping(value = "/api/user")
 	public ResponseEntity<?> addUser(@RequestBody @Valid User user) {
 		try {
-			User dbUser = userService.findByEmail(user.getEmail());
+			User dbUser = userService.findByUsername(user.getUsername());
 			if (dbUser != null) {
 				return ResponseEntity.badRequest().body("Ya existe un usuario con este email");
 			}
@@ -60,11 +60,11 @@ public class UserController {
 
 				return ResponseEntity.badRequest().body("No encontramos este usuario en el base de datos");
 			}
-			dbUser.setEmail(form.getEmail());
+			dbUser.setUsername(form.getUsername());
 			dbUser.setEnabled(form.isEnabled());
 			dbUser.setPassword(bCryptPasswordEncoder.encode(form.getPassword()));
 			dbUser.setRoleName(form.getRoleName());
-			dbUser.setUserName(form.getUsername());
+			dbUser.setCompleteName(form.getCompleteName());
 			userService.save(dbUser);
 			return ResponseEntity.noContent().build();
 

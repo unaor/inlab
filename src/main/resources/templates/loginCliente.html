@@ -2,55 +2,60 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <!--     Meta     -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="author" content="Cluster Research" />
-    <meta name="genre" content="Servicios" />
-    <meta name="geo.placename" content="Colombia" />
-    <meta name="geo.position" content="4.687771;-74.070650" />
-    <meta name="geo.region" content="CO" />
-    <meta name="google" content="notranslate" />
-    <meta name="ICBM" content="4.687771, -74.070650" />
-    <meta name="language" content="spanish" />
+<!--     Meta     -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="author" content="Cluster Research" />
+<meta name="genre" content="Servicios" />
+<meta name="geo.placename" content="Colombia" />
+<meta name="geo.position" content="4.687771;-74.070650" />
+<meta name="geo.region" content="CO" />
+<meta name="google" content="notranslate" />
+<meta name="ICBM" content="4.687771, -74.070650" />
+<meta name="language" content="spanish" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="MetodologÃ­a INLab">
+<meta name="keywords" content="MetodologÃ­a INLab">
 
-    <meta name="description" content="Metodología INLab">
-    <meta name="keywords" content="Metodología INLab">
+<meta name="robots" content="index" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="INLAB RESEARCH" />
+<meta property="og:description" content="MetodologÃ­a INLab" />
+<meta property="og:url" content="http://www.inlab.com.co/" />
+<meta property="og:site_name" content="INLAB RESEARCH" />
+<meta property="og:locale" content="es_CO" />
+<meta property="og:locale:alternate" content="es_CO" />
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+	name='viewport' />
 
-    <meta name="robots" content="index" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="INLAB RESEARCH" />
-    <meta property="og:description" content="Metodología INLab" />
-    <meta property="og:url" content="http://www.inlab.com.co/" />
-    <meta property="og:site_name" content="INLAB RESEARCH" />
-    <meta property="og:locale" content="es_CO" />
-    <meta property="og:locale:alternate" content="es_CO" />
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    
-    <!--     CSS     -->
-    <link rel="icon" type="image/png" href="@Url.Content("/img/icons/inlab_favicon.png")">
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="/fonts/iconic/css/material-design-iconic-font.min.css" rel="stylesheet" />
-    <link href="/assets/animate/animate.css" rel="stylesheet" />
-    <link href="/assets/css-hamburgers/hamburgers.min.css" rel="stylesheet" />
-    <link href="/assets/animsition/css/animsition.min.css" rel="stylesheet" />
-    <link href="/assets/select2/select2.min.css" rel="stylesheet" />
-    <link href="/assets/daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="/css/util.css" rel="stylesheet" />
-    <link href="/css/login.css" rel="stylesheet" />
+<!--     CSS     -->
+<link rel="icon" type="image/png" href="@Url.Content("/img/icons/inlab_favicon.png")">
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<link href="/fonts/iconic/css/material-design-iconic-font.min.css"
+	rel="stylesheet" />
+<link href="/assets/animate/animate.css" rel="stylesheet" />
+<link href="/assets/css-hamburgers/hamburgers.min.css" rel="stylesheet" />
+<link href="/assets/animsition/css/animsition.min.css" rel="stylesheet" />
+<link href="/assets/select2/select2.min.css" rel="stylesheet" />
+<link href="/assets/daterangepicker/daterangepicker.css"
+	rel="stylesheet" />
+<link href="/css/util.css" rel="stylesheet" />
+<link href="/css/login.css" rel="stylesheet" />
 
-    <title>
-        INLAB RESEARCH
-    </title>
+<title>INLAB RESEARCH</title>
 </head>
 
 <body>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="alert alert-danger" th:if="${param.error}">Email/contraseña incorrecto</div>
+				<div class="alert alert-danger" th:if="${param.error}">Email/contraseÃ±a
+					incorrecto</div>
 				<form name="form" id="inlab_login_form"
-					class="login100-form validate-form" th:action="@{/login}" method="post">
+					class="login100-form validate-form" th:action="@{/login}"
+					method="post">
 					<!--<span class="login100-form-title p-b-26">
                         Bienvenido
                     </span>-->
@@ -75,8 +80,7 @@
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 
-							<button class="login100-form-btn" type="submit">
-								Entrar</button>
+							<button class="login100-form-btn" type="submit">Entrar</button>
 						</div>
 					</div>
 					<br /> <span class="login100-form-title p-t-10"> <img

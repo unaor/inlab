@@ -6,6 +6,6 @@ import com.example.duobot.inlab.model.User;
 
 public interface InlabUserService extends CrudRepository<User, Integer> {
 	
-	public User findByEmail(String email);
+	public User findByUsername(String username);
 
 }

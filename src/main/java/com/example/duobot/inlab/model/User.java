@@ -24,7 +24,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name="USERS",
-uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
+uniqueConstraints=@UniqueConstraint(columnNames={"username"}))
 @NoArgsConstructor
 public class User implements Serializable, UserDetails {
 
@@ -38,13 +38,13 @@ public class User implements Serializable, UserDetails {
 	
 	@Setter
 	@NotNull
-	private String userName;
+	@Email
+	private String username;
 	
 	@Getter
 	@Setter
-	@Email
 	@NotNull
-	private String email;
+	private String completeName;
 	
 	@Setter
 	@JsonIgnore
@@ -68,7 +68,7 @@ public class User implements Serializable, UserDetails {
 
 	@Override
 	public String getUsername() {
-		return email;
+		return username;
 	}
 
 	@Override
