@@ -19,9 +19,14 @@
 
     <!-- Chart JS -->
     <script src="../plugins/chartjs/chartjs.min.js"></script>
+    
     <!--  Notifications Plugin    -->
     <script src="../plugins/bootstrap-notify/bootstrap-notify.js"></script>
-
+    
+    <!--  Datepicker Plugin    -->
+    <script src="../js/plugins/bootstrap-datepicker.js"></script>
+    <script src="../js/plugins/moment.min.js"></script>
+    
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
 
@@ -191,5 +196,12 @@
     });
   });
     </script>
+    
+    <script>
+	$(document).ready(function(){
+	    $('[data-tooltip="tooltip"]').tooltip();
+	});
+	</script>
+    
     
     </var>

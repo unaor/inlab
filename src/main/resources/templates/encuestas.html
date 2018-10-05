@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
+
+<body class="sidebar-mini">
+<div class="wrapper">
+	<!--NAV-->
+		<!-- SIDEBAR    -->
+		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin"> </aside>
+		<!-- /SIDEBAR    -->
+	<!-- TOPBAR    -->
+	<!--/NAV-->
+    <!--MAIN-->
+    <div class="main-panel">
+       <!-- HEADER -->
+       <nav th:insert="fragments/nav.html :: nav"> </nav>
+       <!-- /HEADER -->
+            
+<!-- /TOPBAR    -->
+<!-- CONTENT    -->
+            
+            <!--CONTAINER-->
+
+            
+            <div class="panel-header panel-header-sm">
+            </div>
+            <div class="section">
+	            <div class="content col-md-12 col-centered">
+	            <!-- CONTENIDO PAGINA  -->
+	            	<div class="row">
+		            	<div class="col-md-10 ml-auto col-xl-10 mr-auto">
+			              <p class="category">ENCUESTAS</p>
+			              <!-- Tabs with Background on Card -->
+			              <div class="card">
+			                <div class="card-header">
+			                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
+			                    <li class="nav-item">
+			                      <a class="nav-link active" data-toggle="tab" href="#tabEncuesta" role="tab"><i class="far fa-list-alt"></i> Encuestas</a>
+			                    </li>
+			                    <li class="nav-item">
+			                      <a class="nav-link" data-toggle="tab" href="#tabPalabras" role="tab"><i class="far fa-comment"></i> Palabras</a>
+			                    </li>
+			                  </ul>
+			                </div>
+			                <div class="card-body">
+			                  <!-- Tab panes -->
+			                  <div class="tab-content text-center">
+			                    <!-- tab 1 -->
+			                    <div class="tab-pane active" id="tabEncuesta" role="tabpanel">
+			                      <div class="float-left p-2">
+			                      	  <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearEncuesta"><i class="far fa-list-alt"></i> Crear Encuesta</button>
+			                      </div>
+			                      <div class="table-responsive">
+					                  <table class="table" id="tbEncuestas">
+					                    <tr>
+											<th>ID</th>
+					                      	<th>Nombre encuesta</th>
+					                      	<th>Fecha Inicio</th>
+					                      	<th>Fecha fin</th>
+					                      	<th>Acciones</th>
+					                    </tr>
+					                    <tr>
+					                    	<td>e01</td>
+					                      	<td>encuesta 1</td>
+					                      	<td>fecha</td>
+					                      	<td>fecha</td>
+					                      	<td class="text-center">
+					                      		<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearEncuesta" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearPregunta" class="btn btn-default btn-icon btn-sm " data-original-title="Preguntas" title="Preguntas"><i class="fas fa-question"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalContestarEncuesta" class="btn btn-warning btn-icon btn-sm " data-original-title="Contestar" title="Contestar"><i class="far fa-check-square"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalInsight" class="btn btn-primary btn-icon btn-sm " data-original-title="Insight" title="Insight"><i class="fas fa-cloud"></i></button>
+								                <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="Excel" title="Excel"><i class="far fa-file-excel"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+								            </td>
+					                    </tr>
+					                    <tr>
+					                    	<td>e02</td>
+					                      	<td>encuesta 1</td>
+					                      	<td>fecha</td>
+					                      	<td>fecha</td>
+					                      	<td class="text-center">
+					                      		<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearEncuesta" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearPregunta" class="btn btn-default btn-icon btn-sm " data-original-title="Preguntas" title="Preguntas"><i class="fas fa-question"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalContestarEncuesta" class="btn btn-warning btn-icon btn-sm " data-original-title="Contestar" title="Contestar"><i class="far fa-check-square"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalInsight" class="btn btn-primary btn-icon btn-sm " data-original-title="Insight" title="Insight"><i class="fas fa-cloud"></i></button>
+								                <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="Excel" title="Excel"><i class="far fa-file-excel"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+								            </td>
+					                    </tr>
+					                  </table>
+				                	</div>
+			                    </div>
+								<!-- /tab1 -->
+			                    <div class="tab-pane" id="tabPalabras" role="tabpanel">
+			                    	<div class="float-left p-2">
+			                      	  <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearPalabra"><i class="far fa-comment"></i> Crear Palabra</button>
+			                      </div>
+			                      <div class="table-responsive">
+					                  <table class="table" id="tbPalabras">
+					                    <tr>
+											<th>Palabra</th>
+					                      	<th>Acciones</th>
+					                    </tr>
+					                    <tr>
+					                      	<td>nsadnoa</td>
+					                      	<td class="text-center">
+					                      		<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearPalabra" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+								            </td>
+					                    </tr>
+					                    <tr>
+					                      	<td>nsadnoa</td>
+					                      	<td class="text-center">
+					                      		<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearPalabra" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+								            </td>
+					                    </tr>
+					                  </table>
+				                	</div>
+			                    </div>
+			                  </div>
+			                </div>
+			              </div>
+			              <!-- End Tabs on plain Card -->
+			            </div>
+		        	</div>
+		          <!-- /CONTENIDO PAGINA  -->
+		          
+	          </div>
+	      </div>
+     <!--/CONTAINER-->
+<!-- /CONTENT   -->
+
+
+<!--FOOTER-->
+<footer th:insert="fragments/footer.html :: footer"> </footer>
+<!--/FOOTER-->
+
+
+        </div>
+        <!--/MAIN-->
+</div>
+
+<!-- Inicio Modal Crear/Editar Encuesta -->
+<div class="modal fade modal-md" id="modalCrearEncuesta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <form id="crearEncuesta" class="form" method="" action="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 class="title title-up">Crear | Editar Encuesta</h4>
+          </div>
+          <div class="modal-body">
+          	<div class="form-group">
+            	<input value="" placeholder="Nombre Encuesta" class="form-control" type="text">
+            </div>
+            <div class="row">
+            	<div class="datepicker-container col-sm-6">
+            		<label class="control-label">Fecha Inicial</label>
+			        <div class="form-group">
+						<input id="dp1" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+					</div>
+            	</div>            
+            	<div class="datepicker-container col-sm-6">
+            		<label class="control-label">Fecha Final</label>
+			        <div class="form-group">
+						<input class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+					</div>
+            	</div>
+            </div>
+            
+	  	</div>
+	  <div class="modal-footer">
+	    <button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+	    <button type="button" class="btn btn-success">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+  </form>
+</div>
+<!-- Fin Modal Crear/Editar Encuesta -->
+
+<!-- Inicio Modal Crear/Editar Preguntas -->
+<div class="modal fade" id="modalCrearPregunta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="crearPregunta" class="form" method="" action="">
+	      <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+	          <div class="modal-header justify-content-center">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	              <i class="now-ui-icons ui-1_simple-remove"></i>
+	            </button>
+	            <h4 class="title title-up">Crear | Editar Preguntas</h4>
+	          </div>
+	          <div class="modal-body p-5">
+	                 <div class="input-group no-border">
+			            <div class="input-group-prepend">
+			              <span class="input-group-text">
+			                <i class="fas fa-question"></i>
+			              </span>
+			            </div>
+			            <input class="form-control" placeholder="Texto Pregunta" type="text">
+			            &nbsp;
+			            <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm " data-original-title="" title=""><i class="fas fa-plus-circle"></i></button>
+			            <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm " data-original-title="" title=""><i class="far fa-trash-alt"></i></button>
+			          </div>
+			          <div class="input-group no-border">
+			            <div class="input-group-prepend">
+			              <span class="input-group-text">
+			                <i class="fas fa-question"></i>
+			              </span>
+			            </div>
+			            <input class="form-control" placeholder="Texto Pregunta" type="text">
+			            &nbsp;
+			            <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm " data-original-title="" title=""><i class="fas fa-plus-circle"></i></button>
+			            <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm " data-original-title="" title=""><i class="far fa-trash-alt"></i></button>
+			          </div>
+		  	</div>
+			<div class="modal-footer">
+				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			    <button type="button" class="btn btn-success">Finalizar</button>
+	      </div>
+	    </div>
+	  </div>
+	</form>
+</div>
+<!-- Fin Modal Crear/Editar Preguntas -->
+
+<!-- Minimodal Borrado  -->
+<div class="modal fade modal-mini" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>Confirmar el borrado</p>
+			</div>
+			<div class="modal-footer">
+				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			    <button type="button" class="btn btn-success">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Minimodal Borrado  -->
+
+
+<!-- Inicio Modal Contestar Encuesta -->
+<div class="modal fade" id="modalContestarEncuesta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="contestarEncuesta" class="form" method="" action="">
+	      <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+	          <div class="modal-header justify-content-center">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	              <i class="now-ui-icons ui-1_simple-remove"></i>
+	            </button>
+	            <h4 class="title title-up">Nombre Encuesta</h4>
+	          </div>
+	          <div class="modal-body">
+	          	<div class="col-md-10 col-centered">
+	          		<div class="alert alert-primary" role="alert">
+		          		<label class="control-label">Pregunta 1</label>
+		          	</div>
+					<textarea class="form-control" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>
+					<div class="alert alert-primary p" role="alert">
+		          		<label class="control-label">Pregunta 22222222</label>
+		          	</div>
+					<textarea class="form-control" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>
+					<div class="alert alert-primary" role="alert">
+		          		<label class="control-label">Pregunta 33333333333</label>
+		          	</div>
+					<textarea class="form-control" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>
+					<div class="alert alert-primary" role="alert">
+		          		<label class="control-label">Pregunta 44444444444444444444???</label>
+		          	</div>
+					<textarea class="form-control" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>
+				</div>
+		  	</div>
+			<div class="modal-footer">
+				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			    <button type="button" class="btn btn-success">Finalizar</button>
+	      </div>
+	    </div>
+	  </div>
+	</form>
+</div>
+
+<!-- Fin Modal Contestar Encuesta -->
+
+
+<!-- Inicio Modal INSIGHT -->
+
+<div class="modal fade" id="modalInsight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	      <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+	          <div class="modal-header justify-content-center">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	              <i class="now-ui-icons ui-1_simple-remove"></i>
+	            </button>
+	            <h4 class="title title-up">Nombre Encuesta</h4>
+	          </div>
+	          <div class="modal-body">
+	          	<div class="col-md-10 col-centered">
+	          		<div class="alert alert-primary" role="alert">
+		          		<label class="control-label">Pregunta 1</label>
+		          	</div>
+					dofnosnosnfodsfnods
+				</div>
+				<br>
+		  	</div>
+			<div class="modal-footer justify-content-center">
+				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+	      </div>
+	    </div>
+	  </div>
+</div>
+
+<!-- Fin Modal INSIGHT -->
+
+
+<!-- Inicio Modal Crear/Editar Palabra -->
+<div class="modal fade modal-md" id="modalCrearPalabra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <form id="crearPalabra" class="form" method="" action="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 class="title title-up">Crear | Editar Palabras</h4>
+          </div>
+          <div class="modal-body">
+          	<div class="form-group">
+            	<input value="" placeholder="Palabra" class="form-control" type="text">
+            </div>
+	  	</div>
+	  <div class="modal-footer">
+	    <button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+	    <button type="button" class="btn btn-success">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+  </form>
+</div>
+<!-- Fin Modal Crear/Editar Palabra -->
+
+
+
+<!-- /BODY -->
+
+
+
+
+<var th:insert="fragments/scripts.html :: var"> </var>
+
+<script>
+$("#btnCerrar").on("click",function(event){ 
+    event.prevenDefault(); 
+    $('#editarUsuario').trigger("reset"); 
+});
+</script>
+<script>
+	$('#dp1').datepicker({
+		format: 'dd-mm-yyyy'
+	});
+</script>
+
+
+
+
+</body>
+</html>

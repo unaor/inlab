@@ -72,5 +72,15 @@ public class LoginController {
 	public String homeAdmin() {
 		return "homeAdmin";
 	}
-
+	
+	@RequestMapping(value = "/encuestas")
+	public String encuestas() {
+		return "encuestas";
+	}
+	
+	@RequestMapping(value = "/campanas")
+	public String campanas() {
+		return "campanas";
+	}
+	
 }

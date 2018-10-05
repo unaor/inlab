@@ -2,44 +2,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>Hello World!</title>
+    	<title>Hello World!</title>
         
-     <link rel="icon" href="../img/icons/inlab_favicon.ico">
-        
-        <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link href="../css/now-ui-dashboard-pro.min.css" rel="stylesheet" />
-    
-    <!-- js Files -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-    <!-- CSS Files -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/api/user" rel="stylesheet" />
-    
-   
+	    <link rel="icon" href="../img/icons/inlab_favicon.ico">
+	        
+	    <!--     Fonts and icons     -->
+	    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+	    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+	    <link href="../css/now-ui-dashboard-pro.min.css" rel="stylesheet" />
+	    <link href="/css/now-ui-kit.min.css" rel="stylesheet" />
+	    
+	    <!-- js Files -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	
+	    <!-- CSS Files -->
+	    <link href="../css/bootstrap.min.css" rel="stylesheet" />
         
     </head>
     <body>
-    	<ul>
-    		<li>
-                <a href="/loginCliente">LoginCliente</a>
-            </li>
-            <li>
-                <a href="/homeCliente">homeCliente</a>
-            </li>
-            <li>
-                <a href="/homeAdmin">homeAdmin</a>
-            </li>
-    	</ul>
-    
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <div class="section" data-background-color="black">
+    	<div class="container">
+    		<br>
+    		<br>
+    		<br>
+	        <div class="row justify-content-md-center">
+	          <div class="text-center col-md-12 col-lg-8">
+	            <a href="/homeCliente" class="btn btn-primary btn-lg btn-round" role="button">
+	              Cliente
+	            </a>
+	            <a href="/homeAdmin" class="btn btn-primary btn-lg btn-simple btn-round" role="button">
+	              Administrador
+	            </a>
+	            <p th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</p>
+	          </div>
+	        </div>
+        <!--
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
-        </form>
-        
-        
-        
+        </form>-->
+        </div>
+    </div>
     </body>
 </html>

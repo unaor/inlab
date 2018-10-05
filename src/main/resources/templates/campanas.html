@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
+
+<body class="sidebar-mini">
+<div class="wrapper">
+	<!--NAV-->
+		<!-- SIDEBAR    -->
+		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin"> </aside>
+		<!-- /SIDEBAR    -->
+	<!-- TOPBAR    -->
+	<!--/NAV-->
+    <!--MAIN-->
+    <div class="main-panel">
+       <!-- HEADER -->
+       <nav th:insert="fragments/nav.html :: nav"> </nav>
+       <!-- /HEADER -->
+            
+<!-- /TOPBAR    -->
+<!-- CONTENT    -->
+            
+            <!--CONTAINER-->
+
+            
+            <div class="panel-header panel-header-sm">
+            </div>
+            <div class="section">
+	            <div class="content col-md-12 col-centered">
+	            <!-- CONTENIDO PAGINA  -->
+	            	<div class="row">
+		            	<div class="col-md-10 ml-auto col-xl-10 mr-auto">
+			              <p class="category">CAMPA&Ntilde;AS</p>
+			              <!-- Tabs with Background on Card -->
+			              <div class="card">
+			                <div class="card-header">
+			                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
+			                    <li class="nav-item">
+			                      <a class="nav-link active" data-toggle="tab" href="#tabEncuesta" role="tab"><i class="fab fa-hubspot"></i> Configurar Campa&ntilde;as</a>
+			                    </li>
+			                  </ul>
+			                </div>
+			                <div class="card-body">
+			                  <!-- Tab panes -->
+			                  <div class="tab-content text-center">
+			                    <!-- tab 1 -->
+			                    <div class="tab-pane active" id="tabEncuesta" role="tabpanel">
+			                      <div class="float-left p-2">
+			                      	  <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearCampana">Crear Campa&ntilde;a</button>
+			                      </div>
+			                      <div class="table-responsive">
+					                  <table class="table" id="tbEncuestas">
+					                    <tr>
+											<th>ID</th>
+					                      	<th>Nombre Campa&ntilde;a</th>
+					                      	<th>Fecha Inicio</th>
+					                      	<th>Fecha fin</th>
+					                      	<th>URL</th>
+					                      	<th>Acciones</th>
+					                    </tr>
+					                    <tr>
+					                    	<td>c01</td>
+					                      	<td>Campa&ntilde;a 1</td>
+					                      	<td>fecha</td>
+					                      	<td>fecha</td>
+					                      	<td>www.inlab.com.co/encuesta?id=1</td>
+					                      	<td class="text-center">
+					                      		<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-default btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+								            </td>
+					                    </tr>
+					                    <tr>
+					                    	<td>c02</td>
+					                      	<td>Campa&ntilde;a 2</td>
+					                      	<td>fecha</td>
+					                      	<td>fecha</td>
+					                      	<td>www.inlab.com.co/encuesta?id=2</td>
+					                      	<td class="text-center">
+					                      		<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-default btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button>
+								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+								            </td>
+					                    </tr>
+					                  </table>
+				                	</div>
+			                    </div>
+								<!-- /tab1 -->
+			                  </div>
+			                </div>
+			              </div>
+			              <!-- End Tabs on plain Card -->
+			            </div>
+		        	</div>
+		          <!-- /CONTENIDO PAGINA  -->
+		          
+	          </div>
+	      </div>
+     <!--/CONTAINER-->
+<!-- /CONTENT   -->
+
+
+<!--FOOTER-->
+<footer th:insert="fragments/footer.html :: footer"> </footer>
+<!--/FOOTER-->
+
+
+        </div>
+        <!--/MAIN-->
+</div>
+
+<!-- Inicio Modal Crear/Editar Campa&ntilde;a -->
+<div class="modal fade modal-md" id="modalCrearCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <form id="crearCampana" class="form" method="" action="">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 class="title title-up">Crear | Editar Campa&ntilde;a</h4>
+          </div>
+          <div class="modal-body">
+          	<div class="form-group">
+            	<input value="" placeholder="Nombre Campa&ntilde;a" class="form-control" type="text">
+            </div>
+            <div class="row">
+            	<div class="datepicker-container col-sm-6">
+            		<label class="control-label">Fecha Inicial</label>
+			        <div class="form-group">
+						<input id="dp1" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+					</div>
+            	</div>            
+            	<div class="datepicker-container col-sm-6">
+            		<label class="control-label">Fecha Final</label>
+			        <div class="form-group">
+						<input class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+					</div>
+            	</div>
+            </div>
+            <hr>
+            <div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Video</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="video">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Chat</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="chat">
+	                </div>
+            	</div>
+            </div>
+            <hr>
+            <div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Encuesta</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="monkey">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+            		<label class="control-label">Imagen Encuesta</label>
+	                <div class="input-group">
+					  <div class="custom-file">
+					    <input type="file" class="custom-file-input" id="inputGroupFile04">
+					    <label class="custom-file-label" for="inputGroupFile04">Cargar Imagen</label>
+					  </div>
+					</div>
+            	</div>
+            </div>
+            <hr>
+            <div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">ID Encuesta INSIGHT</label>
+	                  	<input value="" placeholder="ID" class="form-control" type="text" id="idInsight">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Power BI</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="powerBI">
+	                </div>
+            	</div>
+            </div>
+            <hr>
+            <div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Redes - top_tweets</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes1">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Redes - topics</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes2">
+	                </div>
+            	</div>
+            </div>
+            <div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Redes - influencers</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes3">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Redes - top_domains</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes4">
+	                </div>
+            	</div>
+            </div>
+            <div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Redes - countries</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes5">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Redes - demographics</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes6">
+	                </div>
+            	</div>
+            </div>
+            <hr>
+            <div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Redes - countries</label>
+	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes5">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+					    <label for="exampleFormControlSelect1">Asignar Usuario</label>
+					    <select class="form-control" id="usuarioCliente">
+					      <option>usuario 1</option>
+					      <option>usuario 2</option>
+					      <option>usuario 3</option>
+					      <option>usuario 4</option>
+					      <option>usuario 5</option>
+					    </select>
+					  </div>
+            	</div>
+            </div>
+            <br>
+	  	</div>
+	  <div class="modal-footer">
+	    <button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+	    <button type="button" class="btn btn-success">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+  </form>
+</div>
+<!-- Fin Modal Crear/Editar Campa&ntilde;a -->
+
+<!-- Inicio Modal Galería -->
+<div class="modal fade" id="modalGaleriaCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="galeria" class="form" method="" action="">
+	      <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+	          <div class="modal-header justify-content-center">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	              <i class="now-ui-icons ui-1_simple-remove"></i>
+	            </button>
+	            <h4 class="title title-up">Crear | Editar Preguntas</h4>
+	          </div>
+	          <div class="modal-body p-5">
+	          	<div class="col-sm-10 col-centered">
+	               <div class="table-responsive">
+	                  <table class="table" id="tbEncuestas">
+	                    <tr>
+							<th>Archivo</th>
+	                      	<th class="text-center">Acciones</th>
+	                    </tr>
+	                    <tr>
+	                    	<td>foto_01.jpg</td>
+	                      	<td class="text-center">
+				                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+				            </td>
+	                    </tr>
+	                    <tr>
+	                    	<td>foto_02.jpg</td>
+	                      	<td class="text-center">
+				                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+				            </td>
+	                    </tr>
+	                  </table>
+               		</div>
+               	</div>
+               	<div class="row">
+               		<div class="col-sm-10 col-centered">
+		                <div class="input-group">
+						  <div class="custom-file">
+						    <input type="file" class="custom-file-input" id="inputGroupFile04">
+						    <label class="custom-file-label" for="inputGroupFile04">Cargar Imagen</label>
+						  </div>
+						</div>
+               		</div>
+               	</div>
+		  	</div>
+			<div class="modal-footer">
+				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			    <button type="button" class="btn btn-success">Finalizar</button>
+	      </div>
+	    </div>
+	  </div>
+	</form>
+</div>
+<!-- Fin Modal Galería -->
+
+<!-- Minimodal Borrado  -->
+<div class="modal fade modal-mini" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>Confirmar el borrado</p>
+			</div>
+			<div class="modal-footer">
+				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			    <button type="button" class="btn btn-success">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Minimodal Borrado  -->
+
+
+<!-- /BODY -->
+
+
+
+
+<var th:insert="fragments/scripts.html :: var"> </var>
+
+<script>
+$("#btnCerrar").on("click",function(event){ 
+    event.prevenDefault(); 
+    $('#editarUsuario').trigger("reset"); 
+});
+</script>
+<script>
+	$('#dp1').datepicker({
+		format: 'dd-mm-yyyy'
+	});
+</script>
+
+
+
+
+</body>
+</html>

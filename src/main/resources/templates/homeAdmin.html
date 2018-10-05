@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
 
 <body class="sidebar-mini">
-
+<div class="wrapper">
+	<!--NAV-->
+		<!-- SIDEBAR    -->
+		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin"> </aside>
+		<!-- /SIDEBAR    -->
+	<!-- TOPBAR    -->
+	<!--/NAV-->
+    <!--MAIN-->
+    <div class="main-panel">
+       <!-- HEADER -->
+       <nav th:insert="fragments/nav.html :: nav"> </nav>
+       <!-- /HEADER -->
+            
+<!-- /TOPBAR    -->
+<!-- CONTENT    -->
+            
+            <!--CONTAINER-->
 <script>
 
 
@@ -23,10 +39,10 @@ $(document).ready(function(){
                 
         $.each(data, function (i, item) {
         	
-        	alert(item.enabled);
-        	alert(item.username);
+        	//alert(item.enabled);
+        	//alert(item.username);
             
-            trHTML += '<tr><td>' + item.username + '</td><td>' + item.enabled + '</td></tr>';
+            trHTML += '<tr><td>' + item.username + '</td><td>' + item.enabled + '</td><td><a class="btn btn-info btn-icon btn-sm " href="#" data-toggle="modal" data-target="#modalUsuario" data-tooltip="tooltip" data-placement="right" title="Editar" data-original-title="Editar"><i class="far fa-edit"></i></a> <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
         });
         
         $('#tbUsuarios').append(trHTML);
@@ -41,148 +57,165 @@ $(document).ready(function(){
 })
 
 </script>
-
-
-    <div class="wrapper">
-        <!--NAV-->
-        <!-- SIDEBAR    -->
-		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin"> </aside>
-		<!-- /SIDEBAR    -->
-
-
-<!-- TOPBAR    -->
-
-    <!--/NAV-->
-    <!--MAIN-->
-    <div class="main-panel">
-       <!-- HEADER -->
-       <nav th:insert="fragments/nav.html :: nav"> </nav>
-       <!-- /HEADER -->
             
-<!-- /TOPBAR    -->
-
-<!-- CONTENT    -->            
-            
-            <!--CONTAINER-->
             <div class="panel-header panel-header-sm">
             </div>
-            <div class="section section-tabs">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10 ml-auto col-xl-6 mr-auto">
-              <p class="category">USUARIOS - ROLES</p>
-              <!-- Nav tabs -->
-              <div class="card">
-                <div class="card-header">
-                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
-                    <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
-                        <i class="now-ui-icons users_single-02"></i> Usuarios
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#profile" role="tab">
-                        <i class="now-ui-icons ui-1_lock-circle-open"></i> Roles
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="card-body">
-                  <!-- Tab panes -->
-                  <div class="tab-content text-center">
-                    <div class="tab-pane active" id="home" role="tabpanel">
-                      <!-- CONTENIDO TAB 1 -->
-                      <div class="table-responsive">
-                      	
-		                  <table class="table" id="tbUsuarios">
-		                      <tr>
-		                      	<th>Usuario</th>
-		                      	<th>Activo</th>
-		                    </tr>
-		                  </table>
-		                </div>
-                      <form class="form" method="" action="">
-		                <div class="card-header text-center">
-		                  <h3 class="card-title title-up">Crear | Editar</h3>
+            <div class="section">
+	            <div class="content col-md-12 col-centered">
+	            	<div class="row">
+		            <div class="col-md-10 ml-auto col-xl-5 mr-auto">
+		              <p class="category">USUARIOS - ROLES</p>
+		              <!-- Nav tabs -->
+		              <div class="card">
+		                <div class="card-header">
+		                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
+		                    <li class="nav-item">
+		                      <a class="nav-link active" data-toggle="tab" href="#usuarios" role="tab">
+		                        <i class="fas fa-users"></i> Usuarios
+		                      </a>
+		                    </li>
+		                    <li class="nav-item">
+		                      <a class="nav-link" data-toggle="tab" href="#roles" role="tab">
+		                        <i class="fas fa-user-lock"></i> Roles
+		                      </a>
+		                    </li>
+		                  </ul>
 		                </div>
 		                <div class="card-body">
-		                  <div class="input-group no-border">
-		                    <div class="input-group-prepend">
-		                      <span class="input-group-text">
-		                        <i class="now-ui-icons users_circle-08"></i>
-		                      </span>
+		                  <!-- Tab panes -->
+		                  <div class="tab-content text-center">
+		                    <div class="tab-pane active" id="usuarios" role="tabpanel">
+		                      <!-- CONTENIDO TAB 1 -->
+		                      <div class="table-responsive">
+				                  <table class="table" id="tbUsuarios">
+				                      <tr>
+				                      	<th>Usuario</th>
+				                      	<th>Activo</th>
+				                      	<th>Editar</th>
+				                    </tr>
+				                  </table>
+				                </div>
+		                      <!-- / CONTENIDO TAB 1 -->
 		                    </div>
-		                    <input class="form-control" placeholder="Nombre Usuario" type="text">
-		                  </div>
-		                  <div class="input-group no-border">
-		                    <div class="input-group-prepend">
-		                      <span class="input-group-text">
-		                        <i class="now-ui-icons text_caps-small"></i>
-		                      </span>
+		                    <div class="tab-pane" id="roles" role="tabpanel">
+		                      <!-- CONTENIDO TAB 2 -->
+		                      <div class="table-responsive">
+				                  <table class="table" id="tbUsuarios">
+				                      <tr>
+				                      	<th>Rol</th>
+				                      	<th>Activo</th>
+				                      	<th>Editar</th>
+				                    </tr>
+				                  </table>
+				                </div>
+		                      <!-- / CONTENIDO TAB 2 -->
 		                    </div>
-		                    <input placeholder="Usuario" class="form-control" type="text">
 		                  </div>
-		                  <div class="input-group no-border">
-		                    <div class="input-group-prepend">
-		                      <span class="input-group-text">
-		                        <i class="now-ui-icons ui-1_email-85"></i>
-		                      </span>
-		                    </div>
-		                    <input class="form-control" placeholder="Contraseña" type="password">
-		                  </div>
-		                  <div class="checkbox">
-							<input id="checkboxSignup" type="checkbox">
-								<label for="checkboxSignup">
-								Activo
-								</label>
-						  </div>
 		                </div>
-		                <div class="card-footer text-center">
-		                  <a href="#" class="btn btn-warning btn-round btn-lg">Actualizar</a>
+		              </div>
+		            </div>
+		            <div class="col-md-10 ml-auto col-xl-5 mr-auto">
+		              <p class="category">PERMISOS</p>
+		              <!-- Tabs with Background on Card -->
+		              <div class="card">
+		                <div class="card-header">
+		                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
+		                    <li class="nav-item">
+		                      <a class="nav-link active" data-toggle="tab" href="#creaUsuario" role="tab">
+		                      	<i class="fas fa-user-plus"></i> Crear Usuario
+		                      </a>
+		                    </li>
+		                    <li class="nav-item">
+		                      <a class="nav-link" data-toggle="tab" href="#creaRol" role="tab">
+		                      	<i class="fas fa-user-cog"></i> Crear Rol
+		                      </a>
+		                    </li>
+		                  </ul>
 		                </div>
-		              </form>
-                      
-                      
-                      
-                      <!-- / CONTENIDO TAB 1 -->
-                    </div>
-                    <div class="tab-pane" id="profile" role="tabpanel">
-                      <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-10 ml-auto col-xl-6 mr-auto">
-              <p class="category">PERMISOS</p>
-              <!-- Tabs with Background on Card -->
-              <div class="card">
-                <div class="card-header">
-                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
-                    <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">
-                      	<i class="now-ui-icons objects_key-25"></i> Asignar
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="card-body">
-                  <!-- Tab panes -->
-                  <div class="tab-content text-center">
-                    <div class="tab-pane active" id="home1" role="tabpanel">
-                      <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- End Tabs on plain Card -->
-            </div>
-          </div>
-        </div>
-      </div>
-            <!--/CONTAINER-->
-            
+		                <div class="card-body">
+		                  <!-- Tab panes -->
+		                  <div class="tab-content text-center">
+		                    <div class="tab-pane active" id="creaUsuario" role="tabpanel">
+		                      <!-- CONTENIDO TAB 1 -->
+		                      <form id="crearUsuario" class="form" method="" action="">
+		                      	<div class="input-group no-border">
+						            <div class="input-group-prepend">
+						              <span class="input-group-text">
+						                <i class="now-ui-icons users_circle-08"></i>
+						              </span>
+						            </div>
+						            <input class="form-control" placeholder="Nombre Usuario" type="text">
+						          </div>
+						          <div class="input-group no-border">
+						            <div class="input-group-prepend">
+						              <span class="input-group-text">
+						                <i class="now-ui-icons ui-1_email-85"></i>
+						              </span>
+						            </div>
+						            <input placeholder="email" class="form-control" type="text">
+						          </div>
+						          <div class="input-group no-border">
+						            <div class="input-group-prepend">
+						              <span class="input-group-text">
+						                <i class="now-ui-icons ui-1_lock-circle-open"></i>
+						              </span>
+						            </div>
+						            <input class="form-control" placeholder="Contrase&ntilde;a" type="password">
+						          </div>
+						          <div class="form-group">
+								    <label for="exampleFormControlSelect1">Rol</label>
+								    <select class="form-control" id="rolUsuario">
+								      <option>1</option>
+								      <option>2</option>
+								      <option>3</option>
+								      <option>4</option>
+								      <option>5</option>
+								    </select>
+								  </div>
+								  <button type="button" class="btn btn-success">Guardar</button>
+								  </form>
+		                      <!-- /CONTENIDO TAB 1 -->
+		                    </div>
+		                    <div class="tab-pane" id="creaRol" role="tabpanel">
+		                      <!-- CONTENIDO TAB 2 -->
+		                      <form id="crearRol" class="form" method="" action="">
+		                      	<div class="input-group no-border">
+						            <div class="input-group-prepend">
+						              <span class="input-group-text">
+						                <i class="now-ui-icons users_circle-08"></i>
+						              </span>
+						            </div>
+						            <input class="form-control" placeholder="Nombre Rol" type="text">
+						          </div>
+						          <div class="form-check">
+					                <label class="form-check-label">
+					                  <input class="form-check-input" checked="" type="checkbox">
+					                  <span class="form-check-sign"></span>
+					                  M&oacute;dulo 1
+					                </label>
+					              </div>
+					              <div class="form-check">
+					                <label class="form-check-label">
+					                  <input class="form-check-input" checked="" type="checkbox">
+					                  <span class="form-check-sign"></span>
+					                  M&oacute;dulo 2
+					                </label>
+					              </div>
+								  <button type="button" class="btn btn-success">Guardar</button>
+								  </form>
+		                      <!-- /CONTENIDO TAB 2 -->
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		              <!-- End Tabs on plain Card -->
+		            </div>
+		          </div>
+	          </div>
+	      </div>
+     <!--/CONTAINER-->
 <!-- /CONTENT   -->
+
 
 <!--FOOTER-->
 <footer th:insert="fragments/footer.html :: footer"> </footer>
@@ -192,11 +225,92 @@ $(document).ready(function(){
         </div>
         <!--/MAIN-->
 </div>
+
+<!-- Inicio Modal Editar Usuario-->
+<div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="editarUsuario" class="form" method="" action="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 class="title title-up">Editar Usuario</h4>
+          </div>
+          <div class="modal-body">
+	          <div class="input-group no-border">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">
+	                <i class="now-ui-icons users_circle-08"></i>
+	              </span>
+	            </div>
+	            <input class="form-control" placeholder="Nombre Usuario" type="text">
+	          </div>
+	          <div class="input-group no-border">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">
+	                <i class="now-ui-icons ui-1_email-85"></i>
+	              </span>
+	            </div>
+	            <input placeholder="email" class="form-control" type="text">
+	          </div>
+	          <div class="input-group no-border">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">
+	                <i class="now-ui-icons ui-1_lock-circle-open"></i>
+	              </span>
+	            </div>
+	            <input class="form-control" placeholder="Contrase&ntilde;a" type="password">
+	          </div>
+	          <div class="form-group">
+			    <label for="exampleFormControlSelect1">Rol Asignado</label>
+			    <select class="form-control" id="rolUsuario">
+			      <option>1</option>
+			      <option>2</option>
+			      <option>3</option>
+			      <option>4</option>
+			      <option>5</option>
+			    </select>
+			  </div>
+	  	</div>
+	  <div class="modal-footer">
+	  	<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+	    <button type="button" class="btn btn-success">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</form>
+</div>
+<!-- Fin Modal Editar Usuario -->
+
+<!-- Minimodal Borrado  -->
+<div class="modal fade modal-mini" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>Confirmar el borrado</p>
+			</div>
+			<div class="modal-footer">
+				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			    <button type="button" class="btn btn-success">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Minimodal Borrado  -->
+
+
 <!-- /BODY -->
 
 
 <var th:insert="fragments/scripts.html :: var"> </var>
 
+<script>
+$("#btnCerrar").on("click",function(event){ 
+    event.prevenDefault(); 
+    $('#editarUsuario').trigger("reset"); 
+});
+</script>
 
 
 </body>
