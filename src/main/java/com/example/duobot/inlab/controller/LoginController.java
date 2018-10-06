@@ -1,11 +1,12 @@
 package com.example.duobot.inlab.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.duobot.inlab.dao.InlabUserService;
-import com.example.duobot.inlab.model.User;
 
 @Controller
 public class LoginController {
@@ -19,7 +20,8 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/hello")
-	public String welcome() {
+	public String welcome(Principal user) {
+		System.out.println(user.getName());
 		return "hello";
 	}
 

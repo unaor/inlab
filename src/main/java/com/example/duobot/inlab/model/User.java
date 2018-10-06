@@ -18,45 +18,31 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 @Entity
 @Table(name="USERS",
 uniqueConstraints=@UniqueConstraint(columnNames={"username"}))
-@NoArgsConstructor
 public class User implements Serializable, UserDetails {
 
 	private static final long serialVersionUID = -2970340426497543512L;
 	
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-	@Getter
-	@Setter
 	private Integer userId;
 	
-	@Setter
 	@NotNull
 	@Email
 	private String username;
 	
-	@Getter
-	@Setter
 	@NotNull
 	private String completeName;
 	
-	@Setter
 	@JsonIgnore
 	@NotNull
 	private String password;
 	
-	@Getter
-	@Setter
 	@NotNull
 	private String roleName;
 	
-	@Setter
 	private boolean enabled;
 
 	@Override
@@ -96,6 +82,42 @@ public class User implements Serializable, UserDetails {
 		return password;
 	}
 	
-	
+	public User() {}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getCompleteName() {
+		return completeName;
+	}
+
+	public void setCompleteName(String completeName) {
+		this.completeName = completeName;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}	
 
 }
