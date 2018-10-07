@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -24,6 +25,7 @@ public class Poll implements Serializable {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private Integer pollId;
 
+	@NotNull
 	private String pollName;
 
 	private Integer startDate;
