@@ -20,43 +20,6 @@
 <!-- CONTENT    -->
             
             <!--CONTAINER-->
-<script>
-
-
-$(document).ready(function(){
-
-    jQuery.support.cors = true;
-    
-    $.ajax({ 
- 	   type: "GET",
- 	   dataType: "json",
- 	   url: "/api/user",
- 	   success: function(data){ 
-
-        console.log(data);
-        	
-        var trHTML = '';
-                
-        $.each(data, function (i, item) {
-        	
-        	//alert(item.enabled);
-        	//alert(item.username);
-            
-            trHTML += '<tr><td>' + item.username + '</td><td>' + item.enabled + '</td><td><a class="btn btn-info btn-icon btn-sm " href="#" data-toggle="modal" data-target="#modalUsuario" data-tooltip="tooltip" data-placement="right" title="Editar" data-original-title="Editar"><i class="far fa-edit"></i></a> <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
-        });
-        
-        $('#tbUsuarios').append(trHTML);
-        
-        },
-        
-        error: function (msg) {
-            
-            alert(msg.responseText);
-        }
-    });
-})
-
-</script>
             
             <div class="panel-header panel-header-sm">
             </div>

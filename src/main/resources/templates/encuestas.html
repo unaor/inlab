@@ -143,7 +143,7 @@
 
 <!-- Inicio Modal Crear/Editar Encuesta -->
 <div class="modal fade modal-md" id="modalCrearEncuesta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <form id="crearEncuesta" class="form" method="" action="">
+      <form id="formPoll" class="form" method="post" action="">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header justify-content-center">
@@ -154,27 +154,27 @@
           </div>
           <div class="modal-body">
           	<div class="form-group">
-            	<input value="" placeholder="Nombre Encuesta" class="form-control" type="text">
+            	<input id="pollName" name="pollName" value="" placeholder="Nombre Encuesta" class="form-control" type="text">
             </div>
             <div class="row">
             	<div class="datepicker-container col-sm-6">
             		<label class="control-label">Fecha Inicial</label>
 			        <div class="form-group">
-						<input id="dp1" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+						<input id="pollDate1" name="startDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
 					</div>
             	</div>            
             	<div class="datepicker-container col-sm-6">
             		<label class="control-label">Fecha Final</label>
 			        <div class="form-group">
-						<input class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+						<input id="pollDate2" name="endDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
 					</div>
             	</div>
             </div>
             
 	  	</div>
 	  <div class="modal-footer">
-	    <button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-	    <button type="button" class="btn btn-success">Guardar</button>
+	    <input id="btnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+	    <input type="button" class="btn btn-success" id="btnPoll" name="btnPoll" value="Guardar">
 	      </div>
 	    </div>
 	  </div>
@@ -352,12 +352,7 @@
 
 <var th:insert="fragments/scripts.html :: var"> </var>
 
-<script>
-$("#btnCerrar").on("click",function(event){ 
-    event.prevenDefault(); 
-    $('#editarUsuario').trigger("reset"); 
-});
-</script>
+
 <script>
 	$('#dp1').datepicker({
 		format: 'dd-mm-yyyy'
