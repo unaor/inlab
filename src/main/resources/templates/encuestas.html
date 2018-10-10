@@ -160,13 +160,13 @@
             	<div class="datepicker-container col-sm-6">
             		<label class="control-label">Fecha Inicial</label>
 			        <div class="form-group">
-						<input id="pollDate1" name="startDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+						<input id="startDate" name="startDate" class="form-control date-picker" data-date-format="dd/mm/yyyy" value="04/10/2018" data-datepicker-color="primary" type="text">
 					</div>
             	</div>            
             	<div class="datepicker-container col-sm-6">
             		<label class="control-label">Fecha Final</label>
 			        <div class="form-group">
-						<input id="pollDate2" name="endDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+						<input id="endDate" name="endDate" class="form-control date-picker" data-date-format="dd/mm/yyyy" value="05/10/2018" data-datepicker-color="primary" type="text">
 					</div>
             	</div>
             </div>
@@ -354,10 +354,12 @@
 
 
 <script>
-	$('#dp1').datepicker({
-		format: 'dd-mm-yyyy'
-	});
-</script>
+       $( document ).ready(function() {
+    	   
+           $('#startDate').datepicker();
+       });
+   </script>
+
 
 
 
