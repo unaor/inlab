@@ -66,7 +66,7 @@ $("#btnPoll").on('click', function() {
 		url : '/api/poll',
 		type : "POST",
 		contentType : 'application/json',
-		data : data,
+		data : JSON.stringify(data),
 		success : function(result) {
 			console.log(result);
 		},
