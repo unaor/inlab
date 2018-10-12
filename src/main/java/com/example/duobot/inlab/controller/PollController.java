@@ -46,7 +46,7 @@ public class PollController {
 	}
 
 	@PutMapping(value = "/api/poll")
-	public ResponseEntity<?> editUser(@RequestBody @Valid Poll form) {
+	public ResponseEntity<?> editPoll(@RequestBody @Valid Poll form) {
 
 		try {
 			Poll dbPoll = pollService.findById(form.getPollId()).get();
@@ -57,6 +57,7 @@ public class PollController {
 			dbPoll.setPollName(form.getPollName());
 			dbPoll.setStartDate(form.getStartDate());
 			dbPoll.setEndDate(form.getEndDate());
+			pollService.save(dbPoll);
 			return ResponseEntity.noContent().build();
 
 		} catch (Exception ex) {
