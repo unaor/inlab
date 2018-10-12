@@ -1,6 +1,7 @@
 package com.example.duobot.inlab.controller;
 
 import java.security.Principal;
+import java.util.HashSet;
 
 import javax.validation.Valid;
 
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.duobot.inlab.controller.form.AddQuestionForm;
 import com.example.duobot.inlab.dao.PollService;
 import com.example.duobot.inlab.model.Poll;
+import com.example.duobot.inlab.model.Question;
 
 @RestController
 public class PollController {
@@ -57,6 +60,37 @@ public class PollController {
 			dbPoll.setPollName(form.getPollName());
 			dbPoll.setStartDate(form.getStartDate());
 			dbPoll.setEndDate(form.getEndDate());
+			pollService.save(dbPoll);
+			return ResponseEntity.noContent().build();
+
+		} catch (Exception ex) {
+			return ResponseEntity.badRequest().body(ex.getMessage());
+		}
+	}
+	
+	@PutMapping(value = "/api/poll/question")
+	public ResponseEntity<?> addQuestionsToPoll(@RequestBody @Valid AddQuestionForm form) {
+
+		try {
+			Poll dbPoll = pollService.findById(form.getPollId()).get();
+			if (dbPoll == null) {
+
+				return ResponseEntity.badRequest().body("No encontramos esta encuesta en el base de datos");
+			}
+			// reset the existing questions
+			if(dbPoll.getQuestions() == null) {
+				dbPoll.setQuestions(new HashSet<Question>());
+			}
+			for(String questionRequest : form.getQuestions()) {
+				if(dbPoll.getQuestions().contains(questionRequest)) {
+					continue;
+				} else {
+					Question question = new Question();
+					question.setPoll(dbPoll);
+					question.setQuestion(questionRequest);
+					dbPoll.getQuestions().add(question);
+				}
+			}
 			pollService.save(dbPoll);
 			return ResponseEntity.noContent().build();
 
