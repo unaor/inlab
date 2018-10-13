@@ -1,20 +1,19 @@
 /* Archivo de funciones para la vista /Admin */
-
+let polls;
 
 
 $(document).ready(function() {
+	
+
 jQuery.support.cors = true;
 
-	
-/* GET JSON USUARIOS*/
+/* GET JSON USUARIOS */
 	
 	$.ajax({
 			type : "GET",
 			dataType : "json",
 			url : "/api/user",
 			success : function(data) {
-
-				console.log(data);
 
 				var trHTML = '';
 				$.each(
@@ -35,10 +34,10 @@ jQuery.support.cors = true;
 
 			},
 
-			/*error : function(msg) {
-			alert(msg.responseText);
-
-			}*/
+			/*
+			 * error : function(msg) { alert(msg.responseText);
+			 *  }
+			 */
 		});
 
 
@@ -62,7 +61,7 @@ $("#btnPoll").on('click', function() {
         };
 	
 	
-	/*console.log(data);*/
+	/* console.log(data); */
 
 	$.ajax({
 		url : '/api/poll',
@@ -115,7 +114,7 @@ $("#btnEditPoll").on('click', function() {
     alert(e2format);
 	
 	
-	/*console.log(data);*/
+	/* console.log(data); */
 
 	$.ajax({
 		url : '/api/poll',
@@ -143,6 +142,51 @@ $("#btnEditPoll").on('click', function() {
 });
 
 
+/* PUT JSON CREAR PREGUNTAS */
+
+$("#btnQuestion").on('click', function() {
+	
+		
+	var epollId = $("#inputQuestion1").val();
+	var epollName = $("#editPollName").val();
+	
+	
+    var data = {
+    		pollId: epollId,
+    		pollName: epollName,
+    		startDate: e1format,
+    		endDate: e2format
+        };
+    
+    console.log(data);
+
+	$.ajax({
+		url : '/api/poll',
+		type : "PUT",
+		contentType : 'application/json',
+		data : JSON.stringify(data),
+		success : function(result) {
+			console.log(result);
+			
+			$('#modalCrearPregunta').modal('hide');
+			$("#formNewQuestion")[0].reset();
+			$('#alertSuccess').modal('show');
+			
+		},
+			error : function(xhr, resp, text) {
+			console.log(xhr, resp, text);
+			data: data
+			$('#modalCrearPregunta').modal('hide');
+			$("#formNewQuestion")[0].reset();
+			$('#alertError').modal('show');
+			
+			
+		}
+	})
+});
+
+
+
 /* BORRAR FORMLARIOS */
 
 $("#btnCerrar").click(function() {
@@ -160,7 +204,7 @@ $("#btnOK").click(function() {
 
 
 
-/* GET JSON ENCUESTAS*/
+/* GET JSON ENCUESTAS */
 
 	$.ajax({
 			type : "GET",
@@ -168,14 +212,14 @@ $("#btnOK").click(function() {
 			url : "/api/poll",
 			success : function(data) {
 
-				console.log(data);
+				polls = data;
 
 				var trHTML = '';
 				$.each(
 					data,
 					function(i, item) {
 						
-						/* convertir dato unix a fecha*/
+						/* convertir dato unix a fecha */
 						var unixTimeStamp1 = new Date(item.startDate*1000);
 						var day1 = (unixTimeStamp1.getDate() < 10 ? '0' : '') + unixTimeStamp1.getDate();
 						var month1 = (unixTimeStamp1.getMonth() < 9 ? '0' : '') + (unixTimeStamp1.getMonth() + 1);
@@ -199,8 +243,8 @@ $("#btnOK").click(function() {
 								+ '</td><td>'
 								+ formattedDate2
 								+ '</td><td>'
-								+ '<button id="btnPollEdit'+ item.pollId + '" type="button" onclick="EditPoll()" rel="tooltip" data-toggle="modal" data-target="#modalEditarEncuesta" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
-								+ '<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearPregunta" class="btn btn-default btn-icon btn-sm " data-original-title="Preguntas" title="Preguntas"><i class="fas fa-question"></i></button> '
+								+ '<button id="btnPollEdit'+ item.pollId + '" type="button" onclick="EditPoll('+ item.pollId +')" rel="tooltip" data-toggle="modal" data-target="#modalEditarEncuesta" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
+								+ '<button id="btnQuestion" type="button" onclick="NewQuestion()" rel="tooltip" data-toggle="modal" data-target="#modalCrearPregunta" class="btn btn-default btn-icon btn-sm " data-original-title="Preguntas" title="Preguntas"><i class="fas fa-question"></i></button> '
 								+ '<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalContestarEncuesta" class="btn btn-warning btn-icon btn-sm " data-original-title="Contestar" title="Contestar"><i class="far fa-check-square"></i></button> '
 								+ '<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalInsight" class="btn btn-primary btn-icon btn-sm " data-original-title="Insight" title="Insight"><i class="fas fa-cloud"></i></button> '
 								+ '<button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="Excel" title="Excel"><i class="far fa-file-excel"></i></button> '
@@ -214,20 +258,21 @@ $("#btnOK").click(function() {
 		});
 	
 	
-/* DELETE JSON ENCUESTAS*/
+/* DELETE JSON ENCUESTAS */
 	
 $("#btnDeletePoll").click(function() {
 		
 		var data = $("#deletePollId").val();
-
+		var url= "/api/poll?pollId="+data;
+		
+		
 		alert(data);
-		/*console.log(data);*/
+		/* console.log(data); */
 
 	    $.ajax({
-	    	url : '/api/poll',
+	    	url : url,
 	    	type : "DELETE",
 	    	contentType : 'application/json',
-	    	data : JSON.stringify(data),
 	    	success : function(result) {
 	    		console.log(result);
 	    		
@@ -244,33 +289,94 @@ $("#btnDeletePoll").click(function() {
 	    	}
 	    })
 	});		
+
+/* AGREGAR PREGUNTAS */
+$(function() {
+
+	var i = 2;
 	
+	$("#btnAddQuestion").click(function (e) {
+		
+		
+		
+		 // Append a new row of code to the "#items" div
+		 $("#itemsQuestion").append('<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control" placeholder="Texto Pregunta" type="text" name="inputQuestion' + i +'" id="inputQuestion' + i +'"><button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm delete"><i class="far fa-trash-alt"></i></button></div>'); 
+		 
+		 i++;
+		 return false;
+	
+	});
+	
+	$("body").on("click", ".delete", function (e) {
+		
+		
+		if( i > 2 ) {
+			$(this).parent("div").remove();
+	        i--;
+		}
+		return false;
+	});
+	
+});
 
-}) //fin function
 
 
-/* LLENAR FORMULARIO EDICION ENCUESTAS*/
 
-	 function EditPoll(){
+
+
+
+}) // fin function
+
+/* LLENAR FORMULARIO CREAR PREGUNTAS */
+
+function NewQuestion(){
 		
 		/* capturar información del registro para editar */
 		
 		var RpollId=$("tr td")[0].innerHTML;
-		var RpollName=$("tr td")[1].innerHTML;
-		var RstartDate=$("tr td")[2].innerHTML;
-		var RendDate=$("tr td")[3].innerHTML;
 		
 		alert(RpollId);
-		alert(RpollName);
-		alert(RstartDate);
-		alert(RendDate);
 		
 		/* enviar datos a la modal */
 		
 		$('#editPollId').val(RpollId);
-		$('#editPollName').val(RpollName);
-		$('#editStartDate').val(RstartDate);
-		$('#editEndDate').val(RendDate);
+
+		
+	}
+
+
+
+
+
+
+/* LLENAR FORMULARIO EDICION ENCUESTAS */
+
+	 function EditPoll(pollId){
+		 
+		 alert (pollId)
+		 console.log(polls);
+		
+		/* capturar información del registro para editar */
+		
+		const selectedPoll = polls.filter(x => x.pollId === pollId);
+//		console.log(selectedPoll);
+//		 
+		var RpollId=selectedPoll(pollId);
+//		var RpollName=$("tr td")[1].innerHTML;
+//		var RstartDate=$("tr td")[2].innerHTML;
+//		var RendDate=$("tr td")[3].innerHTML;
+//		
+		alert(RpollId);
+//		alert(RpollName);
+//		alert(RstartDate);
+//		alert(RendDate);
+		
+		/* enviar datos a la modal */
+		
+		$('#editPollId').val(selectedPoll.pollId);
+		$('#editPollName').val(selectedPoll.pollName);
+		$('#editStartDate').val(selectedPoll.startDate);
+		$('#editEndDate').val(selectedPoll.endDate);
 		
 	}
 

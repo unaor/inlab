@@ -211,7 +211,7 @@
 
 <!-- Inicio Modal Crear/Editar Preguntas -->
 <div class="modal fade" id="modalCrearPregunta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form id="crearPregunta" class="form" method="" action="">
+	<form id="formNewQuestion" class="form" method="" action="">
 	      <div class="modal-dialog modal-lg">
 	        <div class="modal-content">
 	          <div class="modal-header justify-content-center">
@@ -220,33 +220,15 @@
 	            </button>
 	            <h4 class="title title-up">Crear | Editar Preguntas</h4>
 	          </div>
-	          <div class="modal-body p-5">
-	                 <div class="input-group no-border">
-			            <div class="input-group-prepend">
-			              <span class="input-group-text">
-			                <i class="fas fa-question"></i>
-			              </span>
-			            </div>
-			            <input class="form-control" placeholder="Texto Pregunta" type="text">
-			            &nbsp;
-			            <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm " data-original-title="" title=""><i class="fas fa-plus-circle"></i></button>
-			            <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm " data-original-title="" title=""><i class="far fa-trash-alt"></i></button>
-			          </div>
-			          <div class="input-group no-border">
-			            <div class="input-group-prepend">
-			              <span class="input-group-text">
-			                <i class="fas fa-question"></i>
-			              </span>
-			            </div>
-			            <input class="form-control" placeholder="Texto Pregunta" type="text">
-			            &nbsp;
-			            <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm " data-original-title="" title=""><i class="fas fa-plus-circle"></i></button>
-			            <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm " data-original-title="" title=""><i class="far fa-trash-alt"></i></button>
-			          </div>
+	          <div class="modal-body p-5" id="itemsQuestion">
+				<button id="btnAddQuestion" type="button" rel="tooltip" class="btn btn-info btn-sm " data-original-title="" title=""><i class="fas fa-plus-circle"></i> Nueva Pregunta</button>
+		      	<div class="form-group no-border btn-group d-flex w-100" role="group">
+		            <input class="form-control" placeholder="Texto Pregunta" type="text" name="inputQuestion1" id="inputQuestion1">
+		     	</div>
 		  	</div>
 			<div class="modal-footer">
-				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-			    <button type="button" class="btn btn-success">Finalizar</button>
+				<input id="btnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+	    		<input type="button" class="btn btn-success" id="btnQuestion" name="btnPoll" value="Guardar">
 	      </div>
 	    </div>
 	  </div>
