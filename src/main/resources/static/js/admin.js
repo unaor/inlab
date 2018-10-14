@@ -35,8 +35,7 @@ jQuery.support.cors = true;
 			},
 
 			/*
-			 * error : function(msg) { alert(msg.responseText);
-			 *  }
+			 * error : function(msg) { alert(msg.responseText); }
 			 */
 		});
 
@@ -73,6 +72,7 @@ $("#btnPoll").on('click', function() {
 			
 			$('#modalCrearEncuesta').modal('hide');
 			$("#formPoll")[0].reset();
+			$('#modalMessage').text('Registro Creado Exitosamente');
 			$('#alertSuccess').modal('show');
 			
 		},
@@ -107,14 +107,6 @@ $("#btnEditPoll").on('click', function() {
     		startDate: e1format,
     		endDate: e2format
         };
-    
-    alert(epollId);
-    alert(epollName);
-    alert(e1format);
-    alert(e2format);
-	
-	
-	/* console.log(data); */
 
 	$.ajax({
 		url : '/api/poll',
@@ -122,10 +114,9 @@ $("#btnEditPoll").on('click', function() {
 		contentType : 'application/json',
 		data : JSON.stringify(data),
 		success : function(result) {
-			console.log(result);
-			
 			$('#modalEditarEncuesta').modal('hide');
 			$("#formEditPoll")[0].reset();
+			$('#modalMessage').text('Registro Actualizado Exitosamente');
 			$('#alertSuccess').modal('show');
 			
 		},
@@ -147,21 +138,21 @@ $("#btnEditPoll").on('click', function() {
 $("#btnQuestion").on('click', function() {
 	
 		
-	var epollId = $("#inputQuestion1").val();
-	var epollName = $("#editPollName").val();
-	
+	var pollId = $("#editPollId").val();
+	const questions = [];
+	$(".question").each((index, element) => {
+		questions.push({questionId: element.dataset.questionId, question:element.value});
+	});
 	
     var data = {
-    		pollId: epollId,
-    		pollName: epollName,
-    		startDate: e1format,
-    		endDate: e2format
+    		pollId: pollId,
+    		questions: questions
+
         };
     
-    console.log(data);
 
 	$.ajax({
-		url : '/api/poll',
+		url : '/api/poll/question',
 		type : "PUT",
 		contentType : 'application/json',
 		data : JSON.stringify(data),
@@ -170,6 +161,43 @@ $("#btnQuestion").on('click', function() {
 			
 			$('#modalCrearPregunta').modal('hide');
 			$("#formNewQuestion")[0].reset();
+			$('#modalMessage').text('Preguntas actualizadas Exitosamente');  
+			$('#alertSuccess').modal('show');
+			
+		},
+			error : function(xhr, resp, text) {
+			console.log(xhr, resp, text);
+			data: data
+			$('#modalCrearPregunta').modal('hide');
+			$("#formNewQuestion")[0].reset();
+			$('#alertError').modal('show');
+			
+			
+		}
+	})
+});
+
+$("#btnAnswer").on('click', function() {
+	
+	
+	var pollId = $("#editPollId").val();
+	const answers = [];
+	$(".answer").each((index, element) => {
+		answers.push({questionId: element.dataset.questionId, answer:element.value});
+	});
+    
+
+	$.ajax({
+		url : '/api/poll/answer',
+		type : "POST",
+		contentType : 'application/json',
+		data : JSON.stringify(answers),
+		success : function(result) {
+			console.log(result);
+			
+			$('#modalCrearPregunta').modal('hide');
+			$("#formNewQuestion")[0].reset();
+			$('#modalMessage').text('respuestas actualizadas Exitosamente');  
 			$('#alertSuccess').modal('show');
 			
 		},
@@ -192,6 +220,23 @@ $("#btnQuestion").on('click', function() {
 $("#btnCerrar").click(function() {
 	/* Single line Reset function executes on click of Reset Button */
 	$("#formPoll")[0].reset();
+});
+
+$("#btnCerrarPreguntas").click(function() {
+	/* Single line Reset function executes on click of Reset Button */
+	$("#formNewQuestion")[0].reset();
+	$(".question").each((index, element) => {
+		$(element).parent("div").remove();
+	});
+	
+	
+});
+
+$("#btnCerrarAnswers").click(function() {
+	/* Single line Reset function executes on click of Reset Button */
+	$("#contestarEncuesta")[0].reset();
+	
+	
 });
 
 
@@ -244,11 +289,11 @@ $("#btnOK").click(function() {
 								+ formattedDate2
 								+ '</td><td>'
 								+ '<button id="btnPollEdit'+ item.pollId + '" type="button" onclick="EditPoll('+ item.pollId +')" rel="tooltip" data-toggle="modal" data-target="#modalEditarEncuesta" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
-								+ '<button id="btnQuestion" type="button" onclick="NewQuestion()" rel="tooltip" data-toggle="modal" data-target="#modalCrearPregunta" class="btn btn-default btn-icon btn-sm " data-original-title="Preguntas" title="Preguntas"><i class="fas fa-question"></i></button> '
-								+ '<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalContestarEncuesta" class="btn btn-warning btn-icon btn-sm " data-original-title="Contestar" title="Contestar"><i class="far fa-check-square"></i></button> '
+								+ '<button id="btnQuestion" type="button" onclick="NewQuestion('+ item.pollId +')" rel="tooltip" data-toggle="modal" data-target="#modalCrearPregunta" class="btn btn-default btn-icon btn-sm " data-original-title="Preguntas" title="Preguntas"><i class="fas fa-question"></i></button> '
+								+ '<button type="button" rel="tooltip" onclick="NewAnswer('+ item.pollId +')" data-toggle="modal" data-target="#modalContestarEncuesta" class="btn btn-warning btn-icon btn-sm " data-original-title="Contestar" title="Contestar"><i class="far fa-check-square"></i></button> '
 								+ '<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalInsight" class="btn btn-primary btn-icon btn-sm " data-original-title="Insight" title="Insight"><i class="fas fa-cloud"></i></button> '
 								+ '<button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="Excel" title="Excel"><i class="far fa-file-excel"></i></button> '
-								+ '<button id="btnPollDelete'+ item.pollId + '" type="button" onclick="DeletePoll()" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
+								+ '<button id="btnPollDelete'+ item.pollId + '" type="button" onclick="DeletePoll('+ item.pollId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
 					});
 
 				$('#tbEncuestas').append(trHTML);
@@ -265,10 +310,6 @@ $("#btnDeletePoll").click(function() {
 		var data = $("#deletePollId").val();
 		var url= "/api/poll?pollId="+data;
 		
-		
-		alert(data);
-		/* console.log(data); */
-
 	    $.ajax({
 	    	url : url,
 	    	type : "DELETE",
@@ -278,8 +319,8 @@ $("#btnDeletePoll").click(function() {
 	    		
 	    		$('#modalBorrar').modal('hide');
 				$("#borrarPregunta")[0].reset();
-				$('#alertSuccess').modal('show');
-	    		
+				$('#modalMessage').text('Registro Borrado Exitosamente'); 
+				$('#alertSuccess').modal('show');	    		
 	    	},
 	    		error : function(xhr, resp, text) {
 	    		console.log(xhr, resp, text);
@@ -300,7 +341,7 @@ $(function() {
 		
 		
 		 // Append a new row of code to the "#items" div
-		 $("#itemsQuestion").append('<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control" placeholder="Texto Pregunta" type="text" name="inputQuestion' + i +'" id="inputQuestion' + i +'"><button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm delete"><i class="far fa-trash-alt"></i></button></div>'); 
+		 $("#itemsQuestion").append('<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control question" placeholder="Texto Pregunta" type="text" name="inputQuestion' + i +'" id="inputQuestion' + i +'"><button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm delete"><i class="far fa-trash-alt"></i></button></div>'); 
 		 
 		 i++;
 		 return false;
@@ -329,66 +370,64 @@ $(function() {
 
 /* LLENAR FORMULARIO CREAR PREGUNTAS */
 
-function NewQuestion(){
-		
+function NewQuestion(pollId){
 		/* capturar información del registro para editar */
-		
-		var RpollId=$("tr td")[0].innerHTML;
-		
-		alert(RpollId);
-		
-		/* enviar datos a la modal */
-		
-		$('#editPollId').val(RpollId);
-
-		
-	}
-
-
-
-
-
-
-/* LLENAR FORMULARIO EDICION ENCUESTAS */
-
-	 function EditPoll(pollId){
-		 
-		 alert (pollId)
-		 console.log(polls);
-		
-		/* capturar información del registro para editar */
-		
-		const selectedPoll = polls.filter(x => x.pollId === pollId);
-//		console.log(selectedPoll);
-//		 
-		var RpollId=selectedPoll(pollId);
-//		var RpollName=$("tr td")[1].innerHTML;
-//		var RstartDate=$("tr td")[2].innerHTML;
-//		var RendDate=$("tr td")[3].innerHTML;
-//		
-		alert(RpollId);
-//		alert(RpollName);
-//		alert(RstartDate);
-//		alert(RendDate);
+		const selectedPoll = polls.filter(x => x.pollId === pollId)[0];	
 		
 		/* enviar datos a la modal */
 		
 		$('#editPollId').val(selectedPoll.pollId);
+		if(selectedPoll.questions && selectedPoll.questions.length > 0) {
+			for(var i = 0; selectedPoll.questions.length > i ; i++) { 
+					$("#itemsQuestion").append('<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control question" value="' + selectedPoll.questions[i].question +'" type="text" name="inputQuestion' + i +'" id="inputQuestion' + i +'" data-question-id=" '+selectedPoll.questions[i].questionId+'"><button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm delete"><i class="far fa-trash-alt"></i></button></div>'); 
+				
+			}
+		}
+
+		
+}
+
+function NewAnswer(pollId){
+	/* capturar información del registro para editar */
+	const selectedPoll = polls.filter(x => x.pollId === pollId)[0];	
+	
+	/* enviar datos a la modal */
+	
+	$('#editPollId').val(selectedPoll.pollId);
+	$('#pollName').val(selectedPoll.pollName);
+	
+	
+	if(selectedPoll.questions && selectedPoll.questions.length > 0) {
+		for(var i = 0; selectedPoll.questions.length > i ; i++) {
+			$("#listQuestions").append('<div class="alert alert-primary" role="alert"><label class="control-label">' + selectedPoll.questions[i].question +'</label></div><textarea class="form-control answer" data-question-id=" '+selectedPoll.questions[i].questionId+'" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>')
+
+			
+		}
+	}
+
+	
+}
+
+/* LLENAR FORMULARIO EDICION ENCUESTAS */
+
+	 function EditPoll(pollId){
+		const selectedPoll = polls.filter(x => x.pollId === pollId)[0];		
+		$('#editPollId').val(selectedPoll.pollId);
 		$('#editPollName').val(selectedPoll.pollName);
-		$('#editStartDate').val(selectedPoll.startDate);
-		$('#editEndDate').val(selectedPoll.endDate);
+		const startDate = moment.unix(selectedPoll.startDate).format('DD/MM/YYYY'); 
+		$('#editStartDate').val(startDate);
+		const endDate = moment.unix(selectedPoll.endDate).format('DD/MM/YYYY');
+		$('#editEndDate').val(endDate);
 		
 	}
 
 
-	/* LLENAR FORMULARIO BORRAR ENCUESTAS */
 
-	function DeletePoll(){
-		
+	function DeletePoll(pollId){
+		const selectedPoll = polls.filter(x => x.pollId === pollId)[0];	
 		/* capturar información del registro para editar */
 		
-		var RpollId=$("tr td")[0].innerHTML;
-		$('#deletePollId').val(RpollId);
+		$('#deletePollId').val(selectedPoll.pollId);
 		
 	}
 

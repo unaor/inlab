@@ -76,7 +76,7 @@ public class Question implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((question == null) ? 0 : question.hashCode());
+		result = prime * result + ((questionId == null) ? 0 : questionId.hashCode());
 		return result;
 	}
 
@@ -89,14 +89,13 @@ public class Question implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Question other = (Question) obj;
-		if (question == null) {
-			if (other.question != null)
+		if (questionId == null) {
+			if (other.questionId != null)
 				return false;
-		} else if (!question.equals(other.question))
+		} else if (!questionId.equals(other.questionId))
 			return false;
 		return true;
 	}
-	
 	
 	
 }

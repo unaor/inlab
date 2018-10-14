@@ -213,6 +213,7 @@
 <div class="modal fade" id="modalCrearPregunta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<form id="formNewQuestion" class="form" method="" action="">
 	      <div class="modal-dialog modal-lg">
+	      <input id="editPollId" name="editPollId" type="hidden">
 	        <div class="modal-content">
 	          <div class="modal-header justify-content-center">
 	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -222,12 +223,12 @@
 	          </div>
 	          <div class="modal-body p-5" id="itemsQuestion">
 				<button id="btnAddQuestion" type="button" rel="tooltip" class="btn btn-info btn-sm " data-original-title="" title=""><i class="fas fa-plus-circle"></i> Nueva Pregunta</button>
-		      	<div class="form-group no-border btn-group d-flex w-100" role="group">
-		            <input class="form-control" placeholder="Texto Pregunta" type="text" name="inputQuestion1" id="inputQuestion1">
-		     	</div>
+		      	<!-- <div class="form-group no-border btn-group d-flex w-100" role="group">
+		            <input class="form-control question" placeholder="Texto Pregunta" type="text" name="inputQuestion1" id="inputQuestion1">
+		     	</div> -->
 		  	</div>
 			<div class="modal-footer">
-				<input id="btnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+				<input id="btnCerrarPreguntas" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
 	    		<input type="button" class="btn btn-success" id="btnQuestion" name="btnPoll" value="Guardar">
 	      </div>
 	    </div>
@@ -268,31 +269,16 @@
 	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 	              <i class="now-ui-icons ui-1_simple-remove"></i>
 	            </button>
-	            <h4 class="title title-up">Nombre Encuesta</h4>
+	            <h4 class="title title-up pollName"></h4>
 	          </div>
 	          <div class="modal-body">
 	          	<div class="col-md-10 col-centered">
-	          		<div class="alert alert-primary" role="alert">
-		          		<label class="control-label">Pregunta 1</label>
-		          	</div>
-					<textarea class="form-control" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>
-					<div class="alert alert-primary p" role="alert">
-		          		<label class="control-label">Pregunta 22222222</label>
-		          	</div>
-					<textarea class="form-control" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>
-					<div class="alert alert-primary" role="alert">
-		          		<label class="control-label">Pregunta 33333333333</label>
-		          	</div>
-					<textarea class="form-control" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>
-					<div class="alert alert-primary" role="alert">
-		          		<label class="control-label">Pregunta 44444444444444444444???</label>
-		          	</div>
-					<textarea class="form-control" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>
+	          		<div id="listQuestions"></div>
 				</div>
 		  	</div>
 			<div class="modal-footer">
-				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-			    <button type="button" class="btn btn-success">Finalizar</button>
+				<input id="btnCerrarAnswers" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+	    		<input type="button" class="btn btn-success" id="btnAnswer" name="btnPoll" value="Guardar">
 	      </div>
 	    </div>
 	  </div>
@@ -368,7 +354,7 @@
         </div>
       </div>
       <div class="modal-body">
-        <p>Registro Creado Exitosamente</p>
+        <p id="modalMessage"></p>
       </div>
       <div class="modal-footer col-centered">
         <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal" id="btnOK">Cerrar</button>
