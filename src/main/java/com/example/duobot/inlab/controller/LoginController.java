@@ -28,9 +28,9 @@ public class LoginController {
 			break;
 		}
 		if(authority.equals("ADMIN")) {
-			return "hello";
+			return "homeAdmin";
 	    } else {
-	    	return "homeCliente";
+	    	return "hello";
 	    }
 		
 	}
