@@ -213,6 +213,34 @@ $("#btnAnswer").on('click', function() {
 	})
 });
 
+/* SAVE USERS */
+
+$("#createUser").on('click', function() {
+	
+    
+	const data = {completeName: $("#completeName").val(), username: $("#username").val(), password: $("#password").val(), roleName: $("#roleName").val()};
+	$.ajax({
+		url : '/api/user',
+		type : "POST",
+		contentType : 'application/json',
+		data : JSON.stringify(data),
+		success : function(result) {			
+			$("#crearUsuario")[0].reset();
+			$('#modalMessage').text('usuario creado exitosamente Exitosamente');  
+			$('#alertSuccess').modal('show');
+			
+		},
+			error : function(xhr, resp, text) {
+			console.log(xhr, resp, text);
+			data: data
+			$("#crearUsuario")[0].reset();
+			$('#alertError').modal('show');
+			
+			
+		}
+	})
+});
+
 
 
 /* BORRAR FORMLARIOS */
@@ -442,4 +470,31 @@ $(window).load(function() {
     $('.preloader-wrapper').delay(3000).fadeOut(1000);
     $('body').removeClass('preloader-site');
 });
+
+/* DELETE USER */
+
+$("#btnDeletePoll").click(function() {
+		
+		var data = $("#deletePollId").val();
+		var url= "/api/user?userId="+data;
+		
+	    $.ajax({
+	    	url : url,
+	    	type : "DELETE",
+	    	contentType : 'application/json',
+	    	success : function(result) {
+	    		
+	    		$('#modalBorrar').modal('hide');
+				$("#borrarPregunta")[0].reset();
+				$('#modalMessage').text('Registro Borrado Exitosamente'); 
+				$('#alertSuccess').modal('show');	    		
+	    	},
+	    		error : function(xhr, resp, text) {
+	    		console.log(xhr, resp, text);
+	    		data: data
+	    		
+	    		
+	    	}
+	    })
+	});	
 

@@ -44,6 +44,7 @@ public class UserController {
 				return ResponseEntity.badRequest().body("Ya existe un usuario con este email");
 			}
 			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+			user.setEnabled(true);
 			userService.save(user);
 			return ResponseEntity.noContent().build();
 		} catch (Exception ex) {

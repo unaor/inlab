@@ -107,7 +107,7 @@
 						                <i class="now-ui-icons users_circle-08"></i>
 						              </span>
 						            </div>
-						            <input class="form-control" placeholder="Nombre Usuario" type="text">
+						            <input class="form-control" placeholder="Nombre Usuario" type="text" id="completeName">
 						          </div>
 						          <div class="input-group no-border">
 						            <div class="input-group-prepend">
@@ -115,7 +115,7 @@
 						                <i class="now-ui-icons ui-1_email-85"></i>
 						              </span>
 						            </div>
-						            <input placeholder="email" class="form-control" type="text">
+						            <input placeholder="email" class="form-control" type="text" id="username">
 						          </div>
 						          <div class="input-group no-border">
 						            <div class="input-group-prepend">
@@ -123,19 +123,16 @@
 						                <i class="now-ui-icons ui-1_lock-circle-open"></i>
 						              </span>
 						            </div>
-						            <input class="form-control" placeholder="Contrase&ntilde;a" type="password">
+						            <input class="form-control" placeholder="Contrase&ntilde;a" type="password" id="password">
 						          </div>
 						          <div class="form-group">
 								    <label for="exampleFormControlSelect1">Rol</label>
-								    <select class="form-control" id="rolUsuario">
-								      <option>1</option>
-								      <option>2</option>
-								      <option>3</option>
-								      <option>4</option>
-								      <option>5</option>
+								    <select class="form-control" id="roleName">
+								      <option>ADMIN</option>
+								      <option>USUARIO</option>
 								    </select>
 								  </div>
-								  <button type="button" class="btn btn-success">Guardar</button>
+								  <button type="button" class="btn btn-success" id="createUser">Guardar</button>
 								  </form>
 		                      <!-- /CONTENIDO TAB 1 -->
 		                    </div>
@@ -227,12 +224,9 @@
 	          </div>
 	          <div class="form-group">
 			    <label for="exampleFormControlSelect1">Rol Asignado</label>
-			    <select class="form-control" id="rolUsuario">
-			      <option>1</option>
-			      <option>2</option>
-			      <option>3</option>
-			      <option>4</option>
-			      <option>5</option>
+			    <select class="form-control">
+			      <option>ADMIN</option>
+			      <option>USUARIO</option>
 			    </select>
 			  </div>
 	  	</div>

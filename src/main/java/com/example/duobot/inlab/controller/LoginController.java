@@ -1,8 +1,9 @@
 package com.example.duobot.inlab.controller;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,9 +21,18 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/hello")
-	public String welcome(Principal user) {
-		System.out.println(user.getName());
-		return "hello";
+	public String welcome(Authentication user) {
+		String authority = null;
+		for(GrantedAuthority auth : user.getAuthorities()) {
+			authority = auth.getAuthority();
+			break;
+		}
+		if(authority.equals("ADMIN")) {
+			return "hello";
+	    } else {
+	    	return "homeCliente";
+	    }
+		
 	}
 
 	@RequestMapping(value = "/loginCliente")
