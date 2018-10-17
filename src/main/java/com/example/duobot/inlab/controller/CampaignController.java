@@ -35,6 +35,8 @@ public class CampaignController {
 			if(authority.equals("ADMIN")) {
 				return ResponseEntity.ok(campaignService.findAll());
 		    } else {
+		    	Long timestamp = new Date().getTime();
+				timestamp = timestamp / 1000;
 		    	List<Campaign> campaigns = campaignService.findByAssignedUserAndEndDateGreaterThanOrderByStartDateDesc(user.getName(), timestamp.intValue());
 				return ResponseEntity.ok(campaigns);
 		    }
