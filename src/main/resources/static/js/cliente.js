@@ -25,7 +25,7 @@ $(document).ready(function() {
 						trHTML += '<tr id="'+ item.campaignId + '"><td>'
 								+ item.campaignName
 								+ '</td><td>'
-								+ '<button id="btnCampaignView'+ item.campaignId + '" type="button" onclick="viewCampaign('+ item.campaignId +')" class="btn btn-info btn-icon btn-sm " data-original-title="Ver" title="Ver"><i class="fas fa-sign-in-alt"></i></button></td></tr>';
+								+ '<button id="btnCampaign" type="button" onclick="viewCampaign('+ item.campaignId +')" class="btn btn-info btn-icon btn-sm " data-original-title="Ver" title="Ver"><i class="fas fa-sign-in-alt"></i></button></td></tr>';
 					});
 
 				$('#tbCampaign').append(trHTML);
@@ -38,9 +38,10 @@ $(document).ready(function() {
 // redirigir y cargar vista cliente
 	
 function viewCampaign(campaignId){
-		window.location.href = "/homeCliente";	
-
-		const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];
+	
+	document.location.href = "/homeCliente?cp=" + item.campaignId + "&";	
+	
+	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];
 		
 
 		
@@ -121,3 +122,9 @@ function viewCampaign(campaignId){
 
 
 
+
+//$("#btnCampaign").click(function(){
+//
+//	document.location.href = "/homeCliente?cp=" + item.campaignId + ";
+//
+//});
