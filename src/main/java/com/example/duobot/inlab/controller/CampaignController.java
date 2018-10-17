@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,12 +25,20 @@ public class CampaignController {
 	CampaignService campaignService;
 	
 	@GetMapping(value = "/api/campaign")
-	public ResponseEntity<?> getCampaigns(Authentication user) {
+	public ResponseEntity<?> getAllCampaigns(Authentication user) {
 		try {
-			Long timestamp = new Date().getTime();
-			timestamp = timestamp / 1000;
-			List<Campaign> campaigns = campaignService.findByAssignedUserAndEndDateGreaterThanOrderByStartDateDesc(user.getName(), timestamp.intValue());
-			return ResponseEntity.ok(campaigns);
+			String authority = null;
+			for(GrantedAuthority auth : user.getAuthorities()) {
+				authority = auth.getAuthority();
+				break;
+			}
+			if(authority.equals("ADMIN")) {
+				return ResponseEntity.ok(campaignService.findAll());
+		    } else {
+		    	List<Campaign> campaigns = campaignService.findByAssignedUserAndEndDateGreaterThanOrderByStartDateDesc(user.getName(), timestamp.intValue());
+				return ResponseEntity.ok(campaigns);
+		    }
+			
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return ResponseEntity.badRequest().body(ex.getMessage());
