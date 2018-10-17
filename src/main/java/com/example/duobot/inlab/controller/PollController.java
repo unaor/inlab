@@ -115,7 +115,7 @@ public class PollController {
 	}
 	
 	@DeleteMapping(value = "/api/poll")
-	public ResponseEntity<?> deleterPoll(@RequestParam Integer pollId) {
+	public ResponseEntity<?> deletePoll(@RequestParam Integer pollId) {
 
 
 		try {
@@ -131,7 +131,7 @@ public class PollController {
 	}
 	
 	@DeleteMapping(value = "/api/poll/question")
-	public ResponseEntity<?> deleterPollQuestion(@RequestParam Integer questionId) {
+	public ResponseEntity<?> deletePollQuestion(@RequestParam Integer questionId) {
 
 
 		try {
@@ -147,7 +147,7 @@ public class PollController {
 	}
 	
 	@PostMapping(value = "/api/poll/answer")
-	public ResponseEntity<?> addAnsweer(Principal user, @RequestBody @Valid List<AnswerForm> form) {
+	public ResponseEntity<?> addAnswer(Principal user, @RequestBody @Valid List<AnswerForm> form) {
 		try {
 			for(AnswerForm answerRequest: form) {
 				Question question = new Question();
