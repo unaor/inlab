@@ -583,7 +583,23 @@ $.ajax({
 	});
 
 
+$("#btnCerrarPreguntas").click(function() {
+	/* Single line Reset function executes on click of Reset Button */
+	$("#formNewQuestion")[0].reset();
+	$(".question").each((index, element) => {
+		$(element).parent("div").remove();
+	});
+	
+	
+});
 
+$("#btnCerrarAnswers").click(function() {
+	/* Single line Reset function executes on click of Reset Button */
+	$("#contestarEncuesta")[0].reset();
+	$(".answerContainer").each((index, element) => {
+		$(element).remove();
+	});
+});
 
 
 }) // fin function
@@ -669,7 +685,7 @@ function NewAnswer(pollId){
 	
 	if(selectedPoll.questions && selectedPoll.questions.length > 0) {
 		for(var i = 0; selectedPoll.questions.length > i ; i++) {
-			$("#listQuestions").append('<div class="alert alert-primary" role="alert"><label class="control-label">' + selectedPoll.questions[i].question +'</label></div><textarea class="form-control answer" data-question-id=" '+selectedPoll.questions[i].questionId+'" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea>')
+			$("#listQuestions").append('<div class="answerContainer"><div class="alert alert-primary" role="alert"><label class="control-label">' + selectedPoll.questions[i].question +'</label></div><textarea class="form-control answer" data-question-id=" '+selectedPoll.questions[i].questionId+'" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea></div>')
 		}
 		
 	}
@@ -685,20 +701,9 @@ $("#btnCerrar").click(function() {
 	$("#formPoll")[0].reset();
 });
 
-$("#btnCerrarPreguntas").click(function() {
-	/* Single line Reset function executes on click of Reset Button */
-	$("#formNewQuestion")[0].reset();
-	$(".question").each((index, element) => {
-		$(element).parent("div").remove();
-	});
-	
-	
-});
 
-$("#btnCerrarAnswers").click(function() {
-	/* Single line Reset function executes on click of Reset Button */
-	$("#contestarEncuesta")[0].reset();
-});
+
+
 
 
 

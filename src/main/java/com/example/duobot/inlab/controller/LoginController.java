@@ -19,7 +19,7 @@ public class LoginController {
 		return "loginCliente";
 	}
 
-	@RequestMapping(value = "/hello")
+	@RequestMapping(value = "/homeAdmin")
 	public String welcome(Authentication user) {
 		String authority = null;
 		for(GrantedAuthority auth : user.getAuthorities()) {
@@ -79,11 +79,7 @@ public class LoginController {
 		return "emociones";
 	}
 
-	@RequestMapping(value = "/homeAdmin")
-	public String homeAdmin() {
-		return "homeAdmin";
-	}
-	
+
 	@RequestMapping(value = "/encuestas")
 	public String encuestas() {
 		return "encuestas";

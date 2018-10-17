@@ -21,7 +21,7 @@ public class InlabSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.authorizeRequests().requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 				.antMatchers("/Assets/**", "/fonts/**", "/img/**").permitAll().antMatchers("/").permitAll().anyRequest()
-				.authenticated().and().formLogin().defaultSuccessUrl("/hello", true).loginPage("/login").permitAll()
+				.authenticated().and().formLogin().defaultSuccessUrl("/homeAdmin", true).loginPage("/login").permitAll()
 				.and().logout().permitAll();
 	}
 
