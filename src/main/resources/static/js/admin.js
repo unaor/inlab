@@ -119,10 +119,10 @@ jQuery.support.cors = true;
 	$("#btnEditUser").on('click', function() {
 		
 		    
-		const data = {userId: $("#editUserName").val(), username: $("#editUserName").val(), password: $("#password").val(), roleName: $("#roleName").val()};
+		const data = {userId: $("#editUserId").val(), completeName: $("#editCompleteName").val(), username: $("#editUserName").val(), password: $("#editPassword").val(), roleName: $("#editRoleName").val()};
 
 		$.ajax({
-			url : '/api/poll',
+			url : '/api/user',
 			type : "PUT",
 			contentType : 'application/json',
 			data : JSON.stringify(data),
@@ -640,12 +640,13 @@ function DeleteUser(userId){
 }
 
 
-/* LLENAR FORMULARIO EDICION USUARIOS */
+/* LLENAR FORMULARIO EDITAR USUARIOS */
 
 function EditUser(userId){
 	const selectedUser = users.filter(x => x.userId === userId)[0];		
 	$('#editUserId').val(selectedUser.userId);
-	$('#editUserName').val(selectedUser.userName);
+	$('#editCompleteName').val(selectedUser.completeName);
+	$('#editUserName').val(selectedUser.username);
 	
 }
 
@@ -714,12 +715,20 @@ function exportPoll(pollId){
 	
 	const selectedPoll = polls.filter(x => x.pollId === pollId)[0];
 	
-  var exportData = selectedPoll.questions;
-  console.log(exportData);
+	
+	
+	if (selectedPoll.answer && selectedPoll.question.answer){
+		
+		var exportData = selectedPoll.answer;
+		  console.log(exportData);
 
-  var exportFile = new CSVExport(exportData);
+		  var exportFile = new CSVExport(exportData);
 
-  return false;
+		  return false;	
+		
+	}
+	
+  
 
 }
 
