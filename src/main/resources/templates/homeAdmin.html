@@ -27,7 +27,7 @@
 	            <div class="content col-md-12 col-centered">
 	            	<div class="row">
 		            <div class="col-md-10 ml-auto col-xl-5 mr-auto">
-		              <p class="category">USUARIOS - ROLES</p>
+		              <p class="category">LISTA DE USUARIOS</p>
 		              <!-- Nav tabs -->
 		              <div class="card">
 		                <div class="card-header">
@@ -37,11 +37,11 @@
 		                        <i class="fas fa-users"></i> Usuarios
 		                      </a>
 		                    </li>
-		                    <li class="nav-item">
+		                    <!-- <li class="nav-item">
 		                      <a class="nav-link" data-toggle="tab" href="#roles" role="tab">
 		                        <i class="fas fa-user-lock"></i> Roles
 		                      </a>
-		                    </li>
+		                    </li> -->
 		                  </ul>
 		                </div>
 		                <div class="card-body">
@@ -52,9 +52,11 @@
 		                      <div class="table-responsive">
 				                  <table class="table" id="tbUsuarios">
 				                      <tr>
+				                      	<th>ID</th>
+										<th>Nombre</th>
 				                      	<th>Usuario</th>
-				                      	<th>Activo</th>
-				                      	<th>Editar</th>
+				                      	<th>Rol</th>
+				                      	<th>Acciones</th>
 				                    </tr>
 				                  </table>
 				                </div>
@@ -62,7 +64,7 @@
 		                    </div>
 		                    <div class="tab-pane" id="roles" role="tabpanel">
 		                      <!-- CONTENIDO TAB 2 -->
-		                      <div class="table-responsive">
+		                      <!-- <div class="table-responsive">
 				                  <table class="table" id="tbUsuarios">
 				                      <tr>
 				                      	<th>Rol</th>
@@ -70,7 +72,7 @@
 				                      	<th>Editar</th>
 				                    </tr>
 				                  </table>
-				                </div>
+				                </div> -->
 		                      <!-- / CONTENIDO TAB 2 -->
 		                    </div>
 		                  </div>
@@ -78,7 +80,7 @@
 		              </div>
 		            </div>
 		            <div class="col-md-10 ml-auto col-xl-5 mr-auto">
-		              <p class="category">PERMISOS</p>
+		              <p class="category">CREAR USUARIOS</p>
 		              <!-- Tabs with Background on Card -->
 		              <div class="card">
 		                <div class="card-header">
@@ -88,11 +90,11 @@
 		                      	<i class="fas fa-user-plus"></i> Crear Usuario
 		                      </a>
 		                    </li>
-		                    <li class="nav-item">
+		                    <!-- <li class="nav-item">
 		                      <a class="nav-link" data-toggle="tab" href="#creaRol" role="tab">
 		                      	<i class="fas fa-user-cog"></i> Crear Rol
 		                      </a>
-		                    </li>
+		                    </li> -->
 		                  </ul>
 		                </div>
 		                <div class="card-body">
@@ -126,7 +128,7 @@
 						            <input class="form-control" placeholder="Contrase&ntilde;a" type="password" id="password">
 						          </div>
 						          <div class="form-group">
-								    <label for="exampleFormControlSelect1">Rol</label>
+								    <label for="Select1">Rol</label>
 								    <select class="form-control" id="roleName">
 								      <option>ADMIN</option>
 								      <option>USUARIO</option>
@@ -138,7 +140,7 @@
 		                    </div>
 		                    <div class="tab-pane" id="creaRol" role="tabpanel">
 		                      <!-- CONTENIDO TAB 2 -->
-		                      <form id="crearRol" class="form" method="" action="">
+		                      <!-- <form id="crearRol" class="form" method="" action="">
 		                      	<div class="input-group no-border">
 						            <div class="input-group-prepend">
 						              <span class="input-group-text">
@@ -162,7 +164,7 @@
 					                </label>
 					              </div>
 								  <button type="button" class="btn btn-success">Guardar</button>
-								  </form>
+								  </form> -->
 		                      <!-- /CONTENIDO TAB 2 -->
 		                    </div>
 		                  </div>
@@ -187,8 +189,8 @@
 </div>
 
 <!-- Inicio Modal Editar Usuario-->
-<div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form id="editarUsuario" class="form" method="" action="">
+<div class="modal fade" id="modalEditarUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="formEditUser" class="form" method="" action="">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header justify-content-center">
@@ -198,41 +200,29 @@
             <h4 class="title title-up">Editar Usuario</h4>
           </div>
           <div class="modal-body">
-	          <div class="input-group no-border">
-	            <div class="input-group-prepend">
-	              <span class="input-group-text">
-	                <i class="now-ui-icons users_circle-08"></i>
-	              </span>
-	            </div>
-	            <input class="form-control" placeholder="Nombre Usuario" type="text">
-	          </div>
-	          <div class="input-group no-border">
-	            <div class="input-group-prepend">
-	              <span class="input-group-text">
-	                <i class="now-ui-icons ui-1_email-85"></i>
-	              </span>
-	            </div>
-	            <input placeholder="email" class="form-control" type="text">
-	          </div>
-	          <div class="input-group no-border">
-	            <div class="input-group-prepend">
-	              <span class="input-group-text">
-	                <i class="now-ui-icons ui-1_lock-circle-open"></i>
-	              </span>
-	            </div>
-	            <input class="form-control" placeholder="Contrase&ntilde;a" type="password">
-	          </div>
-	          <div class="form-group">
-			    <label for="exampleFormControlSelect1">Rol Asignado</label>
-			    <select class="form-control">
+          	 <div class="form-group">
+          		<label class="control-label">ID Usuario</label>
+            	<input id="editUserId" name="editUserId" class="form-control" type="text" readonly>
+            </div>
+            <div class="form-group">
+            	<label class="control-label">Usuario</label>
+            	<input id="editUserName" name="editUserName" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+            	<label class="control-label">Contrase&ntilde;a</label>
+            	<input class="form-control" placeholder="Contrase&ntilde;a" type="password" id="password">
+            </div>
+	        <div class="form-group">
+			    <label for="roleName">Rol Asignado</label>
+			    <select class="form-control" id="roleName">
 			      <option>ADMIN</option>
 			      <option>USUARIO</option>
 			    </select>
-			  </div>
+			</div>
 	  	</div>
 	  <div class="modal-footer">
 	  	<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-	    <button type="button" class="btn btn-success">Guardar</button>
+	    <input type="button" class="btn btn-success" id="btnEditUser" name="btnEditUser" value="Guardar">
 	      </div>
 	    </div>
 	  </div>
@@ -242,19 +232,63 @@
 
 <!-- Minimodal Borrado  -->
 <div class="modal fade modal-mini" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="borrarUsuario" class="form" method="" action="">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
 				<p>Confirmar el borrado</p>
+				<div class="form-group text-center col-centered">
+	          		<label class="control-label">ID Usuario</label>
+	            	<input id="deleteUserId" name="deleteUserId" class="form-control" type="text" readonly>
+            	</div>
 			</div>
 			<div class="modal-footer">
 				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-			    <button type="button" class="btn btn-success">OK</button>
+			    <input type="button" class="btn btn-success" id="btnUserDelete" name="btnUserDelete" value="Confirmar">
 			</div>
 		</div>
 	</div>
+	</form>
 </div>
 <!-- /Minimodal Borrado  -->
+
+
+<!-- NOTIFICACIONES -->
+<div class="modal fade modal-mini modal-success" id="alertSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <div class="modal-profile">
+          <i class="fas fa-check"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p id="modalMessage"></p>
+      </div>
+      <div class="modal-footer col-centered">
+        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal" id="btnOK">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade modal-mini modal-danger" id="alertError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <div class="modal-profile">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p>Se present&oacute; un error, intente nuevamente</p>
+      </div>
+      <div class="modal-footer col-centered">
+        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN NOTIFICACIONES -->
 
 
 <!-- /BODY -->
@@ -262,12 +296,7 @@
 
 <var th:insert="fragments/scripts.html :: var"> </var>
 
-<script>
-$("#btnCerrar").on("click",function(event){ 
-    event.prevenDefault(); 
-    $('#editarUsuario').trigger("reset"); 
-});
-</script>
+
 
 
 </body>

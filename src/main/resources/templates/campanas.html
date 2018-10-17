@@ -48,38 +48,13 @@
 			                      	  <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearCampana">Crear Campa&ntilde;a</button>
 			                      </div>
 			                      <div class="table-responsive">
-					                  <table class="table" id="tbEncuestas">
+					                  <table class="table" id="tbCampaign">
 					                    <tr>
 											<th>ID</th>
 					                      	<th>Nombre Campa&ntilde;a</th>
 					                      	<th>Fecha Inicio</th>
 					                      	<th>Fecha fin</th>
-					                      	<th>URL</th>
 					                      	<th>Acciones</th>
-					                    </tr>
-					                    <tr>
-					                    	<td>c01</td>
-					                      	<td>Campa&ntilde;a 1</td>
-					                      	<td>fecha</td>
-					                      	<td>fecha</td>
-					                      	<td>www.inlab.com.co/encuesta?id=1</td>
-					                      	<td class="text-center">
-					                      		<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button>
-								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-default btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button>
-								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
-								            </td>
-					                    </tr>
-					                    <tr>
-					                    	<td>c02</td>
-					                      	<td>Campa&ntilde;a 2</td>
-					                      	<td>fecha</td>
-					                      	<td>fecha</td>
-					                      	<td>www.inlab.com.co/encuesta?id=2</td>
-					                      	<td class="text-center">
-					                      		<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button>
-								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-default btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button>
-								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
-								            </td>
 					                    </tr>
 					                  </table>
 				                	</div>
@@ -110,7 +85,7 @@
 
 <!-- Inicio Modal Crear/Editar Campa&ntilde;a -->
 <div class="modal fade modal-md" id="modalCrearCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <form id="crearCampana" class="form" method="" action="">
+      <form id="formNewCampaign" class="form" method="" action="">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header justify-content-center">
@@ -120,20 +95,20 @@
             <h4 class="title title-up">Crear | Editar Campa&ntilde;a</h4>
           </div>
           <div class="modal-body">
-          	<div class="form-group">
-            	<input value="" placeholder="Nombre Campa&ntilde;a" class="form-control" type="text">
+       	  	<div class="form-group">
+            	<input id="campaignName" name="campaignName" value="" placeholder="Nombre Campa&ntilde;a" class="form-control" type="text">
             </div>
             <div class="row">
             	<div class="datepicker-container col-sm-6">
             		<label class="control-label">Fecha Inicial</label>
 			        <div class="form-group">
-						<input id="dp1" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+						<input id="startDate" name="startDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
 					</div>
             	</div>            
             	<div class="datepicker-container col-sm-6">
             		<label class="control-label">Fecha Final</label>
 			        <div class="form-group">
-						<input class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+						<input id="endDate" name="endDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
 					</div>
             	</div>
             </div>
@@ -142,13 +117,13 @@
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Video</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="video">
+	                  	<input id="videoUrl" name="videoUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Chat</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="chat">
+	                  	<input id="chatUrl" name="chatUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             </div>
@@ -157,14 +132,14 @@
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Encuesta</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="monkey">
+	                  	<input id="pollUrl" name="pollUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             	<div class="col-sm-6">
             		<label class="control-label">Imagen Encuesta</label>
 	                <div class="input-group">
 					  <div class="custom-file">
-					    <input type="file" class="custom-file-input" id="inputGroupFile04">
+					    <input id="pollImgUrl" name="pollImgUrl" type="file" class="custom-file-input">
 					    <label class="custom-file-label" for="inputGroupFile04">Cargar Imagen</label>
 					  </div>
 					</div>
@@ -175,13 +150,13 @@
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">ID Encuesta INSIGHT</label>
-	                  	<input value="" placeholder="ID" class="form-control" type="text" id="idInsight">
+	                  	<input id="insightId" name="insightId" value="" placeholder="ID" class="form-control" type="text">
 	                </div>
             	</div>
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Power BI</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="powerBI">
+	                  	<input id="powerBIUrl" name="powerBIUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             </div>
@@ -190,13 +165,13 @@
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Redes - timeline</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes1">
+	                  	<input id="timelineUrl" name="timelineUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Redes - top_tweets</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes2">
+	                  	<input id="tweetsUrl" name="tweetsUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             </div>
@@ -204,13 +179,13 @@
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Redes - topics</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes3">
+	                  	<input id="topicsUrl" name="topicsUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Redes - influencers</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes4">
+	                  	<input id="influenceUrl" name="influenceUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             </div>
@@ -218,13 +193,13 @@
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Redes - top_domains</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes5">
+	                  	<input id="topDomainsUrl" name="topDomainsUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Redes - countries</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes6">
+	                  	<input id="countries" name="countries" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             </div>
@@ -232,38 +207,35 @@
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Redes - demographics</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes5">
+	                  	<input id="demographics" name="demographics" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             	<div class="col-sm-6">
 	                <div class="form-group">
 	                	<label class="control-label">URL Redes - posttype</label>
-	                  	<input value="" placeholder="URL" class="form-control" type="text" id="redes6">
+	                  	<input id="postType" name="postType" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             </div>
-
             <hr>
             <div class="row">
             	<div class="col-sm-6">
-					    <label for="exampleFormControlSelect1">Asignar Usuario</label>
-					    <select class="form-control" id="usuarioCliente">
-					      <option>usuario 1</option>
-					      <option>usuario 2</option>
-					      <option>usuario 3</option>
-					      <option>usuario 4</option>
-					      <option>usuario 5</option>
-					    </select>
-					  </div>
-            	</div>
-            </div>
-            <br>
+				    <label for="exampleFormControlSelect1">Asignar Usuario</label>
+				    <select class="form-control" id="assignedUser" name="assignedUser">
+				      <option>usuario 1</option>
+				      <option>usuario 2</option>
+				      <option>usuario 3</option>
+				      <option>usuario 4</option>
+				      <option>usuario 5</option>
+				    </select>
+				</div>
+        	</div>
+        </div>
+		  <div class="modal-footer">
+		    <input id="btnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+	    	<input type="button" class="btn btn-success" id="btnCampaign" name="btnCampaign" value="Guardar">
+		  </div>
 	  	</div>
-	  <div class="modal-footer">
-	    <button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-	    <button type="button" class="btn btn-success">Guardar</button>
-	      </div>
-	    </div>
 	  </div>
   </form>
 </div>
@@ -340,6 +312,43 @@
 </div>
 <!-- /Minimodal Borrado  -->
 
+
+<!-- NOTIFICACIONES -->
+<div class="modal fade modal-mini modal-success" id="alertSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <div class="modal-profile">
+          <i class="fas fa-check"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p id="modalMessage"></p>
+      </div>
+      <div class="modal-footer col-centered">
+        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal" id="btnOK">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade modal-mini modal-danger" id="alertError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <div class="modal-profile">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p>Se present&oacute; un error, intente nuevamente</p>
+      </div>
+      <div class="modal-footer col-centered">
+        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN NOTIFICACIONES -->
 
 <!-- /BODY -->
 

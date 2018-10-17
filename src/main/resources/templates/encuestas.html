@@ -3,12 +3,12 @@
 <hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
 
 <body class="sidebar-mini">
-<!-- PRECARGADOR  -->
+<!-- PRECARGADOR  
 <div class="preloader-wrapper">
     <div class="preloader">
         <img src="/img/loader.gif" alt="NILA">
     </div>
-</div>
+</div>-->
 
 <div class="wrapper">
 
@@ -266,18 +266,29 @@
 	      <div class="modal-dialog modal-lg">
 	        <div class="modal-content">
 	          <div class="modal-header justify-content-center">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	            <button onclick="this.form.reset();" type="button" class="close" data-dismiss="modal" aria-hidden="true">
 	              <i class="now-ui-icons ui-1_simple-remove"></i>
 	            </button>
-	            <h4 class="title title-up pollName"></h4>
+	            <h4 class="title title-up">Contestar Encuesta</h4>
 	          </div>
 	          <div class="modal-body">
+	          	<div class="row">
+	          		<div class="form-group col-md-4">
+		          		<label class="control-label">ID Encuesta</label>
+		            	<input id="ApollId" name="pollId" class="form-control" type="text" readonly>
+	            	</div>
+		            <div class="form-group col-md-8">
+		            	<label class="control-label">Nombre Encuesta</label>
+		            	<input id="ApollName" name="pollName" class="form-control" type="text" readonly>
+		            </div>
+	          	</div>
+	            <hr>
 	          	<div class="col-md-10 col-centered">
 	          		<div id="listQuestions"></div>
 				</div>
 		  	</div>
 			<div class="modal-footer">
-				<input id="btnCerrarAnswers" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+				<input id="btnCerrarAnswers" onclick="this.form.reset();" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
 	    		<input type="button" class="btn btn-success" id="btnAnswer" name="btnPoll" value="Guardar">
 	      </div>
 	    </div>

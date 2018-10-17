@@ -39,17 +39,11 @@
 	    
 	    <!-- js Files -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="/js/cliente.js"></script>
 	
 	    <!-- CSS Files -->
 	    <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
-<script>
-function vistaCliente(){
-	window.location.href = "/homeCliente";	
-
-}
-</script>
-       
 </head>
 
 <body>
@@ -58,9 +52,6 @@ function vistaCliente(){
 		<br>
      <div class="row justify-content-md-center">
        <div class="text-center col-md-12 col-lg-8">
-         <a href="/homeAdmin" class="btn btn-primary btn-lg btn-simple btn-round" role="button">
-           Administrador
-         </a>
          <p th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]], por favor seleccione la Campaña que desea ver</p>
        </div>
      </div>
@@ -69,22 +60,10 @@ function vistaCliente(){
      <br>
      <div class="row justify-content-md-center col-centered">
      	<div class="table-responsive col-md-6">
-              <table class="table text-center" id="tbEncuestas">
+              <table class="table text-center" id="tbCampaign">
                 <tr>
                   	<th>Nombre Campa&ntilde;a</th>
                   	<th>Ingresar</th>
-                </tr>
-                <tr>
-                  	<td>Campa&ntilde;a 1</td>
-                  	<td class="text-center">
-                  		<button type="button" class="btn btn-info btn-icon btn-sm " data-original-title="Ver" title="Ver" onclick="vistaCliente()"><i class="fas fa-sign-in-alt"></i></button>
-           </td>
-                </tr>
-                <tr>
-                  	<td>Campa&ntilde;a 2</td>
-                  	<td class="text-center">
-                  		<button type="button" class="btn btn-info btn-icon btn-sm " data-original-title="Ver" title="Ver" onclick="vistaCliente()"><i class="fas fa-sign-in-alt"></i></button>
-           </td>
                 </tr>
               </table>
            	</div>
