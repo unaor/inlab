@@ -249,6 +249,7 @@ $("#btnQuestion").on('click', function() {
 		
 	var pollId = $("#editPollId").val();
 	const questions = [];
+	
 	$(".question").each((index, element) => {
 		questions.push({questionId: element.dataset.questionId, question:element.value});
 	});
@@ -335,12 +336,13 @@ $("#btnAnswer").on('click', function() {
 			dataType : "json",
 			url : "/api/poll",
 			success : function(data) {
+				
+				
 
 				polls = data;
 
 				var trHTML = '';
-				$.each(
-					data,
+				$.each(data,
 					function(i, item) {
 						
 						/* convertir dato unix a fecha */
@@ -375,7 +377,6 @@ $("#btnAnswer").on('click', function() {
 					});
 
 				$('#tbEncuestas').append(trHTML);
-
 			},
 
 		});
@@ -387,6 +388,8 @@ $("#btnDeletePoll").click(function() {
 		
 		var data = $("#deletePollId").val();
 		var url= "/api/poll?pollId="+data;
+		
+		
 		
 	    $.ajax({
 	    	url : url,
@@ -572,7 +575,7 @@ $.ajax({
 							+ formattedDate2
 							+ '</td><td>'
 							+ '<button id="btnCampaignEdit'+ item.campaignId + '" type="button" onclick="EditCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalCrearCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
-			                + '<button onclick="NewQuestion('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-default btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button> '
+			                + '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-default btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button> '
 			                + '<button id="btnCampaignDelete'+ item.campaignId + '" type="button" onclick="DeleteCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
 				});
 
