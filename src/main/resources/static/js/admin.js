@@ -382,6 +382,85 @@ $("#btnAnswer").on('click', function() {
 		});
 	
 	
+	$.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/api/word",
+		success : function(data) {
+
+			polls = data;
+
+			var trHTML = '';
+			$.each(
+				data,
+				function(i, item) {
+					trHTML += '<tr><td>'
+							+ item.word
+							+ '</td><td class="text-center">'
+							+ '<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrarPalabra" onclick="deleteWord(\''+ item.word +'\')" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td>';
+				});
+
+			$('#tbPalabras').append(trHTML);
+
+		},
+
+	});
+	
+$("#createWord").click(() => {
+	var data = {word: $("#requestedWord").val()};
+	$.ajax({
+		url : '/api/word',
+		type : "POST",
+		contentType : 'application/json',
+		data : JSON.stringify(data),
+		success : function(result) {
+			
+			$('#modalCrearPalabra').modal('hide');
+			$("#requestedWord").val("");
+			$('#modalMessage').text('Registro Creado Exitosamente');
+			$('#alertSuccess').modal('show');
+			
+		},
+			error : function(xhr, resp, text) {
+			console.log(xhr, resp, text);
+			data: data
+			$('#modalCrearPalabra').modal('hide');
+			$("#requestedWord").val("");
+			$('#alertError').modal('show');
+			
+			
+		}
+	})
+});
+
+
+$("#btnDeleteWord").click(function() {
+	
+	var data = $("#word").val();
+	var url= "/api/word?word="+data;
+	
+    $.ajax({
+    	url : url,
+    	type : "DELETE",
+    	contentType : 'application/json',
+    	success : function(result) {
+    		console.log(result);
+    		
+    		$('#modalCrearPalabra').modal('hide');
+    		$("#word").val("");
+			$('#modalMessage').text('Registro Borrado Exitosamente'); 
+			$('#alertSuccess').modal('show');	    		
+    	},
+    		error : function(xhr, resp, text) {
+    		console.log(xhr, resp, text);
+    		data: data
+    		
+    		
+    	}
+    })
+});		
+	
+	
 /* DELETE JSON ENCUESTAS */
 	
 $("#btnDeletePoll").click(function() {
@@ -631,6 +710,11 @@ function EditPoll(pollId){
 	
 }
 
+function deleteWord(word) {
+	$("#word").val(word);
+}
+
+
 
 /* BORRAR USUARIOS */
 
@@ -676,8 +760,8 @@ function NewQuestion(pollId){
 
 function NewAnswer(pollId){
 	
-	/* limpia formulario*/
-//	$("#contestarEncuesta")[0].reset();
+	/* limpia formulario */
+// $("#contestarEncuesta")[0].reset();
 	/* capturar información del registro para editar */
 	const selectedPoll = polls.filter(x => x.pollId === pollId)[0];	
 	
@@ -712,7 +796,7 @@ $("#btnCerrar").click(function() {
 
 
 
-/* EXPORT JSON TO CSV  */
+/* EXPORT JSON TO CSV */
 
 function exportPoll(pollId){
 	
@@ -739,16 +823,15 @@ function exportPoll(pollId){
 
 
 
-/* PRECARGADOR 
-
-var Body = $('body');
-	Body.addClass('preloader-site');
-
-	$(window).load(function() {
-	$('.preloader-wrapper').delay(3000).fadeOut(1000);
-	$('body').removeClass('preloader-site');
-});
-*/
+/*
+ * PRECARGADOR
+ * 
+ * var Body = $('body'); Body.addClass('preloader-site');
+ * 
+ * $(window).load(function() {
+ * $('.preloader-wrapper').delay(3000).fadeOut(1000);
+ * $('body').removeClass('preloader-site'); });
+ */
 
 
 
