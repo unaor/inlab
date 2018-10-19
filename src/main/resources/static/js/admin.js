@@ -119,7 +119,7 @@ jQuery.support.cors = true;
 	$("#btnEditUser").on('click', function() {
 		
 		    
-		const data = {userId: $("#editUserId").val(), completeName: $("#editCompleteName").val(), username: $("#editUserName").val(), password: $("#editPassword").val(), roleName: $("#editRoleName").val()};
+		const data = {userId: $("#editUserId").val(), completeName: $("#editCompleteName").val(), username: $("#editUserName").val(), password: $("#editPassword").val(), roleName: $("#editRoleName").val(), enabled:true};
 
 		$.ajax({
 			url : '/api/user',
@@ -655,7 +655,7 @@ $.ajax({
 							+ '</td><td>'
 							+ '<button id="btnCampaignEdit'+ item.campaignId + '" type="button" onclick="EditCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalCrearCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
 			                + '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-default btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button> '
-			                + '<button id="btnCampaignDelete'+ item.campaignId + '" type="button" onclick="DeleteCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
+			                + '<button id="btnCampaignDelete'+ item.campaignId + '" type="button" onclick="DeleteCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrarCampaign" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
 				});
 
 			$('#tbCampaign').append(trHTML);
@@ -687,6 +687,80 @@ $("#btnCerrarAnswers").click(function() {
 }) // fin function
 
 
+/* DATOS PARA BORRAR CAMPAÑA */
+
+function DeleteCampaign(campaignId){
+	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];	
+	/* capturar información del registro para borrar */
+	
+	$('#deleteCampaignId').val(selectedCampaign.campaignId);
+	
+}
+
+/* BORRAR CAMPAÑAS */
+
+$("#btnCampaignDelete").click(function() {
+		
+		var data = $("#deleteCampaignId").val();
+		alert (data);
+		var url= "/api/campaign?campaignId="+data;
+		
+	    $.ajax({
+	    	url : url,
+	    	type : "DELETE",
+	    	contentType : 'application/json',
+	    	success : function(result) {
+	    		
+	    		$('#modalBorrarCampaign').modal('hide');
+				$("#formDeleteCampaign")[0].reset();
+				$('#modalMessage').text('Registro Borrado Exitosamente'); 
+				$('#alertSuccess').modal('show');	    		
+	    	},
+	    		error : function(xhr, resp, text) {
+	    		console.log(xhr, resp, text);
+	    		data: data
+	    		
+	    		
+	    	}
+	    })
+	});	
+
+
+/* LLENAR FORMULARIO EDICION CAMPAÑAS */
+
+function EditCampaign(campaignId){
+	
+		
+	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];
+	
+	
+	$("#campaignName").val(selectedCampaign.campaignName);
+
+	const startDate = moment.unix(selectedCampaign.startDate).format('DD/MM/YYYY'); 
+	$('#startDate').val(startDate);
+	const endDate = moment.unix(selectedCampaign.endDate).format('DD/MM/YYYY');
+	$('#endDate').val(endDate);
+	
+	$("#videoUrl").val(selectedCampaign.videoUrl);
+	
+	$("#chatUrl").val(selectedCampaign.chatUrl);
+	$("#pollUrl").val(selectedCampaign.pollUrl);
+	$("#insightId").val(selectedCampaign.insightId);
+	$("#powerBIUrl").val(selectedCampaign.powerBIUrl);
+	$("#timelineUrl").val(selectedCampaign.timelineUrl);
+	$("#tweetsUrl").val(selectedCampaign.tweetsUrl);
+	$("#topicsUrl").val(selectedCampaign.topicsUrl);
+	$("#influenceUrl").val(selectedCampaign.influenceUrl);
+	$("#topDomainsUrl").val(selectedCampaign.topDomainsUrl);
+	$("#countries").val(selectedCampaign.countries);
+	$("#demographics").val(selectedCampaign.demographics);
+	$("#postType").val(selectedCampaign.postType);
+	$("#assignedUser").val(selectedCampaign.assignedUser);
+	
+}
+
+
+
 /* BORRAR ENCUESTA */
 
 function DeletePoll(pollId){
@@ -709,6 +783,8 @@ function EditPoll(pollId){
 	$('#editEndDate').val(endDate);
 	
 }
+
+/* BORRAR PALABRAS */
 
 function deleteWord(word) {
 	$("#word").val(word);

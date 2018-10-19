@@ -255,7 +255,7 @@
 	          <div class="modal-body p-5">
 	          	<div class="col-sm-10 col-centered">
 	               <div class="table-responsive">
-	                  <table class="table" id="tbEncuestas">
+	                  <table class="table" id="tbgallery">
 	                    <tr>
 							<th>Archivo</th>
 	                      	<th class="text-center">Acciones</th>
@@ -297,21 +297,26 @@
 <!-- Fin Modal Galería -->
 
 <!-- Minimodal Borrado  -->
-<div class="modal fade modal-mini" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade modal-mini" id="modalBorrarCampaign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="formDeleteCampaign" class="form" method="" action="">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
 				<p>Confirmar el borrado</p>
+				<div class="form-group text-center col-centered">
+	          		<label class="control-label">ID Campaña</label>
+	            	<input id="deleteCampaignId" name="deleteCampaignId" class="form-control" type="text" readonly>
+            	</div>
 			</div>
 			<div class="modal-footer">
-				<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-			    <button type="button" class="btn btn-success">OK</button>
+				<button id="btnCerrarM3" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			    <input type="button" class="btn btn-success" id="btnCampaignDelete" name="btnCampaignDelete" value="Confirmar">
 			</div>
 		</div>
 	</div>
+	</form>
 </div>
 <!-- /Minimodal Borrado  -->
-
 
 <!-- NOTIFICACIONES -->
 <div class="modal fade modal-mini modal-success" id="alertSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
