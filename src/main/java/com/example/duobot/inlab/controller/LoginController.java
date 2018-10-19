@@ -4,15 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.duobot.inlab.dao.CampaignService;
 import com.example.duobot.inlab.dao.InlabUserService;
+import com.example.duobot.inlab.model.Campaign;
 
 @Controller
 public class LoginController {
 
 	@Autowired
 	InlabUserService userService;
+	
+	@Autowired
+	CampaignService campaignService;
 
 	@RequestMapping(value = { "/", "/login" })
 	public String login() {
@@ -37,11 +44,6 @@ public class LoginController {
 	@RequestMapping(value = "/loginCliente")
 	public String loginCliente() {
 		return "loginCliente";
-	}
-
-	@RequestMapping(value = "/homeCliente")
-	public String homeCliente() {
-		return "homeCliente";
 	}
 
 	@RequestMapping(value = "/video")
@@ -88,6 +90,21 @@ public class LoginController {
 	@RequestMapping(value = "/campanas")
 	public String campanas() {
 		return "campanas";
+	}
+	
+	@RequestMapping(value = "/homeCliente")
+	public String homeCliente(@RequestParam Integer cp, Authentication user, Model model) {
+		try {
+			Campaign dbCampaign = campaignService.findById(cp).get();
+			if (dbCampaign == null) {
+				return "error";
+			}
+			model.addAttribute("campaign", dbCampaign);
+			return "homeCliente";
+		} catch (Exception ex) {
+			return "error";
+		}
+
 	}
 	
 }

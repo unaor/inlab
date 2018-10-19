@@ -23,33 +23,34 @@ import com.example.duobot.inlab.model.Campaign;
 
 @RestController
 public class CampaignController {
-	
+
 	@Autowired
 	CampaignService campaignService;
-	
+
 	@GetMapping(value = "/api/campaign")
 	public ResponseEntity<?> getAllCampaigns(Authentication user) {
 		try {
 			String authority = null;
-			for(GrantedAuthority auth : user.getAuthorities()) {
+			for (GrantedAuthority auth : user.getAuthorities()) {
 				authority = auth.getAuthority();
 				break;
 			}
-			if(authority.equals("ADMIN")) {
+			if (authority.equals("ADMIN")) {
 				return ResponseEntity.ok(campaignService.findAll());
-		    } else {
-		    	Long timestamp = new Date().getTime();
+			} else {
+				Long timestamp = new Date().getTime();
 				timestamp = timestamp / 1000;
-		    	List<Campaign> campaigns = campaignService.findByAssignedUserAndEndDateGreaterThanOrderByStartDateDesc(user.getName(), timestamp.intValue());
+				List<Campaign> campaigns = campaignService.findByAssignedUserAndEndDateGreaterThanOrderByStartDateDesc(
+						user.getName(), timestamp.intValue());
 				return ResponseEntity.ok(campaigns);
-		    }
-			
+			}
+
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return ResponseEntity.badRequest().body(ex.getMessage());
 		}
 	}
-	
+
 	@PostMapping(value = "/api/campaign")
 	public ResponseEntity<?> addCampaign(Principal user, @RequestBody @Valid Campaign campaign) {
 		try {
@@ -59,7 +60,7 @@ public class CampaignController {
 			return ResponseEntity.badRequest().body(ex.getMessage());
 		}
 	}
-	
+
 	@PutMapping(value = "/api/campaign")
 	public ResponseEntity<?> editCampaign(@RequestBody @Valid Campaign form) {
 
@@ -93,10 +94,9 @@ public class CampaignController {
 			return ResponseEntity.badRequest().body(ex.getMessage());
 		}
 	}
-	
+
 	@DeleteMapping(value = "/api/campaign")
 	public ResponseEntity<?> deleteCampaign(@RequestParam Integer campaignId) {
-
 
 		try {
 			Campaign dbCampaign = campaignService.findById(campaignId).get();
