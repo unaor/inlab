@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.duobot.inlab.dao.CampaignService;
@@ -51,6 +54,56 @@ public class CampaignController {
 	public ResponseEntity<?> addCampaign(Principal user, @RequestBody @Valid Campaign campaign) {
 		try {
 			campaignService.save(campaign);
+			return ResponseEntity.noContent().build();
+		} catch (Exception ex) {
+			return ResponseEntity.badRequest().body(ex.getMessage());
+		}
+	}
+	
+	@PutMapping(value = "/api/campaign")
+	public ResponseEntity<?> editCampaign(@RequestBody @Valid Campaign form) {
+
+		try {
+			Campaign dbCampaign = campaignService.findById(form.getCampaignId()).get();
+			if (dbCampaign == null) {
+
+				return ResponseEntity.badRequest().body("No encontramos esta registro en el base de datos");
+			}
+			dbCampaign.setAssignedUser(form.getAssignedUser());
+			dbCampaign.setCampaignName(form.getCampaignName());
+			dbCampaign.setChatUrl(form.getChatUrl());
+			dbCampaign.setCountries(form.getCountries());
+			dbCampaign.setDemographics(form.getDemographics());
+			dbCampaign.setEndDate(form.getEndDate());
+			dbCampaign.setInfluenceUrl(form.getInfluenceUrl());
+			dbCampaign.setInsightId(form.getInsightId());
+			dbCampaign.setPollUrl(form.getPollUrl());
+			dbCampaign.setPostType(form.getPostType());
+			dbCampaign.setPowerBIUrl(form.getPowerBIUrl());
+			dbCampaign.setStartDate(form.getStartDate());
+			dbCampaign.setTimelineUrl(form.getTimelineUrl());
+			dbCampaign.setTopDomainsUrl(form.getTopDomainsUrl());
+			dbCampaign.setTopicsUrl(form.getTopDomainsUrl());
+			dbCampaign.setTweetsUrl(form.getTweetsUrl());
+			dbCampaign.setVideoUrl(form.getVideoUrl());
+			campaignService.save(dbCampaign);
+			return ResponseEntity.noContent().build();
+
+		} catch (Exception ex) {
+			return ResponseEntity.badRequest().body(ex.getMessage());
+		}
+	}
+	
+	@DeleteMapping(value = "/api/campaign")
+	public ResponseEntity<?> deleteCampaign(@RequestParam Integer campaignId) {
+
+
+		try {
+			Campaign dbCampaign = campaignService.findById(campaignId).get();
+			if (dbCampaign == null) {
+				return ResponseEntity.badRequest().body("No encontramos este registro en el base de datos");
+			}
+			campaignService.delete(dbCampaign);
 			return ResponseEntity.noContent().build();
 		} catch (Exception ex) {
 			return ResponseEntity.badRequest().body(ex.getMessage());
