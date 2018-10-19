@@ -653,7 +653,7 @@ $.ajax({
 							+ '</td><td>'
 							+ formattedDate2
 							+ '</td><td>'
-							+ '<button id="btnCampaignEdit'+ item.campaignId + '" type="button" onclick="EditCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalCrearCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
+							+ '<button id="btnCampaignEdit'+ item.campaignId + '" type="button" onclick="EditCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalEditarCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
 			                + '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-default btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button> '
 			                + '<button id="btnCampaignDelete'+ item.campaignId + '" type="button" onclick="DeleteCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrarCampaign" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
 				});
@@ -663,6 +663,78 @@ $.ajax({
 		},
 
 	});
+
+
+/* PUT JSON EDITAR CAMPAÑAS */
+
+$("#EbtnCampaign").on('click', function() {
+	
+
+	var ecampaignId = $("#editCampaignId").val();
+	var eCampaignName = $("#EcampaignName").val();
+	var e1 = $("#EstartDate").val();
+	var e1format = moment(e1, "DD/MM/YYYY").valueOf() / 1000;
+	var e2 = $("#EendDate").val();
+    var e2format = moment(e2, "DD/MM/YYYY").valueOf() / 1000;
+	var evideoUrl = $("#EvideoUrl").val();
+	var echatUrl = $("#EchatUrl").val();
+	var epollUrl = $("#EpollUrl").val();
+	var einsightId = $("#EinsightId").val();
+	var epowerBIUrl = $("#EpowerBIUrl").val();
+	var etimelineUrl = $("#EtimelineUrl").val();
+	var etweetsUrl = $("#EtweetsUrl").val();
+	var etopicsUrl = $("#EtopicsUrl").val();
+	var einfluenceUrl = $("#EinfluenceUrl").val();
+	var etopDomainsUrl = $("#EtopDomainsUrl").val();
+	var ecountries = $("#Ecountries").val();
+	var edemographics = $("#Edemographics").val();
+	var epostType = $("#EpostType").val();
+	var eassignedUser = $("#EassignedUser").val();
+
+    var data = {
+    		campaignId: ecampaignId,
+    		campaignName: eCampaignName,
+    		startDate: e1format,
+    		endDate: e2format,
+    		videoUrl : evideoUrl,
+			chatUrl : echatUrl,
+			pollUrl : epollUrl, 
+			insightId : einsightId,
+			powerBIUrl : epowerBIUrl,
+			timelineUrl : etimelineUrl,
+			tweetsUrl : etweetsUrl,
+			topicsUrl : etopicsUrl,  
+			influenceUrl : einfluenceUrl,
+			topDomainsUrl : etopDomainsUrl,
+			countries : ecountries,  
+			demographics : edemographics,
+			postType : epostType,
+			assignedUser : eassignedUser
+    	};
+
+	$.ajax({
+		url : '/api/campaign',
+		type : "PUT",
+		contentType : 'application/json',
+		data : JSON.stringify(data),
+		success : function(result) {
+			$('#modalEditarCampana').modal('hide');
+			$("#formEditCampaign")[0].reset();
+			$('#modalMessage').text('Registro Actualizado Exitosamente');
+			$('#alertSuccess').modal('show');
+			
+		},
+			error : function(xhr, resp, text) {
+			console.log(xhr, resp, text);
+			data: data
+			$('#modalEditarCampana').modal('hide');
+			$("#formEditCampaign")[0].reset();
+			$('#alertError').modal('show');
+			
+			
+		}
+	})
+});
 
 
 $("#btnCerrarPreguntas").click(function() {
@@ -684,18 +756,6 @@ $("#btnCerrarAnswers").click(function() {
 });
 
 
-}) // fin function
-
-
-/* DATOS PARA BORRAR CAMPAÑA */
-
-function DeleteCampaign(campaignId){
-	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];	
-	/* capturar información del registro para borrar */
-	
-	$('#deleteCampaignId').val(selectedCampaign.campaignId);
-	
-}
 
 /* BORRAR CAMPAÑAS */
 
@@ -726,6 +786,22 @@ $("#btnCampaignDelete").click(function() {
 	});	
 
 
+
+
+}) // fin function
+
+
+/* DATOS PARA BORRAR CAMPAÑA */
+
+function DeleteCampaign(campaignId){
+	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];	
+	/* capturar información del registro para borrar */
+	
+	$('#deleteCampaignId').val(selectedCampaign.campaignId);
+	
+}
+
+
 /* LLENAR FORMULARIO EDICION CAMPAÑAS */
 
 function EditCampaign(campaignId){
@@ -734,28 +810,29 @@ function EditCampaign(campaignId){
 	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];
 	
 	
-	$("#campaignName").val(selectedCampaign.campaignName);
+	$("#editCampaignId").val(selectedCampaign.campaignId);
+	$("#EcampaignName").val(selectedCampaign.campaignName);
 
 	const startDate = moment.unix(selectedCampaign.startDate).format('DD/MM/YYYY'); 
-	$('#startDate').val(startDate);
+	$('#EstartDate').val(startDate);
 	const endDate = moment.unix(selectedCampaign.endDate).format('DD/MM/YYYY');
-	$('#endDate').val(endDate);
+	$('#EendDate').val(endDate);
 	
-	$("#videoUrl").val(selectedCampaign.videoUrl);
+	$("#EvideoUrl").val(selectedCampaign.videoUrl);
 	
-	$("#chatUrl").val(selectedCampaign.chatUrl);
-	$("#pollUrl").val(selectedCampaign.pollUrl);
-	$("#insightId").val(selectedCampaign.insightId);
-	$("#powerBIUrl").val(selectedCampaign.powerBIUrl);
-	$("#timelineUrl").val(selectedCampaign.timelineUrl);
-	$("#tweetsUrl").val(selectedCampaign.tweetsUrl);
-	$("#topicsUrl").val(selectedCampaign.topicsUrl);
-	$("#influenceUrl").val(selectedCampaign.influenceUrl);
-	$("#topDomainsUrl").val(selectedCampaign.topDomainsUrl);
-	$("#countries").val(selectedCampaign.countries);
-	$("#demographics").val(selectedCampaign.demographics);
-	$("#postType").val(selectedCampaign.postType);
-	$("#assignedUser").val(selectedCampaign.assignedUser);
+	$("#EchatUrl").val(selectedCampaign.chatUrl);
+	$("#EpollUrl").val(selectedCampaign.pollUrl);
+	$("#EinsightId").val(selectedCampaign.insightId);
+	$("#EpowerBIUrl").val(selectedCampaign.powerBIUrl);
+	$("#EtimelineUrl").val(selectedCampaign.timelineUrl);
+	$("#EtweetsUrl").val(selectedCampaign.tweetsUrl);
+	$("#EtopicsUrl").val(selectedCampaign.topicsUrl);
+	$("#EinfluenceUrl").val(selectedCampaign.influenceUrl);
+	$("#EtopDomainsUrl").val(selectedCampaign.topDomainsUrl);
+	$("#Ecountries").val(selectedCampaign.countries);
+	$("#Edemographics").val(selectedCampaign.demographics);
+	$("#EpostType").val(selectedCampaign.postType);
+	$("#EassignedUser").val(selectedCampaign.assignedUser);
 	
 }
 
