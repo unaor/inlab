@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.duobot.inlab.dao.CampaignService;
 import com.example.duobot.inlab.dao.InlabUserService;
 import com.example.duobot.inlab.model.Campaign;
+import com.example.duobot.inlab.model.User;
 
 @Controller
 public class LoginController {
@@ -54,8 +55,9 @@ public class LoginController {
 			if (dbCampaign == null) {
 				return "error";
 			}
-			if(user.getName().equals(dbCampaign.getAssignedUser())) {
-				return "login";
+			User client = userService.findByUsername(user.getName());
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
 			return "video";
@@ -71,8 +73,9 @@ public class LoginController {
 			if (dbCampaign == null) {
 				return "error";
 			}
-			if(user.getName().equals(dbCampaign.getAssignedUser())) {
-				return "login";
+			User client = userService.findByUsername(user.getName());
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
 			return "mediciones";
@@ -88,8 +91,9 @@ public class LoginController {
 			if (dbCampaign == null) {
 				return "error";
 			}
-			if(user.getName().equals(dbCampaign.getAssignedUser())) {
-				return "login";
+			User client = userService.findByUsername(user.getName());
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
 			return "insight";
@@ -105,8 +109,9 @@ public class LoginController {
 			if (dbCampaign == null) {
 				return "error";
 			}
-			if(user.getName().equals(dbCampaign.getAssignedUser())) {
-				return "login";
+			User client = userService.findByUsername(user.getName());
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
 			return "social";
@@ -122,8 +127,9 @@ public class LoginController {
 			if (dbCampaign == null) {
 				return "error";
 			}
-			if(user.getName().equals(dbCampaign.getAssignedUser())) {
-				return "login";
+			User client = userService.findByUsername(user.getName());
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
 			return "galeria";
@@ -139,8 +145,9 @@ public class LoginController {
 			if (dbCampaign == null) {
 				return "error";
 			}
-			if(user.getName().equals(dbCampaign.getAssignedUser())) {
-				return "login";
+			User client = userService.findByUsername(user.getName());
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
 			return "bi";
@@ -172,8 +179,9 @@ public class LoginController {
 			if (dbCampaign == null) {
 				return "error";
 			}
-			if(user.getName().equals(dbCampaign.getAssignedUser())) {
-				return "login";
+			User client = userService.findByUsername(user.getName());
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
 			return "homeCliente";
