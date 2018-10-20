@@ -47,33 +47,106 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/video")
-	public String video() {
-		return "video";
+	public String video(@RequestParam Integer cp, Authentication user, Model model) {
+		
+		try {
+			Campaign dbCampaign = campaignService.findById(cp).get();
+			if (dbCampaign == null) {
+				return "error";
+			}
+			if(user.getName().equals(dbCampaign.getAssignedUser())) {
+				return "login";
+			}
+			model.addAttribute("campaign", dbCampaign);
+			return "video";
+		} catch (Exception ex) {
+			return "error";
+		}
 	}
 
 	@RequestMapping(value = "/mediciones")
-	public String mediciones() {
-		return "mediciones";
+	public String mediciones(@RequestParam Integer cp, Authentication user, Model model) {
+		try {
+			Campaign dbCampaign = campaignService.findById(cp).get();
+			if (dbCampaign == null) {
+				return "error";
+			}
+			if(user.getName().equals(dbCampaign.getAssignedUser())) {
+				return "login";
+			}
+			model.addAttribute("campaign", dbCampaign);
+			return "mediciones";
+		} catch (Exception ex) {
+			return "error";
+		}
 	}
 
 	@RequestMapping(value = "/insight")
-	public String insight() {
-		return "insight";
+	public String insight(@RequestParam Integer cp, Authentication user, Model model) {
+		try {
+			Campaign dbCampaign = campaignService.findById(cp).get();
+			if (dbCampaign == null) {
+				return "error";
+			}
+			if(user.getName().equals(dbCampaign.getAssignedUser())) {
+				return "login";
+			}
+			model.addAttribute("campaign", dbCampaign);
+			return "insight";
+		} catch (Exception ex) {
+			return "error";
+		}
 	}
 
 	@RequestMapping(value = "/social")
-	public String social() {
-		return "social";
+	public String social(@RequestParam Integer cp, Authentication user, Model model) {
+		try {
+			Campaign dbCampaign = campaignService.findById(cp).get();
+			if (dbCampaign == null) {
+				return "error";
+			}
+			if(user.getName().equals(dbCampaign.getAssignedUser())) {
+				return "login";
+			}
+			model.addAttribute("campaign", dbCampaign);
+			return "social";
+		} catch (Exception ex) {
+			return "error";
+		}
 	}
 
 	@RequestMapping(value = "/galeria")
-	public String galeria() {
-		return "galeria";
+	public String galeria(@RequestParam Integer cp, Authentication user, Model model) {
+		try {
+			Campaign dbCampaign = campaignService.findById(cp).get();
+			if (dbCampaign == null) {
+				return "error";
+			}
+			if(user.getName().equals(dbCampaign.getAssignedUser())) {
+				return "login";
+			}
+			model.addAttribute("campaign", dbCampaign);
+			return "galeria";
+		} catch (Exception ex) {
+			return "error";
+		}
 	}
 
 	@RequestMapping(value = "/bi")
-	public String bi() {
-		return "bi";
+	public String bi(@RequestParam Integer cp, Authentication user, Model model) {
+		try {
+			Campaign dbCampaign = campaignService.findById(cp).get();
+			if (dbCampaign == null) {
+				return "error";
+			}
+			if(user.getName().equals(dbCampaign.getAssignedUser())) {
+				return "login";
+			}
+			model.addAttribute("campaign", dbCampaign);
+			return "bi";
+		} catch (Exception ex) {
+			return "error";
+		}
 	}
 
 	@RequestMapping(value = "/emociones")
@@ -98,6 +171,9 @@ public class LoginController {
 			Campaign dbCampaign = campaignService.findById(cp).get();
 			if (dbCampaign == null) {
 				return "error";
+			}
+			if(user.getName().equals(dbCampaign.getAssignedUser())) {
+				return "login";
 			}
 			model.addAttribute("campaign", dbCampaign);
 			return "homeCliente";
