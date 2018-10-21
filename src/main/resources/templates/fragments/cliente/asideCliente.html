@@ -2,7 +2,7 @@
 <div class="sidebar" data-color="orange" th:fragment="asideCliente">
     <div class="logo">
         
-        <a href="/homeCliente" class="simple-text logo-normal">
+        <a th:href="@{/homeCliente(cp=${campaign.campaignId})}" class="simple-text logo-normal">
             <img width="150" src="../img/inlab_blanco.png" />
         </a>
         <div class="navbar-minimize">
@@ -15,50 +15,50 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li>
-                <a href="/homeCliente">
+                <a th:href="@{/homeCliente(cp=${campaign.campaignId})}">
                     <i class="now-ui-icons objects_planet"></i>
                     <p>Inicio</p>
                 </a>
             </li>
             <li class=" ">
-                <a href="/video">
+                <a th:href="@{/video(cp=${campaign.campaignId})}">
                     <i class="now-ui-icons tech_tv"></i>
                     <p>Video | Chat</p>
                 </a>
             </li>
             <li class=" ">
-                <a href="/mediciones">
+                <a th:href="@{/mediciones(cp=${campaign.campaignId})}">
                     <i class="now-ui-icons files_paper"></i>
                     <p>Mediciones</p>
                 </a>
             </li>
             <li class=" ">
-                <a href="/insight">
+                <a th:href="@{/insight(cp=${campaign.campaignId})}">
                     <i class="now-ui-icons business_bulb-63"></i>
                     <p>Insight</p>
                 </a>
             </li>
             <li class=" ">
-                <a href="/social">
+                <a th:href="@{/social(cp=${campaign.campaignId})}">
                     <i class="now-ui-icons ui-2_like"></i>
                     <p>Redes Sociales</p>
                 </a>
             </li>
             <li class=" ">
-                <a href="/galeria">
+                <a th:href="@{/galeria(cp=${campaign.campaignId})}">
                     <i class="now-ui-icons media-1_camera-compact"></i>
                     <p>Galería</p>
                 </a>
             </li>
             <li class=" ">
-                <a href="/bi">
+                <a th:href="@{/bi(cp=${campaign.campaignId})}">
                     <i class="now-ui-icons business_chart-bar-32"></i>
                     <p>Visual CR</p>
                 </a>
             </li>
             
             <li class=" ">
-                <a href="/emociones">
+                <a th:href="@{/emociones(cp=${campaign.campaignId})}">
                     <i class="now-ui-icons emoticons_satisfied"></i>
                     <p>Emociones</p>
                 </a>

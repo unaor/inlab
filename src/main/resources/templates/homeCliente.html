@@ -36,7 +36,7 @@
 						<div class="card card-chart">
 							<div class="card-header">
 								<h5 class="card-title">
-									<a class="" href="/video"><i class="now-ui-icons tech_tv"></i>
+									<a class="" th:href="@{/video(cp=${campaign.campaignId})}"><i class="now-ui-icons tech_tv"></i>
 										VIDEO <i class="now-ui-icons arrows-1_minimal-right small ico"></i></a>
 								</h5>
 								<!--<div class="dropdown">
@@ -72,7 +72,7 @@
 						<div class="card card-chart">
 							<div class="card-header">
 								<h5 class="card-title">
-									<a class="" href="/mediciones"><i
+									<a class="" th:href="@{/mediciones(cp=${campaign.campaignId})}"><i
 										class="now-ui-icons files_paper"></i> MEDICIONES <i
 										class="now-ui-icons arrows-1_minimal-right small ico"></i></a>
 								</h5>
@@ -94,7 +94,7 @@
 						<div class="card card-chart">
 							<div class="card-header">
 								<h5 class="card-title">
-									<a class="" href="/insight"><i
+									<a class="" th:href="@{/insight(cp=${campaign.campaignId})}"><i
 										class="now-ui-icons business_bulb-63"></i> INSIGHT <i
 										class="now-ui-icons arrows-1_minimal-right small ico"></i></a>
 								</h5>
@@ -131,7 +131,7 @@
 						<div class="card card-chart">
 							<div class="card-header">
 								<h5 class="card-title">
-									<a class="" href="/video"><i
+									<a class="" th:href="@{/video(cp=${campaign.campaignId})}"><i
 										class="now-ui-icons ui-2_chat-round"></i> CHAT <i
 										class="now-ui-icons arrows-1_minimal-right small ico"></i></a>
 								</h5>
@@ -158,7 +158,7 @@
 						<div class="card card-chart">
 							<div class="card-header">
 								<h5 class="card-title">
-									<a class="" href="/social"><i
+									<a class="" th:href="@{/social(cp=${campaign.campaignId})}"><i
 										class="now-ui-icons ui-2_like"></i> REDES SOCIALES <i
 										class="now-ui-icons arrows-1_minimal-right small ico"></i></a>
 								</h5>
@@ -169,7 +169,7 @@
 										style="padding-bottom: 65%; position: relative; display: block; width: 100%">
 
 										<iframe id="frameRedes_timeline" name="frameRedes_timeline"
-											width="100%" height="100%" src="" frameborder="0"
+											width="100%" height="100%" th:src="${campaign.timelineUrl}" frameborder="0"
 											style="position: absolute; top: 0; left: 0"></iframe>
 									</div>
 								</div>
@@ -186,7 +186,7 @@
 						<div class="card card-chart">
 							<div class="card-header">
 								<h5 class="card-title">
-									<a class="" href="/bi"><i
+									<a class="" th:href="@{/bi(cp=${campaign.campaignId})}"><i
 										class="now-ui-icons business_chart-bar-32"></i> VISUAL CR <i
 										class="now-ui-icons arrows-1_minimal-right small ico"></i></a>
 								</h5>
@@ -197,7 +197,7 @@
 									<div id="Container"
 										style="padding-bottom: 65%; position: relative; display: block; width: 100%">
 										<iframe id="frameVisualCR" name="frameVisualCR" width="100%"
-											height="100%" src="" frameborder="0"
+											height="100%" th:src="${campaign.powerBIUrl}" frameborder="0"
 											style="position: absolute; top: 0; left: 0"></iframe>
 									</div>
 								</div>
@@ -222,7 +222,7 @@
 						<div class="card card-chart">
 							<div class="card-header">
 								<h5 class="card-title">
-									<a class="" href="/galeria"><i
+									<a class="" th:href="@{/galeria(cp=${campaign.campaignId})}"><i
 										class="now-ui-icons media-1_camera-compact"></i> GALERÍA <i
 										class="now-ui-icons arrows-1_minimal-right small ico"></i></a>
 								</h5>
@@ -322,7 +322,7 @@
 						<div class="card card-chart">
 							<div class="card-header">
 								<h5 class="card-title">
-									<a class="" href="/emociones"><i
+									<a class="" th:href="@{/emociones(cp=${campaign.campaignId})}"><i
 										class="now-ui-icons emoticons_satisfied"></i> EMOCIONES</a>
 								</h5>
 								<!--<h4 class="card-title">All products</h4>-->

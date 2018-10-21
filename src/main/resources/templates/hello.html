@@ -34,7 +34,7 @@
 	    <!--     Fonts and icons     -->
 	    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
 	    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-	    <link href="../css/now-ui-dashboard-pro.min.css" rel="stylesheet" />
+	    <link href="/css/now-ui-dashboard-pro.min.css" rel="stylesheet" />
 	    <link href="/css/now-ui-kit.min.css" rel="stylesheet" />
 	    
 	    <!-- js Files -->
@@ -47,17 +47,15 @@
 </head>
 
 <body>
-<div class="section" data-background-color="black">
+<div class="section" data-background-color="orange">
 	<div class="container">
 		<br>
      <div class="row justify-content-md-center">
        <div class="text-center col-md-12 col-lg-8">
+       	 <span><img src="/img/inlab_blanco.png" width="200"></span>
          <p th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]], por favor seleccione la Campaña que desea ver</p>
        </div>
      </div>
-     <br>
-     <hr>
-     <br>
      <div class="row justify-content-md-center col-centered">
      	<div class="table-responsive col-md-6">
               <table class="table text-center" id="tbCampaign">

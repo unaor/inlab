@@ -34,52 +34,47 @@
 				                <div class="row">
 				                    <div class="col-sm-12">
 				                        <div id="Container" style="padding-bottom:65%; position:relative; display:block; width: 100%">
-				                            <iframe width="100%" height="100%" src="https://keyhole.co/embed/OjNl5X/timeline" frameborder="0" style="position:absolute; top:0; left: 0"></iframe>
+				                            <iframe id="in_timeline" width="100%" height="100%" th:src="${campaign.timelineUrl}" frameborder="0" style="position:absolute; top:0; left: 0"></iframe>
 				                        </div>
 				                    </div>
 				                </div>
 				
 				                <div class="row">
 				                    <div class="col-sm-6">
-				                        <iframe src='https://keyhole.co/embed/3rByew/top_tweets' frameborder='0' height='450' width='100%'></iframe>
+				                        <iframe id="in_top_tweets" th:src="${campaign.tweetsUrl}" frameborder="0" height="450" width="100%"></iframe>
 				                    </div>
 				                    <div class="col-sm-6">
-				                        <iframe src='https://keyhole.co/embed/3rByew/topics' frameborder='0' height='450' width='100%'></iframe>
+				                        <iframe id="in_topics" th:src="${campaign.topicsUrl}" frameborder="0" height="450" width="100%"></iframe>
 				                    </div>
 				                </div>
 				                
 				                <div class="row">
 				                    <div class="col-sm-6">
-				                        <iframe src='https://keyhole.co/embed/3rByew/influencers' frameborder='0' height='450' width='100%'></iframe>
+				                        <iframe id="in_influencers" th:src="${campaign.influenceUrl}" frameborder="0" height="450" width="100%"></iframe>
 				                    </div>
 				                    <div class="col-sm-6">
-				                        <iframe src='https://keyhole.co/embed/3rByew/top_domains' frameborder='0' height='450' width='100%'></iframe>
+				                        <iframe id="in_top_domains" th:src="${campaign.topDomainsUrl}" frameborder="0" height="450" width="100%"></iframe>
 				                    </div>
 				                </div>
 				
 				                <div class="row">
 				                    <div class="col-sm-6">
-				                        <iframe src='https://keyhole.co/embed/3rByew/countries' frameborder='0' height='420' width='100%'></iframe>
+				                        <iframe id="in_countries" th:src="${campaign.countries}" frameborder="0" height="420" width="100%"></iframe>
 				                    </div>
 				                    <div class="col-sm-6">
-				                        <iframe src='https://keyhole.co/embed/OjNl5X/demographics' frameborder='0' height='420' width='100%'></iframe>
+				                        <iframe id="in_demographics" th:src="${campaign.demographics}" frameborder="0" height="420" width="100%"></iframe>
 				                    </div>
 				                </div>
 				                
 				                
 				                <div class="row">
 				                    <div class="col-sm-6">
-				                        <iframe src='https://keyhole.co/embed/3rByew/sources' frameborder='0' height='400' width='100%'></iframe>
+				                        <iframe id="in_sources" th:src="${campaign.postType}" frameborder="0" height="400" width="100%"></iframe>
 				                    </div>
 				                    <div class="col-sm-6">
-				                        <iframe src='https://keyhole.co/embed/3rByew/posttype' frameborder='0' height='400' width='100%'></iframe>
+				                        <iframe id="in_posttype" th:src="${campaign.postType}" frameborder="0" height="400" width="100%"></iframe>
 				                    </div>
 				                </div>
-				                
-				                
-				                
-				                
-				                
 				                <!--/iframe-->
 				            </div>
 				        </div>

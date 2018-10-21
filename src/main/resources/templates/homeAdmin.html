@@ -102,34 +102,34 @@
 		                  <div class="tab-content text-center">
 		                    <div class="tab-pane active" id="creaUsuario" role="tabpanel">
 		                      <!-- CONTENIDO TAB 1 -->
-		                      <form id="crearUsuario" class="form" method="" action="">
+		                      <form id="crearUsuario" class="form" method="" action="" data-toggle="validator" role="form" novalidate="true">
 		                      	<div class="input-group no-border">
-						            <div class="input-group-prepend">
+						            <div class="input-group-prepend has-error has-danger">
 						              <span class="input-group-text">
 						                <i class="now-ui-icons users_circle-08"></i>
 						              </span>
 						            </div>
-						            <input class="form-control" placeholder="Nombre Usuario" type="text" id="completeName">
+						            <input class="form-control" placeholder="Nombre Usuario" type="text" id="completeName" required="">
 						          </div>
-						          <div class="input-group no-border">
+						          <div class="input-group no-border has-error has-danger">
 						            <div class="input-group-prepend">
 						              <span class="input-group-text">
 						                <i class="now-ui-icons ui-1_email-85"></i>
 						              </span>
 						            </div>
-						            <input placeholder="email" class="form-control" type="text" id="username">
+						            <input placeholder="email" class="form-control" type="email" id="username" required="">
 						          </div>
-						          <div class="input-group no-border">
+						          <div class="input-group no-border has-error has-danger">
 						            <div class="input-group-prepend">
 						              <span class="input-group-text">
 						                <i class="now-ui-icons ui-1_lock-circle-open"></i>
 						              </span>
 						            </div>
-						            <input class="form-control" placeholder="Contrase&ntilde;a" type="password" id="password">
+						            <input class="form-control" placeholder="Contrase&ntilde;a" type="password" id="password" required>
 						          </div>
 						          <div class="form-group">
 								    <label for="Select1">Rol</label>
-								    <select class="form-control" id="roleName">
+								    <select class="form-control" id="roleName" required>
 								      <option>CLIENTE</option>
 								      <option>ADMIN</option>
 								    </select>

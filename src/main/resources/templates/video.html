@@ -33,8 +33,8 @@
 				                <!--iframe-->
 				                <div id="Container"
 				                     style="padding-bottom:60%; position:relative; display:block; width: 100%">
-				                    <iframe id="UstreamIframe" width="100%" height="100%"
-				                            src="http://www.ustream.tv/embed/23609130?html5ui"
+				                    <iframe id="inVideo" webkitallowfullscreen="" allowfullscreen="" width="100%" height="100%"
+				                            th:src="${campaign.videoUrl}"
 				                            frameborder="0"
 				                            style="position:absolute; top:0; left: 0"></iframe>
 				                </div>
@@ -51,8 +51,8 @@
 				                <!--iframe-->
 				                <div id="Container"
 				                     style="padding-bottom:60%; position:relative; display:block; width: 100%">
-				                    <iframe id="UstreamIframe" width="100%" height="100%"
-				                            src="http://www.ustream.tv/socialstream/23609130?videos=0"
+				                    <iframe id="inChat" webkitallowfullscreen="" allowfullscreen="" width="100%" height="100%"
+				                            th:src="${campaign.chatUrl}"
 				                            frameborder="0"
 				                            style="position:absolute; top:0; left: 0"></iframe>
 				                </div>
