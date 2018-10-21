@@ -9,7 +9,7 @@ public class AnswerResponse {
 	
 	private String questionName;
 	
-	private List<String> answers = new ArrayList<String>();
+	private List<Tag> tags = new ArrayList<Tag>();
 
 	public Integer getQuestionId() {
 		return questionId;
@@ -27,11 +27,13 @@ public class AnswerResponse {
 		this.questionName = questionName;
 	}
 
-	public List<String> getAnswers() {
-		return answers;
+	public List<Tag> getTags() {
+		return tags;
 	}
 
-	public void setAnswers(List<String> answers) {
-		this.answers = answers;
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
+
+	
 }
