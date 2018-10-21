@@ -136,13 +136,7 @@
 	                </div>
             	</div>
             	<div class="col-sm-6">
-            		<label class="control-label">Imagen Encuesta</label>
-	                <div class="input-group">
-					  <div class="custom-file">
-					    <input id="pollImgUrl" name="pollImgUrl" type="file" class="custom-file-input">
-					    <label class="custom-file-label" for="inputGroupFile04">Cargar Imagen</label>
-					  </div>
-					</div>
+            		&nbsp;
             	</div>
             </div>
             <hr>
@@ -295,18 +289,12 @@
             <div class="row">
             	<div class="col-sm-6">
 	                <div class="form-group">
-	                	<label class="control-label">URL Encuesta</label>
+	                	<label class="control-label">URL Mediciones</label>
 	                  	<input id="EpollUrl" name="EpollUrl" value="" placeholder="URL" class="form-control" type="text">
 	                </div>
             	</div>
             	<div class="col-sm-6">
-            		<label class="control-label">Imagen Encuesta</label>
-	                <div class="input-group">
-					  <div class="custom-file">
-					    <input id="EpollImgUrl" name="EpollImgUrl" type="file" class="custom-file-input">
-					    <label class="custom-file-label" for="inputGroupFile04">Cargar Imagen</label>
-					  </div>
-					</div>
+					&nbsp;
             	</div>
             </div>
             <hr>
@@ -415,41 +403,49 @@
 	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 	              <i class="now-ui-icons ui-1_simple-remove"></i>
 	            </button>
-	            <h4 class="title title-up">Galería Fotografica</h4>
+	            <h4 class="title title-up">Galer&iacute;a Fotogr&aacute;fica</h4>
 	          </div>
 	          <div class="modal-body p-5">
-	          	<div class="col-sm-10 col-centered">
-	               <div class="table-responsive">
-	                  <table class="table" id="tbgallery">
-	                    <tr>
-							<th>Archivo</th>
-	                      	<th class="text-center">Acciones</th>
-	                    </tr>
-	                    <tr>
-	                    	<td>foto_01.jpg</td>
-	                      	<td class="text-center">
-				                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
-				            </td>
-	                    </tr>
-	                    <tr>
-	                    	<td>foto_02.jpg</td>
-	                      	<td class="text-center">
-				                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
-				            </td>
-	                    </tr>
-	                  </table>
-               		</div>
-               	</div>
+	          	<div class="row">
+		          	<div class="col-sm-10 col-centered">
+		          		<div class="form-group">
+			          		<label class="control-label">Id Campa&ntilde;a</label>
+			            	<input id="galleryCampaignId" name="uploadCampaignId" class="form-control" type="text" readonly>
+			            </div>
+	               	</div>
+	            </div>
                	<div class="row">
                		<div class="col-sm-10 col-centered">
 		                <div class="input-group">
 						  <div class="custom-file">
 						    <input type="file" class="custom-file-input" id="inputGroupFile04">
-						    <label class="custom-file-label" for="inputGroupFile04">Cargar Imagen</label>
+						    <label class="custom-file-label" for="inputGroupFile04">Cargar Im&aacute;gen</label>
 						  </div>
 						</div>
                		</div>
                	</div>
+               	<br>
+               	<div class="row">
+               		<div class="col-sm-10 col-centered">
+		            	<div class="table-responsive">
+		                  	<table class="table" id="tbgallery">
+			                    <tr>
+									<th>Archivo</th>
+			                      	<th class="text-center">Acciones</th>
+			                    </tr>
+			                    <tr>
+			                    	<td><input id="imgMedicionesUrl" name="imgMedicionesUrl" class="form-control" type="text" readonly></td>
+			                      	<td class="text-center">
+						                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+						            </td>
+			                    </tr>
+		                  </table>
+               			</div>
+               		</div>
+               	</div>
+               	
+               	
+               	
 		  	</div>
 			<div class="modal-footer">
 				<button id="GbtnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
@@ -482,6 +478,40 @@
 	</form>
 </div>
 <!-- /Minimodal Borrado  -->
+
+<!-- Inicio Modal cargar imágen mediciones -->
+<div class="modal fade" id="modalPollImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="formPollImg" class="form" method="" action="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 class="title title-up">Cargar Im&aacute;gen Mediciones</h4>
+          </div>
+          <div class="modal-body">
+          	 <div class="form-group">
+          		<label class="control-label">Id Campa&ntilde;a</label>
+            	<input id="uploadCampaignId" name="uploadCampaignId" class="form-control" type="text" readonly>
+            </div>
+            <div class="input-group">
+			  <div class="custom-file">
+			    <input type="file" class="custom-file-input" id="pollImg">
+			    <label class="custom-file-label" for="inputGroupFile04">Cargar im&aacute;gen</label>
+			  </div>
+			</div>
+	  	</div>
+	  <div class="modal-footer">
+	  	<button id="btnCerrarM1" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+	    <input type="button" class="btn btn-success" id="btnPollImg" name="btnPollImg" value="Guardar">
+	      </div>
+	    </div>
+	  </div>
+	</form>
+</div>
+<!-- Fin Modal cargar imágen mediciones -->
+
 
 <!-- NOTIFICACIONES -->
 <div class="modal fade modal-mini modal-success" id="alertSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

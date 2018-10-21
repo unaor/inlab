@@ -654,7 +654,8 @@ $.ajax({
 							+ formattedDate2
 							+ '</td><td>'
 							+ '<button id="btnCampaignEdit'+ item.campaignId + '" type="button" onclick="EditCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalEditarCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
-			                + '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-default btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button> '
+			                + '<button onclick="pollImgUpload('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalPollImg" class="btn btn-success btn-icon btn-sm " data-original-title="Cargar Img Mediciones" title="Cargar Img Mediciones"><i class="fas fa-upload"></i></button> '
+			                + '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-warning btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button> '
 			                + '<button id="btnCampaignDelete'+ item.campaignId + '" type="button" onclick="DeleteCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrarCampaign" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
 				});
 
@@ -762,7 +763,6 @@ $("#btnCerrarAnswers").click(function() {
 $("#btnCampaignDelete").click(function() {
 		
 		var data = $("#deleteCampaignId").val();
-		alert (data);
 		var url= "/api/campaign?campaignId="+data;
 		
 	    $.ajax({
@@ -789,6 +789,36 @@ $("#btnCampaignDelete").click(function() {
 
 
 }) // fin function
+
+
+
+/* DATOS CARGAR IMG MEDICIONES CAMPAÑAS */
+
+function NewGallery(campaignId){
+	//alert(campaignId);
+	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];	
+	/* capturar información del registro para asociar */
+	
+	$('#galleryCampaignId').val(selectedCampaign.campaignId);
+	
+}
+
+
+
+
+
+/* DATOS CARGAR IMG MEDICIONES CAMPAÑAS */
+
+function pollImgUpload(campaignId){
+	//alert(campaignId);
+	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];	
+	/* capturar información del registro para cargar */
+	
+	$('#uploadCampaignId').val(selectedCampaign.campaignId);
+	
+}
+
+
 
 
 /* DATOS PARA BORRAR CAMPAÑA */
