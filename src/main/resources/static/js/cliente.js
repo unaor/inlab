@@ -47,7 +47,7 @@ function viewCampaign(campaignId){
 	
 	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];
 	document.location.href = "/homeCliente?cp=" + selectedCampaign.campaignId;
-	
+
 }	
 
 function getQueryVariable(variable)
