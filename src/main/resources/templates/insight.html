@@ -23,12 +23,6 @@
             <div class="panel-header panel-header-sm">
             </div>
             <div class="content">
-                
-			<script>
-			    $.ajaxSetup({
-			    cache: false
-			});</script>
-			
 				<div class="row">
 				    <div class="col-sm-10 col-centered">
 				        <div class="card ">
@@ -37,27 +31,8 @@
 				            </div>
 				            <div class="card-body pb-md-5 text-center">
 				                <!--iframe-->
-				                <div class="row">
-				                    <div class="col-sm-10 col-centered">
-				                        <p class="text-black">¿La principal razón de compra en las tiendas de descuento (tiendas como D1, Justo y Bueno) es?</p>
-				                    </div>
-				                </div>
-				                <div class="row">
-				                    <div id="Container" style="padding-bottom:0%; position:relative; display:block; width: 100%">
-				                        <div data-wordart-src="//cdn.wordart.com/json/tfky5ld5xwgj"></div>
-				                    </div>
-				                </div>
-				                <hr />
-				                <div class="row">
-				                    <div class="col-sm-10 col-centered">
-				                        <p class="text-black">¿Ha tenido alguna experiencia negativa con la compra de algún producto en una tienda de descuento como D1 y Justo y Bueno?</p>
-				                    </div>
-				                </div>
-				                <div class="row">
-				                    <div id="Container" style="padding-bottom:0%; position:relative; display:block; width: 100%">
-				                        <div data-wordart-src="//cdn.wordart.com/json/xeiqr4c9yo9x"></div>
-				                    </div>
-				                </div>
+				                
+				                <div id="tagCloud" class="jqcloud"></div>
 				                
 				                <!--/iframe-->
 				            </div>
@@ -81,6 +56,11 @@
 <!-- /BODY -->
 
 <var th:insert="fragments/scripts.html :: var"> </var>
+
+<script src="/js/insight.js"></script>
+<script src="/Plugins/jQCloud-master/dist/jqcloud.min.js"></script>
+
+
 
 </body>
 </html>
