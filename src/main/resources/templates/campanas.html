@@ -481,7 +481,7 @@
 
 <!-- Inicio Modal cargar imágen mediciones -->
 <div class="modal fade" id="modalPollImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form id="formPollImg" class="form" method="" action="">
+	<form id="formPollImg" class="form" method="POST" action="./api/campaign/image" enctype="multipart/form-data">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header justify-content-center">
@@ -493,18 +493,18 @@
           <div class="modal-body">
           	 <div class="form-group">
           		<label class="control-label">Id Campa&ntilde;a</label>
-            	<input id="uploadCampaignId" name="uploadCampaignId" class="form-control" type="text" readonly>
+            	<input id="uploadCampaignId" name="campaignId" class="form-control" type="text" readonly>
             </div>
             <div class="input-group">
 			  <div class="custom-file">
-			    <input type="file" class="custom-file-input" id="pollImg">
+			    <input type="file" class="custom-file-input" id="pollImg" name="file">
 			    <label class="custom-file-label" for="inputGroupFile04">Cargar im&aacute;gen</label>
 			  </div>
 			</div>
 	  	</div>
 	  <div class="modal-footer">
 	  	<button id="btnCerrarM1" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-	    <input type="button" class="btn btn-success" id="btnPollImg" name="btnPollImg" value="Guardar">
+	    <input type="submit" class="btn btn-success" id="btnPollImg" name="btnPollImg" value="Guardar">
 	      </div>
 	    </div>
 	  </div>

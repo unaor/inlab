@@ -1,5 +1,6 @@
 package com.example.duobot.inlab.controller;
 
+import java.io.File;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.duobot.inlab.dao.CampaignService;
 import com.example.duobot.inlab.model.Campaign;
@@ -107,6 +109,26 @@ public class CampaignController {
 			return ResponseEntity.noContent().build();
 		} catch (Exception ex) {
 			return ResponseEntity.badRequest().body(ex.getMessage());
+		}
+	}
+	
+	@PostMapping(value = "/api/campaign/image")
+	public ResponseEntity<?> addStoreLogo( @RequestParam("file") MultipartFile file, @RequestParam("campaignId") Integer campaignId) {
+
+
+		if (file.isEmpty()) {
+			return ResponseEntity.badRequest().body("Empty file");
+		}
+
+		try {
+			File dir = new File("c:\\inlab\\campaign\\" + campaignId);
+			if(!dir.exists()) {
+				dir.mkdirs();
+			}
+			
+			return ResponseEntity.noContent().build();
+		} catch (Exception ex) {
+			return ResponseEntity.badRequest().body("Error agregando un archivo");
 		}
 	}
 
