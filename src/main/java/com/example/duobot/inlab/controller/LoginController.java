@@ -155,12 +155,26 @@ public class LoginController {
 			return "error";
 		}
 	}
-
+	
 	@RequestMapping(value = "/emociones")
-	public String emociones() {
-		return "emociones";
+	public String emociones(@RequestParam Integer cp, Authentication user, Model model) {
+		try {
+			Campaign dbCampaign = campaignService.findById(cp).get();
+			if (dbCampaign == null) {
+				return "error";
+			}
+			User client = userService.findByUsername(user.getName());
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+				return "loginCliente";
+			}
+			model.addAttribute("campaign", dbCampaign);
+			return "emociones";
+		} catch (Exception ex) {
+			return "error";
+		}
 	}
 
+	
 
 	@RequestMapping(value = "/encuestas")
 	public String encuestas() {
