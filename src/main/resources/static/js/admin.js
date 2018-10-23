@@ -252,7 +252,10 @@ $("#btnQuestion").on('click', function() {
 	
 	$(".question").each((index, element) => {
 		questions.push({questionId: element.dataset.questionId, question:element.value});
+		
 	});
+	
+	console.log(questions);
 	
     var data = {
     		pollId: pollId,
@@ -298,7 +301,7 @@ $("#btnAnswer").on('click', function() {
 	$(".answer").each((index, element) => {
 		answers.push({questionId: element.dataset.questionId, answer:element.value});
 	});
-    
+    console.log(answers);
 
 	$.ajax({
 		url : '/api/poll/answer',
@@ -315,8 +318,6 @@ $("#btnAnswer").on('click', function() {
 			
 		},
 			error : function(xhr, resp, text) {
-			console.log(xhr, resp, text);
-			data: data
 			$('#modalCrearPregunta').modal('hide');
 			$("#formNewQuestion")[0].reset();
 			$('#alertError').modal('show');
@@ -496,24 +497,25 @@ $("#btnDeletePoll").click(function() {
 /* AGREGAR PREGUNTAS */
 $(function() {
 
-	var i = 2;
+	var i = 1;
 	
 	$("#btnAddQuestion").click(function (e) {
 		
 		
 		
 		 // Append a new row of code to the "#items" div
-		 $("#itemsQuestion").append('<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control question" placeholder="Texto Pregunta" type="text" name="inputQuestion' + i +'" id="inputQuestion' + i +'"><button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm delete"><i class="far fa-trash-alt"></i></button></div>'); 
+		 $("#itemsQuestion").append('<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control question" placeholder="Texto Pregunta" type="text" name="inputQuestion' + i +'" id="inputQuestion' + i +'"><button id="btnTrash" type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm delete"><i class="far fa-trash-alt"></i></button></div>'); 
 		 
 		 i++;
 		 return false;
 	
 	});
 	
+//	$("#btnTrash").click(function (e) {
 	$("body").on("click", ".delete", function (e) {
 		
 		
-		if( i > 2 ) {
+		if( i > 1 ) {
 			$(this).parent("div").remove();
 	        i--;
 		}
@@ -831,6 +833,7 @@ function DeleteCampaign(campaignId){
 
 function EditCampaign(campaignId){
 	
+	
 		
 	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];
 	
@@ -848,6 +851,7 @@ function EditCampaign(campaignId){
 	$("#EchatUrl").val(selectedCampaign.chatUrl);
 	$("#EpollUrl").val(selectedCampaign.pollUrl);
 	$("#EinsightId").val(selectedCampaign.insightId);
+	$("#EpollImageUrl").val(selectedCampaign.pollImageUrl);
 	$("#EpowerBIUrl").val(selectedCampaign.powerBIUrl);
 	$("#EtimelineUrl").val(selectedCampaign.timelineUrl);
 	$("#EtweetsUrl").val(selectedCampaign.tweetsUrl);
@@ -857,9 +861,31 @@ function EditCampaign(campaignId){
 	$("#Ecountries").val(selectedCampaign.countries);
 	$("#Edemographics").val(selectedCampaign.demographics);
 	$("#EpostType").val(selectedCampaign.postType);
-	$("#EassignedUser").val(selectedCampaign.assignedUser);
+	$("#Esources").val(selectedCampaign.sources);
 	
-}
+	//$("#EassignedUser").val(selectedCampaign.assignedUser);
+	
+		
+	// cargar lista de usuarios con el perfil CLIENTE
+	
+	const EselectedUserClient = users.filter(x => x.roleName === "CLIENTE");
+	//console.log(selectedUserClient);
+	
+	$.each(EselectedUserClient, function(i, item) {
+		
+		if (selectedCampaign.assignedUser == item.username){
+			
+			$("#EassignedUser").append('<option value="'+ item.username +'" selected="selected">'+ item.username +'</option>');
+			
+		}else{
+			
+			$("#EassignedUser").append(new Option(item.username, item.username));
+		}
+		
+		
+	});
+	
+} 
 
 
 
@@ -926,12 +952,10 @@ function NewQuestion(pollId){
 		$('#editPollId').val(selectedPoll.pollId);
 		if(selectedPoll.questions && selectedPoll.questions.length > 0) {
 			for(var i = 0; selectedPoll.questions.length > i ; i++) { 
-					$("#itemsQuestion").append('<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control question" value="' + selectedPoll.questions[i].question +'" type="text" name="inputQuestion' + i +'" id="inputQuestion' + i +'" data-question-id=" '+selectedPoll.questions[i].questionId+'"><button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm delete"><i class="far fa-trash-alt"></i></button></div>'); 
+					$("#itemsQuestion").append('<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control question" value="'+ selectedPoll.questions[i].question +'" type="text" name="inputQuestion' + i +'" id="inputQuestion'+ i +'" data-question-id="'+selectedPoll.questions[i].questionId+'"></div>'); 
 				
 			}
 		}
-
-		
 }
 
 /* REGISTRAR NUEVA RESPUESTA */
@@ -967,8 +991,28 @@ $("#btnCerrar").click(function() {
 	$("#formPoll")[0].reset();
 });
 
+$("#btnCerrarPreguntas").click(function() {
+	/* Single line Reset function executes on click of Reset Button */
+	$("#formNewQuestion")[0].reset();
+});
 
 
+
+/* CARGAR USUARIOS TIPO CLIENTE  */
+
+function getUserClient() {
+	
+	
+	const selectedUserClient = users.filter(x => x.roleName === "CLIENTE");
+	console.log(selectedUserClient);
+	
+	$.each(selectedUserClient, function(i, item) {
+	
+		$("#assignedUser").append(new Option(item.username, item.username));
+		
+	});
+	
+}
 
 
 
@@ -981,17 +1025,21 @@ function exportPoll(pollId){
 	const selectedPoll = polls.filter(x => x.pollId === pollId)[0];
 	
 	
+	console.log(selectedPoll);
 	
-	if (selectedPoll.answer && selectedPoll.question.answer){
 		
-		var exportData = selectedPoll.answer;
-		  console.log(exportData);
-
-		  var exportFile = new CSVExport(exportData);
-
-		  return false;	
 		
-	}
+		var exportQuestion = item.question;
+		var exportAnswer = item.answers;
+		  console.log(exportQuestion);
+
+		  
+		  
+		  
+//		  var exportFile = new CSVExport(exportData);
+//
+//		  return false;	
+
 	
   
 

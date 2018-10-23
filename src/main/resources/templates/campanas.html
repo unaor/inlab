@@ -45,7 +45,7 @@
 			                    <!-- tab 1 -->
 			                    <div class="tab-pane active" id="tabEncuesta" role="tabpanel">
 			                      <div class="float-left p-2">
-			                      	  <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearCampana">Crear Campa&ntilde;a</button>
+			                      	  <button onclick="getUserClient()" class="btn btn-info" data-toggle="modal" data-target="#modalCrearCampana">Crear Campa&ntilde;a</button>
 			                      </div>
 			                      <div class="table-responsive">
 					                  <table class="table" id="tbCampaign">
@@ -136,7 +136,10 @@
 	                </div>
             	</div>
             	<div class="col-sm-6">
-            		&nbsp;
+            		<div class="form-group">
+	                	<label class="control-label">URL Img Mediciones</label>
+	                  	<input id="pollImageUrl" name="pollImageUrl" value="" placeholder="URL" class="form-control" type="text">
+	                </div>
             	</div>
             </div>
             <hr>
@@ -214,13 +217,14 @@
             <hr>
             <div class="row">
             	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Redes - sources</label>
+	                  	<input id="sources" name="sources" value="" placeholder="URL" class="form-control" type="text">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
 				    <label for="exampleFormControlSelect1">Asignar Usuario</label>
 				    <select class="form-control" id="assignedUser" name="assignedUser">
-				      <option>usuario 1</option>
-				      <option>usuario 2</option>
-				      <option>usuario 3</option>
-				      <option>usuario 4</option>
-				      <option>usuario 5</option>
 				    </select>
 				</div>
         	</div>
@@ -294,7 +298,10 @@
 	                </div>
             	</div>
             	<div class="col-sm-6">
-					&nbsp;
+            		<div class="form-group">
+	                	<label class="control-label">URL Img Mediciones</label>
+	                  	<input id="EpollImageUrl" name="EpollImageUrl" value="" placeholder="URL" class="form-control" type="text">
+	                </div>
             	</div>
             </div>
             <hr>
@@ -372,13 +379,14 @@
             <hr>
             <div class="row">
             	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Redes - sources</label>
+	                  	<input id="Esources" name="Esources" value="" placeholder="URL" class="form-control" type="text">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
 				    <label for="exampleFormControlSelect1">Asignar Usuario</label>
 				    <select class="form-control" id="EassignedUser" name="EassignedUser">
-				      <option>usuario 1</option>
-				      <option>usuario 2</option>
-				      <option>usuario 3</option>
-				      <option>usuario 4</option>
-				      <option>usuario 5</option>
 				    </select>
 				</div>
         	</div>
