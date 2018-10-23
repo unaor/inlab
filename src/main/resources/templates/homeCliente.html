@@ -79,7 +79,8 @@
 							</div>
 							<div class="card-body">
 								<div class="chart-area p-t-10">
-									<img id="frameimgMediciones" name="frameimgMediciones" src="" />
+									<!-- <img id="frameimgMediciones" name="frameimgMediciones" src="" /> -->
+									<img th:src="${campaign.pollImageUrl}">
 								</div>
 							</div>
 							<div class="card-footer">
@@ -103,7 +104,7 @@
 								<div class="chart-area">
 									<div class="row">
 										<div class="col-sm-10 col-centered text-center">
-											<div id="tagCloudHome"></div>
+											<div id="cloudContainer"></div>
 										</div>
 									</div>
 								</div>
@@ -323,7 +324,7 @@
 									<div id="Container"
 										style="padding-bottom: 65%; position: relative; display: block; width: 100%">
 										<iframe id="frameImgEmociones" name="frameImgEmociones"
-											width="100%" height="100%" src="" frameborder="0"
+											width="100%" height="100%" th:src="${campaign.emotionsUrl}" frameborder="0"
 											style="position: absolute; top: 0; left: 0"> </iframe>
 									</div>
 								</div>
@@ -361,11 +362,26 @@
 
 	<var th:insert="fragments/scripts.html :: var"> </var>
 
-<script src="/js/insight.js"></script>
-<script src="/Plugins/jQCloud-master/dist/jqcloud.min.js"></script>
-<script src="/Plugins/jQCloud-master/dist/jqcloud.js"></script>
-<script src="/Plugins/jquery-tagcloud-master/jquery.tagcloud.js"></script>
+<script src="/Plugins/jQCloud-master/jqcloud-1.0.4.js"></script>
+<!-- <script src="/Plugins/jquery-tagcloud-master/jquery.tagcloud.js"></script> -->
 
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+    var answers = /*[[${answers}]]*/ 'default';
+    answers.map((answer, index) => {
+    	//console.log(answer);
+    	if (index === 0){
+    	$("#cloudContainer").append('<p class="text-capitalize">' + answer.questionName + '</p><div style="margin-top: -120px; margin-left: -10%;" class="col-centered justify-content-center jqcloud" id="question-' + index + '"></div>')
+       	 /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
+    	$("#question-" + index).jQCloud(answer.tags, {width:250, height:250});
+   		
+    	};
+    	
+    	
+    });
+/*]]>*/
+</script>
 
 </body>
 </html>

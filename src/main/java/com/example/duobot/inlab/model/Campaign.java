@@ -50,8 +50,14 @@ public class Campaign implements Serializable {
 	private String demographics;
 
 	private String postType;
+	
+	private String sources;
 
 	private String assignedUser;
+	
+	private String pollImageUrl;
+	
+	private String emotionsUrl;
 
 	public Campaign() {
 	}
@@ -187,9 +193,17 @@ public class Campaign implements Serializable {
 	public String getPostType() {
 		return postType;
 	}
-
+	
 	public void setPostType(String postType) {
 		this.postType = postType;
+	}
+	
+	public String getSources() {
+		return sources;
+	}
+	
+	public void setSources(String sources) {
+		this.sources = sources;
 	}
 
 	public String getAssignedUser() {
@@ -200,4 +214,20 @@ public class Campaign implements Serializable {
 		this.assignedUser = assignedUser;
 	}
 
+	public String getPollImageUrl() {
+		return pollImageUrl;
+	}
+
+	public void setPollImageUrl(String pollImageUrl) {
+		this.pollImageUrl = pollImageUrl;
+	}
+
+	public String getEmotionsUrl() {
+		return emotionsUrl;
+	}
+
+	public void setEmotionsUrl(String emotionsUrl) {
+		this.emotionsUrl = emotionsUrl;
+	}
+	
 }

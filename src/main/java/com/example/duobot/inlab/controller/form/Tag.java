@@ -2,25 +2,27 @@ package com.example.duobot.inlab.controller.form;
 
 public class Tag {
 	
-	private String tag;
+	private String text;
 	
-	private Integer count;
+	private Integer weight;
 
-	public String getTag() {
-		return tag;
+	public String getText() {
+		return text;
 	}
 
-	public void setTag(String tag) {
-		this.tag = tag;
+	public void setText(String text) {
+		this.text = text;
 	}
 
-	public Integer getCount() {
-		return count;
+	public Integer getWeight() {
+		return weight;
 	}
 
-	public void setCount(Integer count) {
-		this.count = count;
+	public void setWeight(Integer weight) {
+		this.weight = weight;
 	}
+
+
 	
 	
 

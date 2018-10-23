@@ -1,5 +1,10 @@
 package com.example.duobot.inlab.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,9 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.duobot.inlab.controller.form.AnswerResponse;
+import com.example.duobot.inlab.controller.form.Tag;
 import com.example.duobot.inlab.dao.CampaignService;
 import com.example.duobot.inlab.dao.InlabUserService;
+import com.example.duobot.inlab.dao.ProhibitedWordService;
+import com.example.duobot.inlab.dao.QuestionService;
+import com.example.duobot.inlab.model.Answer;
 import com.example.duobot.inlab.model.Campaign;
+import com.example.duobot.inlab.model.ProhibitedWord;
+import com.example.duobot.inlab.model.Question;
 import com.example.duobot.inlab.model.User;
 
 @Controller
@@ -21,6 +33,12 @@ public class LoginController {
 	
 	@Autowired
 	CampaignService campaignService;
+	
+	@Autowired
+	QuestionService questionService;
+	
+	@Autowired
+	ProhibitedWordService prohibitedWordService;
 
 	@RequestMapping(value = { "/", "/login" })
 	public String login() {
@@ -96,6 +114,45 @@ public class LoginController {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
+			
+			List<AnswerResponse> response = new ArrayList<AnswerResponse>();
+			List<Question> questions = questionService.findByPollPollId(Integer.parseInt(dbCampaign.getInsightId()));
+			List<ProhibitedWord> badWords = prohibitedWordService.findAll();
+			for(Question question : questions) {
+				Map<String, Integer> wordCounter = new HashMap<String, Integer>();
+				AnswerResponse answerResponse = new AnswerResponse();
+				answerResponse.setQuestionId(question.getQuestionId());
+				answerResponse.setQuestionName(question.getQuestion());
+				for(Answer answer : question.getAnswers()) {
+					String [] wordsArray = answer.getAnswer().split(" ");
+					for(String word : wordsArray) {
+						boolean skipWord = false;
+						for(ProhibitedWord prohibitedWord : badWords) {
+							if(prohibitedWord.getWord().equals(word)) {
+								skipWord = true;
+								break;
+							}
+						}
+						if(skipWord) {
+							continue;
+						}
+						if(wordCounter.get(word) != null) {
+							// existing word
+							wordCounter.put(word, wordCounter.get(word) + 1);
+						} else {
+							wordCounter.put(word, 1);
+						}
+					}
+					for(String key : wordCounter.keySet()) {
+						Tag tag = new Tag();
+						tag.setText(key);
+						tag.setWeight(wordCounter.get(key));
+						answerResponse.getTags().add(tag);
+					}
+				}
+				response.add(answerResponse);
+			}
+			model.addAttribute("answers", response);
 			return "insight";
 		} catch (Exception ex) {
 			return "error";
@@ -198,6 +255,44 @@ public class LoginController {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
+			List<AnswerResponse> response = new ArrayList<AnswerResponse>();
+			List<Question> questions = questionService.findByPollPollId(Integer.parseInt(dbCampaign.getInsightId()));
+			List<ProhibitedWord> badWords = prohibitedWordService.findAll();
+			for(Question question : questions) {
+				Map<String, Integer> wordCounter = new HashMap<String, Integer>();
+				AnswerResponse answerResponse = new AnswerResponse();
+				answerResponse.setQuestionId(question.getQuestionId());
+				answerResponse.setQuestionName(question.getQuestion());
+				for(Answer answer : question.getAnswers()) {
+					String [] wordsArray = answer.getAnswer().split(" ");
+					for(String word : wordsArray) {
+						boolean skipWord = false;
+						for(ProhibitedWord prohibitedWord : badWords) {
+							if(prohibitedWord.getWord().equals(word)) {
+								skipWord = true;
+								break;
+							}
+						}
+						if(skipWord) {
+							continue;
+						}
+						if(wordCounter.get(word) != null) {
+							// existing word
+							wordCounter.put(word, wordCounter.get(word) + 1);
+						} else {
+							wordCounter.put(word, 1);
+						}
+					}
+					for(String key : wordCounter.keySet()) {
+						Tag tag = new Tag();
+						tag.setText(key);
+						tag.setWeight(wordCounter.get(key));
+						answerResponse.getTags().add(tag);
+					}
+				}
+				response.add(answerResponse);
+			}
+			model.addAttribute("answers", response);
 			return "homeCliente";
 		} catch (Exception ex) {
 			return "error";

@@ -62,8 +62,8 @@ public class AnswerController {
 					}
 					for(String key : wordCounter.keySet()) {
 						Tag tag = new Tag();
-						tag.setTag(key);
-						tag.setCount(wordCounter.get(key));
+						tag.setText(key);
+						tag.setWeight(wordCounter.get(key));
 						answerResponse.getTags().add(tag);
 					}
 				}

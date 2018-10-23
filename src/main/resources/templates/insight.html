@@ -3,6 +3,7 @@
 <hgroup th:insert="fragments/cliente/headCliente.html :: headCliente"> </hgroup>
 
 <body class="sidebar-mini">
+
 <div class="wrapper">
 <!--NAV-->
 <!-- SIDEBAR    -->
@@ -24,6 +25,7 @@
             </div>
             <div class="content">
 				<div class="row">
+					<input id="hiddenInsightId" type="hidden" th:field="${campaign.insightId}" />
 				    <div class="col-sm-10 col-centered">
 				        <div class="card ">
 				            <div class="card-header ">
@@ -31,7 +33,7 @@
 				            </div>
 				            <div class="card-body pb-md-5 text-center">
 				                <!--iframe-->
-				                <div id="tagCloud"></div>
+				                <div id="cloudContainer"></div>
 				                <!--/iframe-->
 				            </div>
 				        </div>
@@ -41,6 +43,7 @@
             <!--/CONTAINER-->
             
 <!-- /CONTENT   -->
+
 
 
 <!--FOOTER-->
@@ -55,10 +58,22 @@
 
 <var th:insert="fragments/scripts.html :: var"> </var>
 
-<script src="/js/insight.js"></script>
-<script src="/Plugins/jQCloud-master/dist/jqcloud.min.js"></script>
-<script src="/Plugins/jQCloud-master/dist/jqcloud.js"></script>
-<script src="/Plugins/jquery-tagcloud-master/jquery.tagcloud.js"></script>
+<script src="/Plugins/jQCloud-master/jqcloud-1.0.4.js"></script>
+<!-- <script src="/Plugins/jquery-tagcloud-master/jquery.tagcloud.js"></script> -->
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+    var answers = /*[[${answers}]]*/ 'default';
+    answers.map((answer, index) => {
+    	console.log(answer);
+    	$("#cloudContainer").append('<h4 class="text-uppercase text-warning">' + answer.questionName + '</h4><br><div class="col-md-10 col-centered justify-content-center jqcloud" id="question-' + index + '"></div><hr>')
+    	 /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
+    	$("#question-" + index).jQCloud(answer.tags, {width:800, height:600, autoResize:true});
+    	
+    });
+/*]]>*/
+</script>
 
 
 
