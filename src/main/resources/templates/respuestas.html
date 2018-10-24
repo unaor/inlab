@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
+
+<body class="sidebar-mini">
+<div class="wrapper">
+	<!--NAV-->
+		<!-- SIDEBAR    -->
+		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin"> </aside>
+		<!-- /SIDEBAR    -->
+	<!-- TOPBAR    -->
+	<!--/NAV-->
+    <!--MAIN-->
+    <div class="main-panel">
+       <!-- HEADER -->
+       <nav th:insert="fragments/nav.html :: nav"> </nav>
+       <!-- /HEADER -->
+            
+<!-- /TOPBAR    -->
+<!-- CONTENT    -->
+            
+            <!--CONTAINER-->
+
+            
+            <div class="panel-header panel-header-sm">
+            </div>
+            <div class="section">
+	            <div class="content col-md-12 col-centered">
+	            <!-- CONTENIDO PAGINA  -->
+	            	<div class="row">
+		            	<div class="col-md-10 ml-auto col-xl-10 mr-auto">
+			              <p class="category">RECOPILAR INSIGHT</p>
+			              <!-- Tabs with Background on Card -->
+			              <div class="card">
+			                <div class="card-header">
+			                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
+			                    <li class="nav-item">
+			                      <a class="nav-link active" data-toggle="tab" href="#tabEncuesta" role="tab"><i class="fab fa-hubspot"></i> Recopilar Respuestas INSIGHT</a>
+			                    </li>
+			                  </ul>
+			                </div>
+			                <div class="card-body">
+			                  <!-- Tab panes -->
+			                  <div class="tab-content text-center">
+			                    <!-- tab 1 -->
+			                    <div class="tab-pane active" id="tabEncuesta" role="tabpanel">
+			                      <div class="row justify-content-md-center col-centered">
+							     		<div class="table-responsive col-md-6">
+							              <table class="table text-center" id="tbRespuestas">
+							                <tr>
+							                	<th>ID Insight</th>
+							                  	<th>Insight</th>
+							                  	<th>Seleccionar</th>
+							                </tr>
+							              </table>
+							           	</div>
+							     </div>
+			                    </div>
+								<!-- /tab1 -->
+			                  </div>
+			                </div>
+			              </div>
+			              <!-- End Tabs on plain Card -->
+			            </div>
+		        	</div>
+		          <!-- /CONTENIDO PAGINA  -->
+		          
+	          </div>
+	      </div>
+     <!--/CONTAINER-->
+<!-- /CONTENT   -->
+
+
+<!--FOOTER-->
+<footer th:insert="fragments/footer.html :: footer"> </footer>
+<!--/FOOTER-->
+
+
+        </div>
+        <!--/MAIN-->
+</div>
+
+<!-- Inicio Modal Contestar Encuesta -->
+<div class="modal fade" id="modalContestarEncuesta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="contestarEncuesta" class="form" method="" action="">
+	      <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+	          <div class="modal-header justify-content-center">
+	            <button onclick="this.form.reset();" type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	              <i class="now-ui-icons ui-1_simple-remove"></i>
+	            </button>
+	            <h4 class="title title-up">Contestar Insight</h4>
+	          </div>
+	          <div class="modal-body">
+	          	<div class="row">
+	          		<div class="form-group col-md-4">
+		          		<label class="control-label">ID Insight</label>
+		            	<input id="ApollId" name="pollId" class="form-control" type="text" readonly>
+	            	</div>
+		            <div class="form-group col-md-8">
+		            	<label class="control-label">Nombre Insight</label>
+		            	<input id="ApollName" name="pollName" class="form-control" type="text" readonly>
+		            </div>
+	          	</div>
+	            <hr>
+	          	<div class="col-md-10 col-centered">
+	          		<div id="listQuestions"></div>
+				</div>
+		  	</div>
+			<div class="modal-footer">
+				<input id="btnCerrarAnswers" onclick="this.form.reset();" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+	    		<input type="button" class="btn btn-success" id="btnAnswer" name="btnAnswer" value="Guardar">
+	      </div>
+	    </div>
+	  </div>
+	</form>
+</div>
+
+<!-- Fin Modal Contestar Encuesta -->
+
+<!-- /BODY -->
+
+
+
+
+<var th:insert="fragments/scripts.html :: var"> </var>
+
+
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
+
+<body class="sidebar-mini">
+<div class="wrapper">
+	<!--NAV-->
+		<!-- SIDEBAR    -->
+		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin"> </aside>
+		<!-- /SIDEBAR    -->
+	<!-- TOPBAR    -->
+	<!--/NAV-->
+    <!--MAIN-->
+    <div class="main-panel">
+       <!-- HEADER -->
+       <nav th:insert="fragments/nav.html :: nav"> </nav>
+       <!-- /HEADER -->
+            
+<!-- /TOPBAR    -->
+<!-- CONTENT    -->
+            
+            <!--CONTAINER-->
+
+            
+            <div class="panel-header panel-header-sm">
+            </div>
+            <div class="section">
+	            <div class="content col-md-12 col-centered">
+	            <!-- CONTENIDO PAGINA  -->
+	            	<div class="row">
+		            	<div class="col-md-10 ml-auto col-xl-10 mr-auto">
+			              <p class="category">ADMINISTRAR GALER&Iacute;AS</p>
+			              <!-- Tabs with Background on Card -->
+			              <div class="card">
+			                <div class="card-header">
+			                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
+			                    <li class="nav-item">
+			                      <a class="nav-link active" data-toggle="tab" href="#tabEncuesta" role="tab"><i class="fab fa-hubspot"></i> Cargar Fotograf&iacute;as</a>
+			                    </li>
+			                  </ul>
+			                </div>
+			                <div class="card-body">
+			                  <!-- Tab panes -->
+			                  <div class="tab-content text-center">
+			                    <!-- tab 1 -->
+			                    <div class="tab-pane active" id="tabEncuesta" role="tabpanel">
+			                      <div class="row justify-content-md-center col-centered">
+							     		<div class="table-responsive col-md-6">
+							              <table class="table text-center" id="tbCampaignGalerias">
+							                <tr>
+							                  	<th>ID Campa&ntilde;a</th>
+							                  	<th>Nombre Campa&ntilde;a</th>
+							                  	<th>Seleccionar</th>
+							                </tr>
+							              </table>
+							           	</div>
+							     </div>
+			                    </div>
+								<!-- /tab1 -->
+			                  </div>
+			                </div>
+			              </div>
+			              <!-- End Tabs on plain Card -->
+			            </div>
+		        	</div>
+		          <!-- /CONTENIDO PAGINA  -->
+		          
+	          </div>
+	      </div>
+     <!--/CONTAINER-->
+<!-- /CONTENT   -->
+
+
+<!--FOOTER-->
+<footer th:insert="fragments/footer.html :: footer"> </footer>
+<!--/FOOTER-->
+
+
+        </div>
+        <!--/MAIN-->
+</div>
+
+
+
+<!-- /BODY -->
+
+
+
+
+<var th:insert="fragments/scripts.html :: var"> </var>
+
+
+
+</body>
+</html>

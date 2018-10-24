@@ -328,8 +328,6 @@ $("#btnAnswer").on('click', function() {
 });
 
 
-
-
 /* GET JSON ENCUESTAS */
 
 	$.ajax({
@@ -343,6 +341,8 @@ $("#btnAnswer").on('click', function() {
 				polls = data;
 
 				var trHTML = '';
+				var trHTML2 = '';
+				
 				$.each(data,
 					function(i, item) {
 						
@@ -375,12 +375,25 @@ $("#btnAnswer").on('click', function() {
 								+ '<button type="button" rel="tooltip" onclick="NewAnswer('+ item.pollId +')" data-toggle="modal" data-target="#modalContestarEncuesta" class="btn btn-warning btn-icon btn-sm " data-original-title="Contestar" title="Contestar"><i class="far fa-check-square"></i></button> '
 								+ '<button id="btnPollExport'+ item.pollId + '" type="button" onclick="exportPoll('+ item.pollId +')" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="Excel" title="Excel"><i class="far fa-file-excel"></i></button> '
 								+ '<button id="btnPollDelete'+ item.pollId + '" type="button" onclick="DeletePoll('+ item.pollId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
+						
+						/* CARGAR ENCUESTAS PARA RESPUESTAS*/
+						trHTML2 += '<tr id="'+ item.pollId + '"><td>'
+								+ item.pollId
+								+ '</td><td>'
+								+ item.pollName
+								+ '</td><td>'
+								+ '<button type="button" rel="tooltip" onclick="NewAnswer('+ item.pollId +')" data-toggle="modal" data-target="#modalContestarEncuesta" class="btn btn-warning btn-icon btn-sm " data-original-title="Contestar" title="Contestar"><i class="far fa-check-square"></i></button> '
+						
+						
 					});
 
 				$('#tbEncuestas').append(trHTML);
+				$('#tbRespuestas').append(trHTML2);
+				
 			},
 
 		});
+	
 	
 	
 	$.ajax({
@@ -406,6 +419,7 @@ $("#btnAnswer").on('click', function() {
 		},
 
 	});
+	
 	
 $("#createWord").click(() => {
 	var data = {word: $("#requestedWord").val()};
@@ -621,7 +635,9 @@ $.ajax({
 			campaigns = data;
 			console.log(data);
 
-			var trHTML = '';
+			var trHTML3 = '';
+			var trHTML4 = '';
+			
 			$.each(
 				data,
 				function(i, item) {
@@ -640,8 +656,8 @@ $.ajax({
 					var formattedDate2 = day2 + '/' + month2 + '/' + year2;						
 					
 
-
-					trHTML += '<tr id="'+ item.campaignId + '"><td>'
+					
+					trHTML3 += '<tr id="'+ item.campaignId + '"><td>'
 							+ item.campaignId
 							+ '</td><td>'
 							+ item.campaignName
@@ -654,10 +670,21 @@ $.ajax({
 			                + '<button onclick="pollImgUpload('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalPollImg" class="btn btn-success btn-icon btn-sm " data-original-title="Cargar Img Mediciones" title="Cargar Img Mediciones"><i class="fas fa-upload"></i></button> '
 			                + '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-warning btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button> '
 			                + '<button id="btnCampaignDelete'+ item.campaignId + '" type="button" onclick="DeleteCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrarCampaign" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
+					
+					trHTML4 += '<tr id="'+ item.campaignId + '"><td>'
+							+ item.campaignId
+							+ '</td><td>'
+							+ item.campaignName
+							+ '</td><td>'
+			                + '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-warning btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="fas fa-camera-retro"></i></button> '
+				
+					
 				});
 
-			$('#tbCampaign').append(trHTML);
-
+			$('#tbCampaign').append(trHTML3);
+			$('#tbCampaignGalerias').append(trHTML4);
+			
+			
 		},
 
 	});

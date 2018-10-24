@@ -36,13 +36,13 @@
 	            <!-- CONTENIDO PAGINA  -->
 	            	<div class="row">
 		            	<div class="col-md-10 ml-auto col-xl-10 mr-auto">
-			              <p class="category">ENCUESTAS</p>
+			              <p class="category">INSIGHTS</p>
 			              <!-- Tabs with Background on Card -->
 			              <div class="card">
 			                <div class="card-header">
 			                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
 			                    <li class="nav-item">
-			                      <a class="nav-link active" data-toggle="tab" href="#tabEncuesta" role="tab"><i class="far fa-list-alt"></i> Encuestas</a>
+			                      <a class="nav-link active" data-toggle="tab" href="#tabEncuesta" role="tab"><i class="far fa-list-alt"></i> Insights</a>
 			                    </li>
 			                    <li class="nav-item">
 			                      <a class="nav-link" data-toggle="tab" href="#tabPalabras" role="tab"><i class="far fa-comment"></i> Palabras</a>
@@ -55,13 +55,13 @@
 			                    <!-- tab 1 -->
 			                    <div class="tab-pane active" id="tabEncuesta" role="tabpanel">
 			                      <div class="float-left p-2">
-			                      	  <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearEncuesta"><i class="far fa-list-alt"></i> Crear Encuesta</button>
+			                      	  <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearEncuesta"><i class="far fa-list-alt"></i> Crear Insight</button>
 			                      </div>
 			                      <div class="table-responsive">
 					                  <table class="table" id="tbEncuestas">
 					                    <tr>
 											<th>ID</th>
-					                      	<th>Nombre encuesta</th>
+					                      	<th>Nombre Insight</th>
 					                      	<th>Fecha Inicio</th>
 					                      	<th>Fecha fin</th>
 					                      	<th>Acciones</th>
@@ -81,7 +81,7 @@
 					                      	<th>Acciones</th>
 					                    </tr>
 					                    <!-- <tr>
-					                      	<td>uri naor</td>
+					                      	<td>palabra</td>
 					                      	<td class="text-center">
 					                      		<button type="button" rel="tooltip" data-toggle="modal" data-target="#modalCrearPalabra" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button>
 								                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
@@ -123,12 +123,12 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="now-ui-icons ui-1_simple-remove"></i>
             </button>
-            <h4 class="title title-up">Crear Encuesta</h4>
+            <h4 class="title title-up">Crear Insight</h4>
           </div>
           <div class="modal-body">
           	<div class="form-group">
           		<input type="hidden" class="form-control" id="pollID" name="pollID">
-            	<input id="pollName" name="pollName" value="" placeholder="Nombre Encuesta" class="form-control" type="text">
+            	<input id="pollName" name="pollName" value="" placeholder="Nombre Insight" class="form-control" type="text">
             </div>
             <div class="row">
             	<div class="datepicker-container col-sm-6">
@@ -165,15 +165,15 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="now-ui-icons ui-1_simple-remove"></i>
             </button>
-            <h4 class="title title-up">Editar Encuesta</h4>
+            <h4 class="title title-up">Editar Insight</h4>
           </div>
           <div class="modal-body">
           	<div class="form-group">
-          		<label class="control-label">ID Encuesta</label>
+          		<label class="control-label">ID Insight</label>
             	<input id="editPollId" name="editPollId" class="form-control" type="text" readonly>
             </div>
             <div class="form-group">
-            	<label class="control-label">Nombre Encuesta</label>
+            	<label class="control-label">Nombre Insight</label>
             	<input id="editPollName" name="editPollName" class="form-control" type="text">
             </div>
             <div class="row">
@@ -239,7 +239,7 @@
 			<div class="modal-body">
 				<p>Confirmar el borrado</p>
 				<div class="form-group text-center col-centered">
-	          		<label class="control-label">ID Encuesta</label>
+	          		<label class="control-label">ID Insight</label>
 	            	<input id="deletePollId" name="deletePollId" class="form-control" type="text" readonly>
             	</div>
 			</div>
@@ -282,16 +282,16 @@
 	            <button onclick="this.form.reset();" type="button" class="close" data-dismiss="modal" aria-hidden="true">
 	              <i class="now-ui-icons ui-1_simple-remove"></i>
 	            </button>
-	            <h4 class="title title-up">Contestar Encuesta</h4>
+	            <h4 class="title title-up">Contestar Insight</h4>
 	          </div>
 	          <div class="modal-body">
 	          	<div class="row">
 	          		<div class="form-group col-md-4">
-		          		<label class="control-label">ID Encuesta</label>
+		          		<label class="control-label">ID Insight</label>
 		            	<input id="ApollId" name="pollId" class="form-control" type="text" readonly>
 	            	</div>
 		            <div class="form-group col-md-8">
-		            	<label class="control-label">Nombre Encuesta</label>
+		            	<label class="control-label">Nombre Insight</label>
 		            	<input id="ApollName" name="pollName" class="form-control" type="text" readonly>
 		            </div>
 	          	</div>
@@ -321,7 +321,7 @@
 	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 	              <i class="now-ui-icons ui-1_simple-remove"></i>
 	            </button>
-	            <h4 class="title title-up">Nombre Encuesta</h4>
+	            <h4 class="title title-up">Nombre Insight</h4>
 	          </div>
 	          <div class="modal-body">
 	          	<div class="col-md-10 col-centered">

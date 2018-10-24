@@ -52,7 +52,7 @@ public class LoginController {
 			authority = auth.getAuthority();
 			break;
 		}
-		if(authority.equals("ADMIN")) {
+		if(authority.equals("Admin")) {
 			return "homeAdmin";
 	    } else {
 	    	return "hello";
@@ -241,6 +241,16 @@ public class LoginController {
 	@RequestMapping(value = "/campanas")
 	public String campanas() {
 		return "campanas";
+	}
+	
+	@RequestMapping(value = "/respuestas")
+	public String respuestas() {
+		return "respuestas";
+	}
+	
+	@RequestMapping(value = "/galerias")
+	public String galerias() {
+		return "galerias";
 	}
 	
 	@RequestMapping(value = "/homeCliente")
