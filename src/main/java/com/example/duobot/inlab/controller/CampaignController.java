@@ -37,7 +37,7 @@ public class CampaignController {
 				authority = auth.getAuthority();
 				break;
 			}
-			if (authority.equals("ADMIN")) {
+			if (authority.equals("Admin")) {
 				return ResponseEntity.ok(campaignService.findAll());
 			} else {
 				Long timestamp = new Date().getTime();
@@ -113,7 +113,7 @@ public class CampaignController {
 	}
 	
 	@PostMapping(value = "/api/campaign/image")
-	public ResponseEntity<?> addStoreLogo( @RequestParam("file") MultipartFile file, @RequestParam("campaignId") Integer campaignId) {
+	public ResponseEntity<?> addCampaignImage( @RequestParam("file") MultipartFile file, @RequestParam("campaignId") Integer campaignId) {
 
 
 		if (file.isEmpty()) {
@@ -121,13 +121,20 @@ public class CampaignController {
 		}
 
 		try {
+			Campaign dbCampaign = campaignService.findById(campaignId).get();
+			if(dbCampaign == null) {
+				return ResponseEntity.badRequest().body("No encontramos este registro en el base de datos");
+			}
 			File dir = new File("c:\\inlab\\campaign\\" + campaignId);
 			if(!dir.exists()) {
 				dir.mkdirs();
 			}
-			
+			file.transferTo(dir);
+			dbCampaign.setPollImageUrl(dir.getAbsolutePath() + "\\" + file.getName());
+			campaignService.save(dbCampaign);
 			return ResponseEntity.noContent().build();
 		} catch (Exception ex) {
+			System.out.println(ex);
 			return ResponseEntity.badRequest().body("Error agregando un archivo");
 		}
 	}
