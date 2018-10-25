@@ -1,48 +1,49 @@
 <div class="sidebar" data-color="orange" th:fragment="asideAdmin">
-    <div class="logo">
-        
-        <a href="/homeAdmin" class="simple-text logo-normal">
-            <img width="150" src="../img/inlab_blanco.png" />
-        </a>
-        <div class="navbar-minimize">
-            <button id="minimizeSidebar" class="btn btn-simple btn-icon btn-neutral btn-round">
-                <i class="now-ui-icons arrows-1_minimal-left visible-on-sidebar-regular"></i>
-                <i class="now-ui-icons arrows-1_minimal-right visible-on-sidebar-mini"></i>
-            </button>
-        </div>
-    </div>
-    <div class="sidebar-wrapper">
-        <ul class="nav">
-            <li>
-                <a id="homeAdmin" href="/homeAdmin">
-                    <i class="fas fa-user"></i>
-                    <p>Usuarios</p>
-                </a>
-            </li>
-            <li>
-                <a id="encuestas" href="/encuestas">
-                    <i class="fas fa-list-ul"></i>
-                    <p>Insights</p>
-                </a>
-            </li>
-            <li>
-                <a id="campanas" href="/campanas">
-                    <i class="fab fa-hubspot"></i>
-                    <p>Campa&ntilde;as</p>
-                </a>
-            </li>
-            <li>
-                <a id="respuestas" href="/respuestas">
-                    <i class="fas fa-comments"></i>
-                    <p>Respuestas</p>
-                </a>
-            </li>
-            <li>
-                <a id="galerias" href="/galerias">
-                    <i class="fas fa-camera-retro"></i>
-                    <p>Galer&iacute;as</p>
-                </a>
-            </li>
-        </ul>
-    </div>
+	<div class="logo">
+
+		<a href="/homeAdmin" class="simple-text logo-normal"> <img
+			width="150" src="../img/inlab_blanco.png" />
+		</a>
+		<div class="navbar-minimize">
+			<button id="minimizeSidebar"
+				class="btn btn-simple btn-icon btn-neutral btn-round">
+				<i
+					class="now-ui-icons arrows-1_minimal-left visible-on-sidebar-regular"></i>
+				<i
+					class="now-ui-icons arrows-1_minimal-right visible-on-sidebar-mini"></i>
+			</button>
+		</div>
+	</div>
+	<div class="sidebar-wrapper">
+		<ul class="nav">
+			<li th:if="${roleName.equals('Admin')}"><a id="homeAdmin" href="/homeAdmin"> <i
+					class="fas fa-user"></i>
+					<p>Usuarios</p>
+			</a></li>
+			<li th:if="${roleName.equals('Admin')}"><a id="encuestas" href="/encuestas"> <i
+					class="fas fa-list-ul"></i>
+					<p>Insights</p>
+			</a></li>
+			<li th:if="${roleName.equals('Admin')}"><a id="campanas" href="/campanas"> <i
+					class="fab fa-hubspot"></i>
+					<p>Campa&ntilde;as</p>
+			</a></li>
+			<li th:if="${roleName.equals('Admin')}"><a id="respuestas" href="/respuestas"> <i
+					class="fas fa-comments"></i>
+					<p>Respuestas</p>
+			</a></li>
+			<li th:if="${roleName.equals('Investigador')}"><a id="respuestas" href="/respuestas"> <i
+					class="fas fa-comments"></i>
+					<p>Respuestas</p>
+			</a></li>
+			<li th:if="${roleName.equals('Admin')}"><a id="galerias" href="/galerias"> <i
+					class="fas fa-camera-retro"></i>
+					<p>Galer&iacute;as</p>
+			</a></li>
+			<li th:if="${roleName.equals('Asistente')}"><a id="galerias" href="/galerias"> <i
+					class="fas fa-camera-retro"></i>
+					<p>Galer&iacute;as</p>
+			</a></li>
+		</ul>
+	</div>
 </div>

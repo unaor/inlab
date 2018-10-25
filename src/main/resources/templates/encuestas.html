@@ -14,7 +14,7 @@
 
 	<!--NAV-->
 		<!-- SIDEBAR    -->
-		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin"> </aside>
+		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin" th:with="roleName=${roleName}"> </aside>
 		<!-- /SIDEBAR    -->
 	<!-- TOPBAR    -->
 	<!--/NAV-->
