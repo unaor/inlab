@@ -895,7 +895,7 @@ function EditCampaign(campaignId){
 		
 	// cargar lista de usuarios con el perfil CLIENTE
 	
-	const EselectedUserClient = users.filter(x => x.roleName === "CLIENTE");
+	const EselectedUserClient = users.filter(x => x.roleName === "Cliente");
 	//console.log(selectedUserClient);
 	
 	$.each(EselectedUserClient, function(i, item) {
@@ -1030,7 +1030,7 @@ $("#btnCerrarPreguntas").click(function() {
 function getUserClient() {
 	
 	
-	const selectedUserClient = users.filter(x => x.roleName === "CLIENTE");
+	const selectedUserClient = users.filter(x => x.roleName === "Cliente");
 	console.log(selectedUserClient);
 	
 	$.each(selectedUserClient, function(i, item) {

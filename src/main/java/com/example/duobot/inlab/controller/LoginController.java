@@ -74,7 +74,7 @@ public class LoginController {
 				return "error";
 			}
 			User client = userService.findByUsername(user.getName());
-			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("Admin")) {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
@@ -92,7 +92,7 @@ public class LoginController {
 				return "error";
 			}
 			User client = userService.findByUsername(user.getName());
-			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("Admin")) {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
@@ -110,7 +110,7 @@ public class LoginController {
 				return "error";
 			}
 			User client = userService.findByUsername(user.getName());
-			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("Admin")) {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
@@ -167,7 +167,7 @@ public class LoginController {
 				return "error";
 			}
 			User client = userService.findByUsername(user.getName());
-			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("Admin")) {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
@@ -185,7 +185,7 @@ public class LoginController {
 				return "error";
 			}
 			User client = userService.findByUsername(user.getName());
-			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("Admin")) {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
@@ -203,7 +203,7 @@ public class LoginController {
 				return "error";
 			}
 			User client = userService.findByUsername(user.getName());
-			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("Admin")) {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
@@ -221,7 +221,7 @@ public class LoginController {
 				return "error";
 			}
 			User client = userService.findByUsername(user.getName());
-			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("Admin")) {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
@@ -243,16 +243,6 @@ public class LoginController {
 		return "campanas";
 	}
 	
-	@RequestMapping(value = "/respuestas")
-	public String respuestas() {
-		return "respuestas";
-	}
-	
-	@RequestMapping(value = "/galerias")
-	public String galerias() {
-		return "galerias";
-	}
-	
 	@RequestMapping(value = "/homeCliente")
 	public String homeCliente(@RequestParam Integer cp, Authentication user, Model model) {
 		try {
@@ -261,7 +251,7 @@ public class LoginController {
 				return "error";
 			}
 			User client = userService.findByUsername(user.getName());
-			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("ADMIN")) {
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("Admin")) {
 				return "loginCliente";
 			}
 			model.addAttribute("campaign", dbCampaign);
