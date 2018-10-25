@@ -52,10 +52,17 @@ public class LoginController {
 			authority = auth.getAuthority();
 			break;
 		}
-		if(authority.equals("Admin") || authority.equals("Investigador") || authority.equals("Asistente")) {
-			model.addAttribute("roleName", authority);
+		model.addAttribute("roleName", authority);
+		if(authority.equals("Admin")) {
 			return "homeAdmin";
-	    } else {
+	    }
+		else if(authority.equals("Investigador")) {
+			return "respuestas";
+		}
+		else if(authority.equals("Asistente")) {
+			return "galerias";
+		}
+		else {
 	    	return "hello";
 	    }
 		
