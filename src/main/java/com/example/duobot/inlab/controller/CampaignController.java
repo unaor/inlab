@@ -125,12 +125,13 @@ public class CampaignController {
 			if(dbCampaign == null) {
 				return ResponseEntity.badRequest().body("No encontramos este registro en el base de datos");
 			}
-			File dir = new File("c:\\inlab\\campaign\\" + campaignId);
+			File dir = new File("c:\\inlab\\campaign\\");
 			if(!dir.exists()) {
 				dir.mkdirs();
 			}
-			file.transferTo(dir);
-			dbCampaign.setPollImageUrl(dir.getAbsolutePath() + "\\" + file.getName());
+			File finalDestination = new File(dir.getAbsolutePath() + "\\" + campaignId + "-" + file.getOriginalFilename());
+			file.transferTo(finalDestination);
+			dbCampaign.setPollImageUrl("/images/" + campaignId + "-" + file.getOriginalFilename());
 			campaignService.save(dbCampaign);
 			return ResponseEntity.noContent().build();
 		} catch (Exception ex) {
