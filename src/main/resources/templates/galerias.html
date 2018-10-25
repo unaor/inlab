@@ -28,7 +28,7 @@
 	            <div class="content col-md-12 col-centered">
 	            <!-- CONTENIDO PAGINA  -->
 	            	<div class="row">
-		            	<div class="col-md-10 ml-auto col-xl-10 mr-auto">
+		            	<div class="col-md-6 ml-auto col-xl-6 mr-auto">
 			              <p class="category">ADMINISTRAR GALER&Iacute;AS</p>
 			              <!-- Tabs with Background on Card -->
 			              <div class="card">
@@ -45,7 +45,7 @@
 			                    <!-- tab 1 -->
 			                    <div class="tab-pane active" id="tabEncuesta" role="tabpanel">
 			                      <div class="row justify-content-md-center col-centered">
-							     		<div class="table-responsive col-md-6">
+							     		<div class="table-responsive col-md-10">
 							              <table class="table text-center" id="tbCampaignGalerias">
 							                <tr>
 							                  	<th>ID Campa&ntilde;a</th>
@@ -79,6 +79,106 @@
         </div>
         <!--/MAIN-->
 </div>
+
+<!-- Inicio Modal Galería -->
+<div class="modal fade" id="modalGaleriaCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="galeria" class="form" method="" action="">
+	      <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+	          <div class="modal-header justify-content-center">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	              <i class="now-ui-icons ui-1_simple-remove"></i>
+	            </button>
+	            <h4 class="title title-up">Galer&iacute;a Fotogr&aacute;fica</h4>
+	          </div>
+	          <div class="modal-body p-5">
+	          	<div class="row">
+		          	<div class="col-sm-10 col-centered">
+		          		<div class="form-group">
+			          		<label class="control-label">Id Campa&ntilde;a</label>
+			            	<input id="galleryCampaignId" name="uploadCampaignId" class="form-control" type="text" readonly>
+			            </div>
+	               	</div>
+	            </div>
+               	<div class="row">
+               		<div class="col-sm-10 col-centered">
+		                <div class="input-group">
+						  <div class="custom-file">
+						    <input type="file" class="custom-file-input" id="inputGroupFile04">
+						    <label class="custom-file-label" for="inputGroupFile04">Cargar Im&aacute;gen</label>
+						  </div>
+						</div>
+               		</div>
+               	</div>
+               	<br>
+               	<div class="row">
+               		<div class="col-sm-10 col-centered">
+		            	<div class="table-responsive">
+		                  	<table class="table" id="tbgallery">
+			                    <tr>
+									<th>Archivo</th>
+			                      	<th class="text-center">Acciones</th>
+			                    </tr>
+			                    <tr>
+			                    	<td><input id="imgMedicionesUrl" name="imgMedicionesUrl" class="form-control" type="text" readonly></td>
+			                      	<td class="text-center">
+						                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
+						            </td>
+			                    </tr>
+		                  </table>
+               			</div>
+               		</div>
+               	</div>
+               	
+               	
+               	
+		  	</div>
+			<div class="modal-footer">
+				<button id="GbtnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			    <button type="button" class="btn btn-success">Finalizar</button>
+	      </div>
+	    </div>
+	  </div>
+	</form>
+</div>
+<!-- Fin Modal Galería -->
+
+<!-- NOTIFICACIONES -->
+<div class="modal fade modal-mini modal-success" id="alertSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <div class="modal-profile">
+          <i class="fas fa-check"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p id="modalMessage"></p>
+      </div>
+      <div class="modal-footer col-centered">
+        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal" id="btnOK">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade modal-mini modal-danger" id="alertError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <div class="modal-profile">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p>Se present&oacute; un error, intente nuevamente</p>
+      </div>
+      <div class="modal-footer col-centered">
+        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN NOTIFICACIONES -->
 
 
 
