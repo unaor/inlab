@@ -372,7 +372,7 @@ $("#btnAnswer").on('click', function() {
 								+ '</td><td>'
 								+ '<button id="btnPollEdit'+ item.pollId + '" type="button" onclick="EditPoll('+ item.pollId +')" rel="tooltip" data-toggle="modal" data-target="#modalEditarEncuesta" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
 								+ '<button id="btnQuestion" type="button" onclick="NewQuestion('+ item.pollId +')" rel="tooltip" data-toggle="modal" data-target="#modalCrearPregunta" class="btn btn-default btn-icon btn-sm " data-original-title="Preguntas" title="Preguntas"><i class="fas fa-question"></i></button> '
-								+ '<button type="button" rel="tooltip" onclick="NewAnswer('+ item.pollId +')" data-toggle="modal" data-target="#modalContestarEncuesta" class="btn btn-warning btn-icon btn-sm " data-original-title="Contestar" title="Contestar"><i class="far fa-check-square"></i></button> '
+								//+ '<button type="button" rel="tooltip" onclick="NewAnswer('+ item.pollId +')" data-toggle="modal" data-target="#modalContestarEncuesta" class="btn btn-warning btn-icon btn-sm " data-original-title="Contestar" title="Contestar"><i class="far fa-check-square"></i></button> '
 								+ '<button id="btnPollExport'+ item.pollId + '" type="button" onclick="exportPoll('+ item.pollId +')" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="Excel" title="Excel"><i class="far fa-file-excel"></i></button> '
 								+ '<button id="btnPollDelete'+ item.pollId + '" type="button" onclick="DeletePoll('+ item.pollId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
 						
@@ -554,7 +554,8 @@ $("#btnOK").click(function() {
 $("#btnCampaign").on('click', function() {
 	
 	var vCampaignName = $("#campaignName").val();
-	
+	var vCampaignCustomer = $("#campaignCustomer").val();
+	var vCampaignProject = $("#campaignProject").val();
 	var v1 = $("#startDate").val();
 	var v1format = moment(v1, "DD/MM/YYYY").valueOf() / 1000;
 	var v2 = $("#endDate").val();
@@ -572,10 +573,15 @@ $("#btnCampaign").on('click', function() {
 	var vcountries = $("#countries").val();
 	var vdemographics = $("#demographics").val();
 	var vpostType = $("#postType").val();
+	var vsources = $("#sources").val();
+	var vemotionsUrl = $("#emotionsUrl").val();
+	var vemotionsIA = $("#emotionsIA").val();
 	var vassignedUser = $("#assignedUser").val();
 
     var data = {
     		campaignName: vCampaignName,
+    		campaignCustomer: vCampaignCustomer,
+    		campaignProject: vCampaignProject,
     		startDate: v1format,
     		endDate: v2format,
     		videoUrl : vvideoUrl,
@@ -591,9 +597,15 @@ $("#btnCampaign").on('click', function() {
 			countries : vcountries,  
 			demographics : vdemographics,
 			postType : vpostType,
+			sources : vsources,
+			emotionsUrl : vemotionsUrl,
+			emotionsIA : vemotionsIA,
 			assignedUser : vassignedUser
     	};
 	
+    
+    
+    
 	
 	/* console.log(data); */
 
@@ -662,13 +674,15 @@ $.ajax({
 							+ '</td><td>'
 							+ item.campaignName
 							+ '</td><td>'
+							+ item.campaignCustomer
+							+ '</td><td>'
 							+ formattedDate1
 							+ '</td><td>'
 							+ formattedDate2
 							+ '</td><td>'
 							+ '<button id="btnCampaignEdit'+ item.campaignId + '" type="button" onclick="EditCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalEditarCampana" class="btn btn-info btn-icon btn-sm " data-original-title="Editar" title="Editar"><i class="far fa-edit"></i></button> '
 			                + '<button onclick="pollImgUpload('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalPollImg" class="btn btn-success btn-icon btn-sm " data-original-title="Cargar Img Mediciones" title="Cargar Img Mediciones"><i class="fas fa-upload"></i></button> '
-			                + '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-warning btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button> '
+			                //+ '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-warning btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="far fa-images"></i></button> '
 			                + '<button id="btnCampaignDelete'+ item.campaignId + '" type="button" onclick="DeleteCampaign('+ item.campaignId +')" rel="tooltip" data-toggle="modal" data-target="#modalBorrarCampaign" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
 					
 					trHTML4 += '<tr id="'+ item.campaignId + '"><td>'
@@ -697,6 +711,8 @@ $("#EbtnCampaign").on('click', function() {
 
 	var ecampaignId = $("#editCampaignId").val();
 	var eCampaignName = $("#EcampaignName").val();
+	var eCampaignCustomer = $("#EcampaignCustomer").val();
+	var eCampaignProject = $("#EcampaignProject").val();
 	var e1 = $("#EstartDate").val();
 	var e1format = moment(e1, "DD/MM/YYYY").valueOf() / 1000;
 	var e2 = $("#EendDate").val();
@@ -714,11 +730,16 @@ $("#EbtnCampaign").on('click', function() {
 	var ecountries = $("#Ecountries").val();
 	var edemographics = $("#Edemographics").val();
 	var epostType = $("#EpostType").val();
+	var esources = $("#Esources").val();
 	var eassignedUser = $("#EassignedUser").val();
+	var eemotionsUrl = $("#EemotionsUrl").val();
+	var eemotionsIA = $("#EemotionsIA").val();
 
     var data = {
     		campaignId: ecampaignId,
     		campaignName: eCampaignName,
+    		campaignCustomer: eCampaignCustomer,
+    		campaignProject: eCampaignProject,
     		startDate: e1format,
     		endDate: e2format,
     		videoUrl : evideoUrl,
@@ -734,6 +755,9 @@ $("#EbtnCampaign").on('click', function() {
 			countries : ecountries,  
 			demographics : edemographics,
 			postType : epostType,
+			sources : esources,
+			emotionsUrl : eemotionsUrl,
+			emotionsIA : eemotionsIA,
 			assignedUser : eassignedUser
     	};
 
@@ -867,6 +891,8 @@ function EditCampaign(campaignId){
 	
 	$("#editCampaignId").val(selectedCampaign.campaignId);
 	$("#EcampaignName").val(selectedCampaign.campaignName);
+	$("#EcampaignCustomer").val(selectedCampaign.campaignCustomer);
+	$("#EcampaignProject").val(selectedCampaign.campaignProject);
 
 	const startDate = moment.unix(selectedCampaign.startDate).format('DD/MM/YYYY'); 
 	$('#EstartDate').val(startDate);
@@ -889,6 +915,8 @@ function EditCampaign(campaignId){
 	$("#Edemographics").val(selectedCampaign.demographics);
 	$("#EpostType").val(selectedCampaign.postType);
 	$("#Esources").val(selectedCampaign.sources);
+	$("#EemotionsUrl").val(selectedCampaign.emotionsUrl);
+	$("#EemotionsIA").val(selectedCampaign.emotionsIA);
 	
 	//$("#EassignedUser").val(selectedCampaign.assignedUser);
 	

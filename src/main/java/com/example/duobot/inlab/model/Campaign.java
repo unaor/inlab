@@ -20,6 +20,10 @@ public class Campaign implements Serializable {
 
 	@NotNull
 	private String campaignName;
+	
+	private String campaignCustomer;
+	
+	private String campaignProject;
 
 	private Integer startDate;
 
@@ -58,6 +62,8 @@ public class Campaign implements Serializable {
 	private String pollImageUrl;
 	
 	private String emotionsUrl;
+	
+	private String emotionsIA;
 
 	public Campaign() {
 	}
@@ -73,11 +79,27 @@ public class Campaign implements Serializable {
 	public String getCampaignName() {
 		return campaignName;
 	}
-
+	
 	public void setCampaignName(String campaignName) {
 		this.campaignName = campaignName;
 	}
 
+	public String getCampaignCustomer() {
+		return campaignCustomer;
+	}
+	
+	public void setCampaignCustomer(String campaignCustomer) {
+		this.campaignCustomer = campaignCustomer;
+	}
+	
+	public String getCampaignProject() {
+		return campaignProject;
+	}
+	
+	public void setCampaignProject(String campaignProject) {
+		this.campaignProject = campaignProject;
+	}
+	
 	public Integer getStartDate() {
 		return startDate;
 	}
@@ -228,6 +250,14 @@ public class Campaign implements Serializable {
 
 	public void setEmotionsUrl(String emotionsUrl) {
 		this.emotionsUrl = emotionsUrl;
+	}
+	
+	public String getEmotionsIA() {
+		return emotionsIA;
+	}
+
+	public void setEmotionsIA(String emotionsIA) {
+		this.emotionsIA = emotionsIA;
 	}
 	
 }
