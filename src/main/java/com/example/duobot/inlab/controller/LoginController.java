@@ -46,13 +46,14 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/homeAdmin")
-	public String welcome(Authentication user) {
+	public String welcome(Authentication user, Model model) {
 		String authority = null;
 		for(GrantedAuthority auth : user.getAuthorities()) {
 			authority = auth.getAuthority();
 			break;
 		}
-		if(authority.equals("Admin")) {
+		if(authority.equals("Admin") || authority.equals("Investigador") || authority.equals("Asistente")) {
+			model.addAttribute("roleName", authority);
 			return "homeAdmin";
 	    } else {
 	    	return "hello";
@@ -234,23 +235,64 @@ public class LoginController {
 	
 
 	@RequestMapping(value = "/encuestas")
-	public String encuestas() {
-		return "encuestas";
+	public String encuestas(Authentication user, Model model) {
+		String authority = null;
+		for(GrantedAuthority auth : user.getAuthorities()) {
+			authority = auth.getAuthority();
+			break;
+		}
+		if(authority.equals("Admin") || authority.equals("Investigador") || authority.equals("Asistente")) {
+			model.addAttribute("roleName", authority);
+			return "encuestas";
+	    } else {
+	    	return "loginCliente";
+	    }
+		
 	}
 	
 	@RequestMapping(value = "/campanas")
-	public String campanas() {
-		return "campanas";
+	public String campanas(Authentication user, Model model) {
+		String authority = null;
+		for(GrantedAuthority auth : user.getAuthorities()) {
+			authority = auth.getAuthority();
+			break;
+		}
+		if(authority.equals("Admin") || authority.equals("Investigador") || authority.equals("Asistente")) {
+			model.addAttribute("roleName", authority);
+			return "campanas";
+	    } else {
+	    	return "loginCliente";
+	    }
 	}
 	
 	@RequestMapping(value = "/respuestas")
-	public String respuestas() {
-		return "respuestas";
+	public String respuestas(Authentication user, Model model) {
+		String authority = null;
+		for(GrantedAuthority auth : user.getAuthorities()) {
+			authority = auth.getAuthority();
+			break;
+		}
+		if(authority.equals("Admin") || authority.equals("Investigador") || authority.equals("Asistente")) {
+			model.addAttribute("roleName", authority);
+			return "respuestas";
+	    } else {
+	    	return "loginCliente";
+	    }
 	}
 	
 	@RequestMapping(value = "/galerias")
-	public String galerias() {
-		return "galerias";
+	public String galerias(Authentication user, Model model) {
+		String authority = null;
+		for(GrantedAuthority auth : user.getAuthorities()) {
+			authority = auth.getAuthority();
+			break;
+		}
+		if(authority.equals("Admin") || authority.equals("Investigador") || authority.equals("Asistente")) {
+			model.addAttribute("roleName", authority);
+			return "galerias";
+	    } else {
+	    	return "loginCliente";
+	    }
 	}
 	
 	@RequestMapping(value = "/homeCliente")

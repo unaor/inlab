@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html lang="es">
 <hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
 
@@ -7,7 +7,7 @@
 	<!--NAV-->
 		<!-- SIDEBAR    -->
 
-		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin"> </aside>
+		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin" th:with="roleName=${roleName}"> </aside>
 		<!-- /SIDEBAR    -->
 	<!-- TOPBAR    -->
 	<!--/NAV-->
