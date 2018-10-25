@@ -243,6 +243,16 @@ public class LoginController {
 		return "campanas";
 	}
 	
+	@RequestMapping(value = "/respuestas")
+	public String respuestas() {
+		return "respuestas";
+	}
+	
+	@RequestMapping(value = "/galerias")
+	public String galerias() {
+		return "galerias";
+	}
+	
 	@RequestMapping(value = "/homeCliente")
 	public String homeCliente(@RequestParam Integer cp, Authentication user, Model model) {
 		try {
