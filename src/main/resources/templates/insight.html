@@ -3,6 +3,71 @@
 <hgroup th:insert="fragments/cliente/headCliente.html :: headCliente"> </hgroup>
 
 <body class="sidebar-mini">
+<style>
+[data-tooltip] {
+  position: relative;
+  z-index: 9999999;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 80%;
+  left: 50%;
+  margin-bottom: 5px;
+  margin-left: -30px;
+  padding: 7px;
+  width: 60px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 80%;
+  left: 50%;
+  margin-left: 1px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  z-index: 9999999;
+}
+</style>
+
 
 <div class="wrapper">
 <!--NAV-->
@@ -33,7 +98,7 @@
 				            </div>
 				            <div class="card-body pb-md-5 text-center">
 				                <!--iframe-->
-				                <div id="cloudContainer"></div>
+				                <div id="cloudContainer" class="col-md-10 col-centered container-fluid" style="overflow:hidden;"></div>
 				                <!--/iframe-->
 				            </div>
 				        </div>
@@ -59,15 +124,17 @@
 <var th:insert="fragments/scripts.html :: var"> </var>
 
 <script src="/Plugins/jQCloud-master/jqcloud-1.0.4.js"></script>
-<!-- <script src="/Plugins/jquery-tagcloud-master/jquery.tagcloud.js"></script> -->
+<!--<script src="/Plugins/jquery-tagcloud-master/jquery.tagcloud.js"></script> -->
+
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+<script src="/js/d3.layout.cloud.js"></script>
+<script src="/js/insight.js"></script> -->
+
 
 <script th:inline="javascript">
 /*<![CDATA[*/
 
     var answers = /*[[${answers}]]*/ 'default';
-    
-    console.log(answers);
-    
     answers.map((answer, index) => {
     	console.log(answer);
     	$("#cloudContainer").append('<h4 class="text-uppercase text-warning">' + answer.questionName + '</h4><br><div class="col-md-10 col-centered justify-content-center jqcloud" id="question-' + index + '"></div><hr>')
