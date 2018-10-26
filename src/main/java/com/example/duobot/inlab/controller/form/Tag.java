@@ -22,7 +22,10 @@ public class Tag {
 		this.weight = weight;
 	}
 
-
+	public Tag(String text, Integer weight) {
+		this.text = text;
+		this.weight = weight;
+	}
 	
 	
 

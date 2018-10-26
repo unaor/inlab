@@ -374,6 +374,7 @@
     	if (index === 0){
     	$("#cloudContainer").append('<p class="text-capitalize">' + answer.questionName + '</p><div style="margin-top: -120px; margin-left: -10%;" class="col-centered justify-content-center jqcloud" id="question-' + index + '"></div>')
        	 /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
+       	 answer.tags.map(tag => tag.html = {'data-tooltip': tag.text + ' - ' + tag.weight});
     	$("#question-" + index).jQCloud(answer.tags, {width:250, height:250});
    		
     	};
