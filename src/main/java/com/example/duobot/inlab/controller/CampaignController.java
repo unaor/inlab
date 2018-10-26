@@ -74,6 +74,8 @@ public class CampaignController {
 			}
 			dbCampaign.setAssignedUser(form.getAssignedUser());
 			dbCampaign.setCampaignName(form.getCampaignName());
+			dbCampaign.setCampaignCustomer(form.getCampaignCustomer());
+			dbCampaign.setCampaignProject(form.getCampaignProject());
 			dbCampaign.setChatUrl(form.getChatUrl());
 			dbCampaign.setCountries(form.getCountries());
 			dbCampaign.setDemographics(form.getDemographics());
@@ -83,12 +85,15 @@ public class CampaignController {
 			dbCampaign.setPollUrl(form.getPollUrl());
 			dbCampaign.setPostType(form.getPostType());
 			dbCampaign.setPowerBIUrl(form.getPowerBIUrl());
+			dbCampaign.setSources(form.getSources());
 			dbCampaign.setStartDate(form.getStartDate());
 			dbCampaign.setTimelineUrl(form.getTimelineUrl());
 			dbCampaign.setTopDomainsUrl(form.getTopDomainsUrl());
 			dbCampaign.setTopicsUrl(form.getTopDomainsUrl());
 			dbCampaign.setTweetsUrl(form.getTweetsUrl());
 			dbCampaign.setVideoUrl(form.getVideoUrl());
+			dbCampaign.setEmotionsUrl(form.getEmotionsUrl());
+			dbCampaign.setEmotionsIA(form.getEmotionsIA());
 			campaignService.save(dbCampaign);
 			return ResponseEntity.noContent().build();
 

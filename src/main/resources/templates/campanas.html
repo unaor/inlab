@@ -51,7 +51,8 @@
 					                  <table class="table" id="tbCampaign">
 					                    <tr>
 											<th>ID</th>
-					                      	<th>Nombre Campa&ntilde;a</th>
+					                      	<th>Campa&ntilde;a</th>
+					                      	<th>Cliente</th>
 					                      	<th>Fecha Inicio</th>
 					                      	<th>Fecha fin</th>
 					                      	<th>Acciones</th>
@@ -110,6 +111,21 @@
 			        <div class="form-group">
 						<input id="endDate" name="endDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
 					</div>
+            	</div>
+            </div>
+            <hr>
+            <div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">Cliente</label>
+	                  	<input id="campaignCustomer" name="campaignCustomer" value="" placeholder="Nombre Cliente" class="form-control" type="text">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">Proyecto</label>
+	                  	<input id="campaignProject" name="campaignProject" value="" placeholder="Nombre Proyecto" class="form-control" type="text">
+	                </div>
             	</div>
             </div>
             <hr>
@@ -214,7 +230,6 @@
 	                </div>
             	</div>
             </div>
-            <hr>
             <div class="row">
             	<div class="col-sm-6">
 	                <div class="form-group">
@@ -228,6 +243,20 @@
 				    </select>
 				</div>
         	</div>
+        	<div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Emociones Video</label>
+	                  	<input id="emotionsUrl" name="emotionsUrl" value="" placeholder="URL" class="form-control" type="text">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Emociones Interna</label>
+	                  	<input id="emotionsIA" name="emotionsIA" value="" placeholder="URL" class="form-control" type="text">
+	                </div>
+            	</div>
+            </div>
         </div>
 		  <div class="modal-footer">
 		    <input id="CbtnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
@@ -272,6 +301,21 @@
 			        <div class="form-group">
 						<input id="EendDate" name="EendDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
 					</div>
+            	</div>
+            </div>
+            <hr>
+            <div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">Cliente</label>
+	                  	<input id="EcampaignCustomer" name="EcampaignCustomer" value="" placeholder="Nombre Cliente" class="form-control" type="text">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">Proyecto</label>
+	                  	<input id="EcampaignProject" name="EcampaignProject" value="" placeholder="Nombre Proyecto" class="form-control" type="text">
+	                </div>
             	</div>
             </div>
             <hr>
@@ -376,7 +420,6 @@
 	                </div>
             	</div>
             </div>
-            <hr>
             <div class="row">
             	<div class="col-sm-6">
 	                <div class="form-group">
@@ -390,6 +433,21 @@
 				    </select>
 				</div>
         	</div>
+        	<hr>
+        	<div class="row">
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Emociones Video</label>
+	                  	<input id="EemotionsUrl" name="EemotionsUrl" value="" placeholder="URL" class="form-control" type="text">
+	                </div>
+            	</div>
+            	<div class="col-sm-6">
+	                <div class="form-group">
+	                	<label class="control-label">URL Emociones Interna</label>
+	                  	<input id="EemotionsIA" name="EemotionsIA" value="" placeholder="URL" class="form-control" type="text">
+	                </div>
+            	</div>
+            </div>
         </div>
 		  <div class="modal-footer">
 		    <input id="EbtnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">

@@ -65,6 +65,9 @@
 /*<![CDATA[*/
 
     var answers = /*[[${answers}]]*/ 'default';
+    
+    console.log(answers);
+    
     answers.map((answer, index) => {
     	$("#cloudContainer").append('<h4 class="text-uppercase text-warning">' + answer.questionName + '</h4><br><div class="col-md-10 col-centered justify-content-center jqcloud" id="question-' + index + '"></div><hr>')
     	 /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
