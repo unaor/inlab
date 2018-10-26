@@ -1,7 +1,8 @@
 /* GET JSON ENCUESTAS */
 
 
-	pollId = 
+	pollId = $("#insightD").val();
+	alert (pollId);
 
 	$.ajax({
 			type : "GET",
@@ -10,8 +11,8 @@
 			success : function(data) {
 				
 				
-				//const selectedPoll = data.filter(x => x.pollId === pollId)[0];
-				//console.log(selectedPoll);
+				const selectedPoll = data.filter(x => x.pollId === pollId)[0];
+				console.log(selectedPoll);
 				
 				//var insightId = selectedPoll.insightId
 				//alert(insightId);

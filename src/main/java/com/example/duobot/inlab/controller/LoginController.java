@@ -131,6 +131,7 @@ public class LoginController {
 				answerResponse.setQuestionId(question.getQuestionId());
 				answerResponse.setQuestionName(question.getQuestion());
 				String word = question.getAnswers().stream().map(answer -> answer.getAnswer()).collect(Collectors.joining(","));
+				String badWordsAsString = badWords.stream().map(badWord -> badWord.getWord()).collect(Collectors.joining(","));
 				Map<String, Integer> counts = Arrays.asList(word.split(" ")).parallelStream().
 			            collect(Collectors.toConcurrentMap(
 			                w -> w.toString(), w -> 1, Integer::sum));
@@ -141,7 +142,7 @@ public class LoginController {
 					if(isBadWord) {
 						continue;
 					}
-					answerResponse.getTags().add(new Tag(key, counts.get(key)));
+					answerResponse.getTags().add(new Tag(key, counts.get(key), word, badWordsAsString));
 				}
 				response.add(answerResponse);
 			}
@@ -307,6 +308,7 @@ public class LoginController {
 				answerResponse.setQuestionId(question.getQuestionId());
 				answerResponse.setQuestionName(question.getQuestion());
 				String word = question.getAnswers().stream().map(answer -> answer.getAnswer()).collect(Collectors.joining(","));
+				String badWordsAsString = badWords.stream().map(badWord -> badWord.getWord()).collect(Collectors.joining(","));
 				Map<String, Integer> counts = Arrays.asList(word.split(" ")).parallelStream().
 			            collect(Collectors.toConcurrentMap(
 			                w -> w.toString(), w -> 1, Integer::sum));
@@ -317,7 +319,7 @@ public class LoginController {
 					if(isBadWord) {
 						continue;
 					}
-					answerResponse.getTags().add(new Tag(key, counts.get(key)));
+					answerResponse.getTags().add(new Tag(key, counts.get(key), word, badWordsAsString));
 				}
 				response.add(answerResponse);
 			}

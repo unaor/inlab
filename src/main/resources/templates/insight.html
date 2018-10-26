@@ -28,12 +28,12 @@
   margin-bottom: 5px;
   margin-left: -30px;
   padding: 7px;
-  width: 60px;
+  width: 200px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   background-color: #000;
-  background-color: hsla(0, 0%, 20%, 0.9);
+  background-color: hsla(0, 0%, 20%, 1);
   color: #fff;
   content: attr(data-tooltip);
   text-align: center;
@@ -98,7 +98,7 @@
 				            </div>
 				            <div class="card-body pb-md-5 text-center">
 				                <!--iframe-->
-				                <div id="cloudContainer" class="col-md-10 col-centered container-fluid" style="overflow:hidden;"></div>
+				                <div id="cloudContainer" class="col-centered container-fluid full jqcloud" style="overflow:hidden;"></div>
 				                <!--/iframe-->
 				            </div>
 				        </div>
@@ -123,27 +123,103 @@
 
 <var th:insert="fragments/scripts.html :: var"> </var>
 
-<script src="/Plugins/jQCloud-master/jqcloud-1.0.4.js"></script>
-<!--<script src="/Plugins/jquery-tagcloud-master/jquery.tagcloud.js"></script> -->
+<!--<script src="/Plugins/jQCloud-master/jqcloud-1.0.4.js"></script>
+<script src="/Plugins/jquery-tagcloud-master/jquery.tagcloud.js"></script> -->
 
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
-<script src="/js/d3.layout.cloud.js"></script>
-<script src="/js/insight.js"></script> -->
 
 
 <script th:inline="javascript">
 /*<![CDATA[*/
 
     var answers = /*[[${answers}]]*/ 'default';
+   
+    console.log(answers);
+   
     answers.map((answer, index) => {
-    	$("#cloudContainer").append('<h4 class="text-uppercase text-warning">' + answer.questionName + '</h4><br><div class="col-md-10 col-centered justify-content-center jqcloud" id="question-' + index + '"></div><hr>')
-    	 /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
-    	 answer.tags.map(tag => tag.html = {'data-tooltip': tag.text + ' - ' + tag.weight});
-    	$("#question-" + index).jQCloud(answer.tags, {width:800, height:600, autoResize:true});
+        $("#cloudContainer").append('<h4 class="alert alert-primary text-white text-uppercase" style="border:0;" role="alert">' + answer.questionName + '</h4><br><div class="col-md-10 col-centered justify-content-center jqcloud" id="question-' + index + '"></div>')
+         /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
+         answer.tags.map(tag => tag.html = {'data-tooltip': tag.text + ' - ' + tag.weight});
+        //$("#question-" + index).jQCloud(answer.tags, {width:800, height:600, autoResize:true});
+        
+        
+        var text_string = answers[index].tags[index].wholeWords;
+
+    	drawWordCloud(text_string);
+
+    	function drawWordCloud(text_string){
+    	  var common = answers[0].tags[0].badWords;
     	
+    	  var word_count = {};
+    	
+    	  var words = text_string.split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
+    	    if (words.length == 1){
+    	      word_count[words[0]] = 1;
+    	    } else {
+    	      words.forEach(function(word){
+    	        var word = word.toLowerCase();
+    	        if (word != "" && common.indexOf(word)==-1 && word.length>1){
+    	          if (word_count[word]){
+    	            word_count[word]++;
+    	          } else {
+    	            word_count[word] = 1;
+    	          }
+    	        }
+    	      })
+    	    }
+    	
+    	  var svg_location = "#question-" + index;
+    	  var width = ($(document).width())/2;
+    	  var height = ($(document).height())/2;
+    	
+    	  var fill = d3.scale.category20();
+    	
+    	  var word_entries = d3.entries(word_count);
+    	
+    	  var xScale = d3.scale.linear()
+    	     .domain([0, d3.max(word_entries, function(d) {
+    	        return d.value;
+    	      })
+    	     ])
+    	     .range([10,100]);
+    	
+    	  d3.layout.cloud().size([width, height])
+    	    .timeInterval(20)
+    	    .words(word_entries)
+    	    .fontSize(function(d) { return xScale(+d.value); })
+    	    .text(function(d) { return d.key; })
+    	    .rotate(function() { return ~~(Math.random() * 2) * 90; })
+    	    .font("Impact")
+    	    .on("end", draw)
+    	    .start();
+    	
+    	  function draw(words) {
+    	    d3.select(svg_location).append("svg")
+    	        .attr("width", width)
+    	        .attr("height", height)
+    	      .append("g")
+    	        .attr("transform", "translate(" + [width >> 1, height >> 1] + ")")
+    	      .selectAll("text")
+    	        .data(words)
+    	      .enter().append("text")
+    	        .style("font-size", function(d) { return xScale(d.value) + "px"; })
+    	        .style("font-family", "Impact")
+    	        .style("fill", function(d, i) { return fill(i); })
+    	        .attr("text-anchor", "middle")
+    	        .attr("transform", function(d) {
+    	          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+    	        })
+    	        .text(function(d) { return d.key; });
+    	  }
+    	
+    	  //d3.layout.cloud().stop();
+    	}
+       
     });
 /*]]>*/
 </script>
+
+
+
 
 
 

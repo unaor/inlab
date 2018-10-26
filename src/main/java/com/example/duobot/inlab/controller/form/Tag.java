@@ -5,6 +5,10 @@ public class Tag {
 	private String text;
 	
 	private Integer weight;
+	
+	private String wholeWords;
+	
+	private String badWords;
 
 	public String getText() {
 		return text;
@@ -22,10 +26,36 @@ public class Tag {
 		this.weight = weight;
 	}
 
-	public Tag(String text, Integer weight) {
+	public String getWholeWords() {
+		return wholeWords;
+	}
+
+	public void setWholeWords(String wholeWords) {
+		this.wholeWords = wholeWords;
+	}
+
+	public String getBadWords() {
+		return badWords;
+	}
+
+	public void setBadWords(String badWords) {
+		this.badWords = badWords;
+	}
+
+	public Tag(String text, Integer weight, String wholeWords, String badWords) {
 		this.text = text;
 		this.weight = weight;
+		this.wholeWords = wholeWords;
+		this.badWords = badWords;
 	}
+	
+	
+
+	
+	
+	
+	
+	
 	
 	
 

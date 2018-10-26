@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,6 +39,7 @@ public class AnswerTest {
 			answerResponse.setQuestionId(question.getQuestionId());
 			answerResponse.setQuestionName(question.getQuestion());
 			String word = question.getAnswers().stream().map(answer -> answer.getAnswer()).collect(Collectors.joining(","));
+			String badWordsAsString = badWords.stream().map(badWord -> badWord.getWord()).collect(Collectors.joining(","));
 			Map<String, Integer> counts = Arrays.asList(word.split(" ")).parallelStream().
 		            collect(Collectors.toConcurrentMap(
 		                w -> w.toString(), w -> 1, Integer::sum));
@@ -51,7 +50,7 @@ public class AnswerTest {
 				if(isBadWord) {
 					continue;
 				}
-				answerResponse.getTags().add(new Tag(key, counts.get(key)));
+				answerResponse.getTags().add(new Tag(key, counts.get(key), word, badWordsAsString));
 			}
 			response.add(answerResponse);
 		}
