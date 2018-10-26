@@ -1,9 +1,10 @@
 package com.example.duobot.inlab.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,7 +20,6 @@ import com.example.duobot.inlab.dao.CampaignService;
 import com.example.duobot.inlab.dao.InlabUserService;
 import com.example.duobot.inlab.dao.ProhibitedWordService;
 import com.example.duobot.inlab.dao.QuestionService;
-import com.example.duobot.inlab.model.Answer;
 import com.example.duobot.inlab.model.Campaign;
 import com.example.duobot.inlab.model.ProhibitedWord;
 import com.example.duobot.inlab.model.Question;
@@ -124,39 +124,24 @@ public class LoginController {
 			model.addAttribute("campaign", dbCampaign);
 			
 			List<AnswerResponse> response = new ArrayList<AnswerResponse>();
-			List<Question> questions = questionService.findByPollPollId(Integer.parseInt(dbCampaign.getInsightId()));
 			List<ProhibitedWord> badWords = prohibitedWordService.findAll();
+			List<Question> questions = questionService.findByPollPollId(dbCampaign.getInsightId());
 			for(Question question : questions) {
-				Map<String, Integer> wordCounter = new HashMap<String, Integer>();
 				AnswerResponse answerResponse = new AnswerResponse();
 				answerResponse.setQuestionId(question.getQuestionId());
 				answerResponse.setQuestionName(question.getQuestion());
-				for(Answer answer : question.getAnswers()) {
-					String [] wordsArray = answer.getAnswer().split(" ");
-					for(String word : wordsArray) {
-						boolean skipWord = false;
-						for(ProhibitedWord prohibitedWord : badWords) {
-							if(prohibitedWord.getWord().equals(word)) {
-								skipWord = true;
-								break;
-							}
-						}
-						if(skipWord) {
-							continue;
-						}
-						if(wordCounter.get(word) != null) {
-							// existing word
-							wordCounter.put(word, wordCounter.get(word) + 1);
-						} else {
-							wordCounter.put(word, 1);
-						}
+				String word = question.getAnswers().stream().map(answer -> answer.getAnswer()).collect(Collectors.joining(","));
+				Map<String, Integer> counts = Arrays.asList(word.split(" ")).parallelStream().
+			            collect(Collectors.toConcurrentMap(
+			                w -> w.toString(), w -> 1, Integer::sum));
+				
+				for(String key : counts.keySet()) {
+					boolean isBadWord = badWords.stream()
+				            .anyMatch(badWord -> badWord.getWord().equals(key));
+					if(isBadWord) {
+						continue;
 					}
-					for(String key : wordCounter.keySet()) {
-						Tag tag = new Tag();
-						tag.setText(key);
-						tag.setWeight(wordCounter.get(key));
-						answerResponse.getTags().add(tag);
-					}
+					answerResponse.getTags().add(new Tag(key, counts.get(key)));
 				}
 				response.add(answerResponse);
 			}
@@ -315,42 +300,28 @@ public class LoginController {
 			}
 			model.addAttribute("campaign", dbCampaign);
 			List<AnswerResponse> response = new ArrayList<AnswerResponse>();
-			List<Question> questions = questionService.findByPollPollId(Integer.parseInt(dbCampaign.getInsightId()));
 			List<ProhibitedWord> badWords = prohibitedWordService.findAll();
+			List<Question> questions = questionService.findByPollPollId(dbCampaign.getInsightId());
 			for(Question question : questions) {
-				Map<String, Integer> wordCounter = new HashMap<String, Integer>();
 				AnswerResponse answerResponse = new AnswerResponse();
 				answerResponse.setQuestionId(question.getQuestionId());
 				answerResponse.setQuestionName(question.getQuestion());
-				for(Answer answer : question.getAnswers()) {
-					String [] wordsArray = answer.getAnswer().split(" ");
-					for(String word : wordsArray) {
-						boolean skipWord = false;
-						for(ProhibitedWord prohibitedWord : badWords) {
-							if(prohibitedWord.getWord().equals(word)) {
-								skipWord = true;
-								break;
-							}
-						}
-						if(skipWord) {
-							continue;
-						}
-						if(wordCounter.get(word) != null) {
-							// existing word
-							wordCounter.put(word, wordCounter.get(word) + 1);
-						} else {
-							wordCounter.put(word, 1);
-						}
+				String word = question.getAnswers().stream().map(answer -> answer.getAnswer()).collect(Collectors.joining(","));
+				Map<String, Integer> counts = Arrays.asList(word.split(" ")).parallelStream().
+			            collect(Collectors.toConcurrentMap(
+			                w -> w.toString(), w -> 1, Integer::sum));
+				
+				for(String key : counts.keySet()) {
+					boolean isBadWord = badWords.stream()
+				            .anyMatch(badWord -> badWord.getWord().equals(key));
+					if(isBadWord) {
+						continue;
 					}
-					for(String key : wordCounter.keySet()) {
-						Tag tag = new Tag();
-						tag.setText(key);
-						tag.setWeight(wordCounter.get(key));
-						answerResponse.getTags().add(tag);
-					}
+					answerResponse.getTags().add(new Tag(key, counts.get(key)));
 				}
 				response.add(answerResponse);
 			}
+
 			model.addAttribute("answers", response);
 			return "homeCliente";
 		} catch (Exception ex) {

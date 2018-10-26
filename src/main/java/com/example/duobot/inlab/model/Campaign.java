@@ -35,7 +35,7 @@ public class Campaign implements Serializable {
 
 	private String pollUrl;
 
-	private String insightId;
+	private Integer insightId;
 
 	private String powerBIUrl;
 
@@ -140,11 +140,11 @@ public class Campaign implements Serializable {
 		this.pollUrl = pollUrl;
 	}
 
-	public String getInsightId() {
+	public Integer getInsightId() {
 		return insightId;
 	}
 
-	public void setInsightId(String insightId) {
+	public void setInsightId(Integer insightId) {
 		this.insightId = insightId;
 	}
 

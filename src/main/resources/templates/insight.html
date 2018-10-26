@@ -136,9 +136,9 @@
 
     var answers = /*[[${answers}]]*/ 'default';
     answers.map((answer, index) => {
-    	console.log(answer);
     	$("#cloudContainer").append('<h4 class="text-uppercase text-warning">' + answer.questionName + '</h4><br><div class="col-md-10 col-centered justify-content-center jqcloud" id="question-' + index + '"></div><hr>')
     	 /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
+    	 answer.tags.map(tag => tag.html = {'data-tooltip': tag.text + ' - ' + tag.weight});
     	$("#question-" + index).jQCloud(answer.tags, {width:800, height:600, autoResize:true});
     	
     });
