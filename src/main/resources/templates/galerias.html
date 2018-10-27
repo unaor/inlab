@@ -82,7 +82,7 @@
 
 <!-- Inicio Modal Galería -->
 <div class="modal fade" id="modalGaleriaCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form id="galeria" class="form" method="" action="">
+	<form id="formGaleria" class="form" method="POST" action="./api/campaign/galeria" enctype="multipart/form-data">
 	      <div class="modal-dialog modal-lg">
 	        <div class="modal-content">
 	          <div class="modal-header justify-content-center">
@@ -96,7 +96,7 @@
 		          	<div class="col-sm-10 col-centered">
 		          		<div class="form-group">
 			          		<label class="control-label">Id Campa&ntilde;a</label>
-			            	<input id="galleryCampaignId" name="uploadCampaignId" class="form-control" type="text" readonly>
+			            	<input id="galleryCampaignId" name="campaignId" class="form-control" type="text" readonly>
 			            </div>
 	               	</div>
 	            </div>
@@ -104,7 +104,7 @@
                		<div class="col-sm-10 col-centered">
 		                <div class="input-group">
 						  <div class="custom-file">
-						    <input type="file" class="custom-file-input" id="inputGroupFile04">
+						    <input type="file" class="custom-file-input" id="inputGroupFile04" name="file">
 						    <label class="custom-file-label" for="inputGroupFile04">Cargar Im&aacute;gen</label>
 						  </div>
 						</div>
@@ -135,7 +135,7 @@
 		  	</div>
 			<div class="modal-footer">
 				<button id="GbtnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-			    <button type="button" class="btn btn-success">Finalizar</button>
+			    <button type="submit" class="btn btn-success">Finalizar</button>
 	      </div>
 	    </div>
 	  </div>

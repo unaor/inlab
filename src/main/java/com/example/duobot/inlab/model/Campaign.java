@@ -1,12 +1,19 @@
 package com.example.duobot.inlab.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "CAMPAIGNS")
@@ -64,6 +71,10 @@ public class Campaign implements Serializable {
 	private String emotionsUrl;
 	
 	private String emotionsIA;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "campaign", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Gallery> galleries = new ArrayList<Gallery>();
 
 	public Campaign() {
 	}
@@ -259,5 +270,12 @@ public class Campaign implements Serializable {
 	public void setEmotionsIA(String emotionsIA) {
 		this.emotionsIA = emotionsIA;
 	}
-	
+
+	public List<Gallery> getGalleries() {
+		return galleries;
+	}
+
+	public void setGalleries(List<Gallery> galleries) {
+		this.galleries = galleries;
+	}	
 }

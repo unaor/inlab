@@ -21,13 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.duobot.inlab.dao.CampaignService;
+import com.example.duobot.inlab.dao.GalleryService;
 import com.example.duobot.inlab.model.Campaign;
+import com.example.duobot.inlab.model.Gallery;
 
 @RestController
 public class CampaignController {
 
 	@Autowired
 	CampaignService campaignService;
+	
+	@Autowired
+	GalleryService galleryService;
 
 	@GetMapping(value = "/api/campaign")
 	public ResponseEntity<?> getAllCampaigns(Authentication user) {
@@ -142,6 +147,61 @@ public class CampaignController {
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return ResponseEntity.badRequest().body("Error agregando un archivo");
+		}
+	}
+	
+	@PostMapping(value = "/api/campaign/galeria")
+	public ResponseEntity<?> addGalleryImage( @RequestParam("file") MultipartFile file, @RequestParam("campaignId") Integer campaignId) {
+
+
+		if (file.isEmpty()) {
+			return ResponseEntity.badRequest().body("Empty file");
+		}
+
+		try {
+			Campaign dbCampaign = campaignService.findById(campaignId).get();
+			if(dbCampaign == null) {
+				return ResponseEntity.badRequest().body("No encontramos este registro en el base de datos");
+			}
+			File dir = new File("c:\\inlab\\campaign\\");
+			if(!dir.exists()) {
+				dir.mkdirs();
+			}
+			Gallery gallery = new Gallery();
+			gallery.setCampaign(dbCampaign);
+			gallery = galleryService.save(gallery);
+			String filePath = dir.getAbsolutePath() + "\\" + campaignId + "-" +gallery.getGalleryId() + "-" + file.getOriginalFilename();
+			File finalDestination = new File(filePath);
+			file.transferTo(finalDestination);
+			gallery.setImage("/images/" + campaignId + "-" +gallery.getGalleryId() + "-" + file.getOriginalFilename());
+			galleryService.save(gallery);
+			dbCampaign.getGalleries().add(gallery);
+			campaignService.save(dbCampaign);
+			return ResponseEntity.noContent().build();
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return ResponseEntity.badRequest().body("Error agregando un archivo");
+		}
+	}
+	
+	@DeleteMapping(value = "/api/campaign/galeria")
+	public ResponseEntity<?> deleteGalleryImage( @RequestParam("galleryId") Integer galleryId) {
+
+
+		
+
+		try {
+			Gallery dbGallery = galleryService.findById(galleryId).get();
+			if(dbGallery == null) {
+				return ResponseEntity.badRequest().body("No encontramos este registro en el base de datos");
+			}
+			
+
+			galleryService.delete(dbGallery);
+			return ResponseEntity.noContent().build();
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return ResponseEntity.badRequest().body("Error borrando un archivo");
 		}
 	}
 
