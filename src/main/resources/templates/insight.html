@@ -91,7 +91,7 @@
             <div class="content">
 				<div class="row">
 					<input id="hiddenInsightId" type="hidden" th:field="${campaign.insightId}" />
-				    <div class="col-sm-10 col-centered">
+				    <div class="col-sm-12 col-centered">
 				        <div class="card ">
 				            <div class="card-header ">
 				                <h5 class="card-title"><i class="now-ui-icons business_bulb-63"></i> INSIGHT</h5>
@@ -180,7 +180,7 @@
     	        return d.value;
     	      })
     	     ])
-    	     .range([10,100]);
+    	     .range([1,100]);
     	
     	  d3.layout.cloud().size([width, height])
     	    .timeInterval(20)

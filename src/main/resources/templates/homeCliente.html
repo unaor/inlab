@@ -103,7 +103,7 @@
 							<div class="card-body">
 								<div class="chart-area">
 									<div class="row">
-										<div class="col-sm-10 col-centered text-center">
+										<div class="col-sm-12 col-centered text-center">
 										<input type="hidden" id="insightD" th:value="${campaign.insightId}">
 											<div id="cloudContainer"></div>
 										</div>
@@ -373,7 +373,7 @@
     answers.map((answer, index) => {
     	//console.log(answer);
     	if (index === 0){
-    	$("#cloudContainer").append('<p class="text-capitalize font-weight-bold">' + answer.questionName + '</p><div class="col-centered justify-content-center" style="float:left; padding-right:25%;" id="question-' + index + '"></div>')
+    	$("#cloudContainer").append('<p class="text-capitalize font-weight-bold">' + answer.questionName + '</p><div class="col-centered justify-content-center" style="margin-top:-10px;" id="question-' + index + '"></div>')
        	 /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
        	 answer.tags.map(tag => tag.html = {'data-tooltip': tag.text + ' - ' + tag.weight});
     	//$("#question-" + index).jQCloud(answer.tags, {width:250, height:250});
@@ -404,8 +404,8 @@
     	    }
     	
     	  var svg_location = "#question-" + index;
-    	  var width = ($(document).width())/4;
-    	  var height = ($(document).height())/4;
+    	  var width = 350;
+    	  var height = 200;
     	
     	  var fill = d3.scale.category20();
     	
