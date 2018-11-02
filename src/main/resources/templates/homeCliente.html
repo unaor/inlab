@@ -373,7 +373,7 @@
     answers.map((answer, index) => {
     	//console.log(answer);
     	if (index === 0){
-    	$("#cloudContainer").append('<p class="text-capitalize font-weight-bold">' + answer.questionName + '</p><div class="col-centered justify-content-center" style="margin-top:-10px;" id="question-' + index + '"></div>')
+    	$("#cloudContainer").append('<p class="font-weight-bold">' + answer.questionName + '</p><div class="col-centered justify-content-center" style="margin-top:-10px;" id="question-' + index + '"></div>')
        	 /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
        	 answer.tags.map(tag => tag.html = {'data-tooltip': tag.text + ' - ' + tag.weight});
     	//$("#question-" + index).jQCloud(answer.tags, {width:250, height:250});
@@ -436,11 +436,15 @@
     	        .attr("transform", "translate(" + [width >> 1, height >> 1] + ")")
     	      .selectAll("text")
     	        .data(words)
+    	        
     	      .enter().append("text")
     	        .style("font-size", function(d) { return xScale(d.value) + "px"; })
     	        .style("font-family", "Impact")
     	        .style("fill", function(d, i) { return fill(i); })
     	        .attr("text-anchor", "middle")
+    	        .attr("data-toggle", "tooltip")
+    	        .attr("data-placement", "top")
+    	        .attr("title", function(d) { return d.key + " - " + d.value; })
     	        .attr("transform", function(d) {
     	          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
     	        })
@@ -457,6 +461,11 @@
     	
     });
 /*]]>*/
+</script>
+<script>
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+});
 </script>
 
 </body>

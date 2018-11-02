@@ -3,72 +3,6 @@
 <hgroup th:insert="fragments/cliente/headCliente.html :: headCliente"> </hgroup>
 
 <body class="sidebar-mini">
-<style>
-[data-tooltip] {
-  position: relative;
-  z-index: 9999999;
-  cursor: pointer;
-}
-
-/* Hide the tooltip content by default */
-[data-tooltip]:before,
-[data-tooltip]:after {
-  visibility: hidden;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Position tooltip above the element */
-[data-tooltip]:before {
-  position: absolute;
-  bottom: 80%;
-  left: 50%;
-  margin-bottom: 5px;
-  margin-left: -30px;
-  padding: 7px;
-  width: 200px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: #000;
-  background-color: hsla(0, 0%, 20%, 1);
-  color: #fff;
-  content: attr(data-tooltip);
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.2;
-}
-
-/* Triangle hack to make tooltip look like a speech bubble */
-[data-tooltip]:after {
-  position: absolute;
-  bottom: 80%;
-  left: 50%;
-  margin-left: 1px;
-  width: 0;
-  border-top: 5px solid #000;
-  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
-  content: " ";
-  font-size: 0;
-  line-height: 0;
-}
-
-/* Show tooltip content on hover */
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
-  visibility: visible;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-  z-index: 9999999;
-}
-</style>
-
-
 <div class="wrapper">
 <!--NAV-->
 <!-- SIDEBAR    -->
@@ -98,7 +32,7 @@
 				            </div>
 				            <div class="card-body pb-md-5 text-center">
 				                <!--iframe-->
-				                <div id="cloudContainer" class="col-centered container-fluid full jqcloud" style="overflow:hidden;"></div>
+				                <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse"></div>
 				                <!--/iframe-->
 				            </div>
 				        </div>
@@ -136,9 +70,14 @@
     console.log(answers);
    
     answers.map((answer, index) => {
-        $("#cloudContainer").append('<h4 class="alert alert-primary text-white text-uppercase" style="border:0;" role="alert">' + answer.questionName + '</h4><br><div class="col-md-10 col-centered justify-content-center jqcloud" id="question-' + index + '"></div>')
+    	if(index === 0){
+    		$("#accordion").append('<div class="card border border-light"><div class="card-header border border-light" role="tab" id="heading' + index + '"><a aria-expanded="true" aria-controls="collapse' + index + '" class="collapsed text-uppercase" style="margin-right:15px; color:#F96332; font-size:18px; font-weight:bold;" data-toggle="collapse" href="#collapse' + index + '"><i class="fas fa-chevron-down"></i>' + answer.questionName + '</a></div><div id="collapse' + index + '" class="collapse show" role="tabpanel" aria-labelledby="heading' + index + '" style="" data-parent="#accordion"><div class="card-body" id="question-' + index + '"></div></div>')
+    		} else {
+    		$("#accordion").append('<div class="card border border-light"><div class="card-header border border-light" role="tab" id="heading' + index + '"><a aria-expanded="false" aria-controls="collapse' + index + '" class="collapsed text-uppercase" style="margin-right:15px; color:#F96332; font-size:18px; font-weight:bold;" data-toggle="collapse" href="#collapse' + index + '"><i class="fas fa-chevron-down"></i>' + answer.questionName + '</a></div><div id="collapse' + index + '" class="collapse" role="tabpanel" aria-labelledby="heading' + index + '" style="" data-parent="#accordion"><div class="card-body" id="question-' + index + '"></div></div>')	
+    		}
+        
          /* $("#question-" + index).append("<h2>" + answer.questionName + "</h2>"); */
-         answer.tags.map(tag => tag.html = {'data-tooltip': tag.text + ' - ' + tag.weight});
+         //answer.tags.map(tag => tag.html = {'data-tooltip': tag.text + ' - ' + tag.weight});
         //$("#question-" + index).jQCloud(answer.tags, {width:800, height:600, autoResize:true});
         
         
@@ -151,15 +90,20 @@
     	
     	  var word_count = {};
     	
-    	  var words = text_string.split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
+    	  var words = text_string.split(/[ '\-\(\)\*":;\[\]|{}.!?]+/);
+    	  //
+    	  
     	    if (words.length == 1){
     	      word_count[words[0]] = 1;
     	    } else {
     	      words.forEach(function(word){
-    	        var word = word.toLowerCase();
+    	    	var fernmarr = word.replace(',',' ');
+    	        var word = fernmarr.toLowerCase();
     	        if (word != "" && common.indexOf(word)==-1 && word.length>1){
     	          if (word_count[word]){
     	            word_count[word]++;
+    	            
+    	            //alert(word);
     	          } else {
     	            word_count[word] = 1;
     	          }
@@ -174,6 +118,7 @@
     	  var fill = d3.scale.category20();
     	
     	  var word_entries = d3.entries(word_count);
+    	  //console.log (word_entries);
     	
     	  var xScale = d3.scale.linear()
     	     .domain([0, d3.max(word_entries, function(d) {
@@ -193,6 +138,7 @@
     	    .start();
     	
     	  function draw(words) {
+    		  //console.log(words);
     	    d3.select(svg_location).append("svg")
     	        .attr("width", width)
     	        .attr("height", height)
@@ -200,11 +146,16 @@
     	        .attr("transform", "translate(" + [width >> 1, height >> 1] + ")")
     	      .selectAll("text")
     	        .data(words)
+    	        
     	      .enter().append("text")
     	        .style("font-size", function(d) { return xScale(d.value) + "px"; })
     	        .style("font-family", "Impact")
     	        .style("fill", function(d, i) { return fill(i); })
     	        .attr("text-anchor", "middle")
+    	        .attr("data-toggle", "tooltip")
+    	        .attr("data-placement", "top")
+    	        .attr("title", function(d) { return d.key + " - " + d.value; })
+    	        /* .attr("class", "test") */
     	        .attr("transform", function(d) {
     	          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
     	        })
@@ -219,7 +170,11 @@
 </script>
 
 
-
+<script>
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 
 

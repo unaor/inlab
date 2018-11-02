@@ -1078,26 +1078,43 @@ function getUserClient() {
 function exportPoll(pollId){
 	
 	const selectedPoll = polls.filter(x => x.pollId === pollId)[0];
+	//console.log(selectedPoll);
+	var dataE = selectedPoll.questions;
+	var exportAnswer = selectedPoll.answers;
+	//console.log(dataE);
+	  
+	var exportHTML = '';
 	
-	
-	console.log(selectedPoll);
-	
-		
-		
-		var exportQuestion = item.question;
-		var exportAnswer = item.answers;
-		  console.log(exportQuestion);
+	$.each(
+			dataE,
+			function(i, item) {
+				
+				//console.log(item);
+				var exportQuestion = item.question
+				var dataAnswer = item.answers
+				//alert(exportQuestion);
+				
+				
+				
+				$.each(
+						dataAnswer,
+						function(i, item) {
+							
+							//console.log(item);
+							var exportAnswers = item.answer
+					
+							exportHTML += '<tr><td>' + exportQuestion + '</td><td>' + exportAnswers + '</td></tr>';
+				});
 
-		  
-		  
-		  
-//		  var exportFile = new CSVExport(exportData);
-//
-//		  return false;	
+				
+				$('#tbInsightReport').append(exportHTML);
+				
 
+			});
 	
-  
 
+			$("#tbInsightReport").tableToCSV();
+			
 }
 
 
