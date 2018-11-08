@@ -185,7 +185,8 @@ public class CampaignController {
 	}
 	
 	@DeleteMapping(value = "/api/campaign/galeria")
-	public ResponseEntity<?> deleteGalleryImage( @RequestParam("galleryId") Integer galleryId) {
+	
+	public ResponseEntity<?> deleteGalleryImage( @RequestParam Integer galleryId) {
 
 
 		

@@ -312,14 +312,15 @@ $("#btnAnswer").on('click', function() {
 			//console.log(result);
 			
 			$('#modalCrearPregunta').modal('hide');
-			$("#formNewQuestion")[0].reset();
+			//$("#formNewQuestion")[0].reset();
+			$("#contestarEncuesta")[0].reset();
 			$('#modalMessage').text('respuestas actualizadas Exitosamente');  
 			$('#alertSuccess').modal('show');
 			
 		},
 			error : function(xhr, resp, text) {
 			$('#modalCrearPregunta').modal('hide');
-			$("#formNewQuestion")[0].reset();
+			$("#contestarEncuesta")[0].reset();
 			$('#alertError').modal('show');
 			
 			
@@ -546,6 +547,8 @@ $("#btnOK").click(function() {
 });
 
 
+
+
 // ############# CAMPAÑAS ##################
 
 
@@ -690,7 +693,9 @@ $.ajax({
 							+ '</td><td>'
 							+ item.campaignName
 							+ '</td><td>'
-			                + '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-warning btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="fas fa-camera-retro"></i></button> '
+							+ '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-warning btn-icon btn-sm " data-original-title="Cargar Fotos" title="Cargar Fotos"><i class="fas fa-camera-retro"></i></button> '
+							+ '<button onclick="deleteGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaBorrado" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar Fotos" title="Borrar Fotos"><i class="fas fa-folder-minus"></i></button></td></tr>';
+							
 				
 					
 				});
@@ -827,7 +832,7 @@ $("#btnCampaignDelete").click(function() {
 	    		error : function(xhr, resp, text) {
 	    		console.log(xhr, resp, text);
 	    		data: data
-	    		
+	    		$('#alertError').modal('show');
 	    		
 	    	}
 	    })
@@ -845,12 +850,113 @@ $("#btnCampaignDelete").click(function() {
 function NewGallery(campaignId){
 	//alert(campaignId);
 	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];	
-	/* capturar información del registro para asociar */
 	
+	$("#formGaleria")[0].reset();
+    
+	/* capturar información del registro para asociar */
 	$('#galleryCampaignId').val(selectedCampaign.campaignId);
 	
 }
 
+
+function deleteGallery(campaignId){
+	//alert(campaignId);
+	const selectedCampaign = campaigns.filter(x => x.campaignId === campaignId)[0];	
+	
+	document.getElementById("tbgallery").innerHTML = "";
+	var pics = selectedCampaign.galleries;
+	
+	//console.log(pics);
+	
+	var picHTML = "<tr><th>Id</th><th>Nombre Im&aacute;gen</th><th class='text-center'>Borrar</th>/tr>";
+	
+	pics.map((pic, index) => {
+		
+		var picID = pic.galleryId;
+		var picUrl = pic.image;
+		var picElement = picUrl.replace("/images/", "");
+		
+		
+		picHTML += '<tr><td>'
+		+ picID
+		+ '</td><td>'
+		+ picElement
+		+ '</td><td class="text-center"><button onclick="deletePic('+ picID +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalDeletePic" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button></td></tr>';
+        //+ '<button onclick="NewGallery('+ item.campaignId +')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaCampana" class="btn btn-warning btn-icon btn-sm " data-original-title="Galeria" title="Galeria"><i class="fas fa-camera-retro"></i></button>';
+		
+		
+	});
+	
+	$('#tbgallery').append(picHTML);
+	$('#campaignIdBorrado').val(selectedCampaign.campaignId);
+	
+	
+}
+
+/* GUARDAR FOTOGRAFÍA */
+
+$(document).on('click', '#btnGalleryGuardar', function() {
+
+	if ($('#inputGroupFile04').val() == '') {
+        
+		
+        $('#alertError').modal('show');
+        $('#modalGaleriaCampana').modal('hide');
+        
+        
+    }else{
+    	
+      $('#formGaleria').submit();
+      $('#modalMessage').text('Imágen Cargada Exitosamente');
+      $('#modalGaleriaCampana').modal('hide');
+      $('#alertSuccess').modal('show');
+      
+    }
+	
+	//location.reload();
+});
+
+
+
+/* DATOS PARA BORRAR FOTOGRAFÍA */
+
+function deletePic(galleryId){
+	
+	//$('#modalGaleriaCampana').modal('hide');
+	$('#deletePicId').val(galleryId);
+	
+}
+
+/* BORRAR FOTOGRAFÍA */
+
+$(document).on('click', '#btnPicDelete', function() {
+//$("#btnPicDelete").click(function() {
+		
+		var data = $("#deletePicId").val();
+		//alert(data);
+		
+		var url= "/api/campaign/galeria?galleryId="+data;
+		
+	    $.ajax({
+	    	url : url,
+	    	type : "DELETE",
+	    	contentType : 'application/json',
+	    	success : function(result) {
+	    		//alert(data);
+	    		$('#modalDeletePic').modal('hide');
+				$("#formDeletePic")[0].reset();
+				$('#modalMessage').text('Registro Borrado Exitosamente'); 
+				$('#alertSuccess').modal('show');
+				
+	    	},
+	    		error : function(xhr, resp, text) {
+	    		console.log(xhr, resp, text);
+	    		data: data
+	    		
+	    		
+	    	}
+	    })
+	});	
 
 
 
@@ -1098,13 +1204,14 @@ function exportPoll(pollId){
 	csv = csv.join('\r\n');
 	
 	//console.log(csv);
+	// nombre del archivo
 	fileName = selectedPoll.pollName + '.csv';
+	//console.log(fileName);
 	
-	
-	//download(csv, fileName, "text/csv");
+	// exportar archivo
 	
 	var hiddenElement = document.createElement('a');
-	hiddenElement.href = 'data:text/csv;charset=UTF-8,' + '\uFEFF' + encodeURIComponent(csv);
+	hiddenElement.href = 'data:text/csv;charset=UTF-8,' + '\uFEFF' + encodeURI(csv);
     //hiddenElement.href = 'data:text/csv;charset=ANSI,' + encodeURI(csv);
     hiddenElement.target = '_blank';
     hiddenElement.download = fileName;
@@ -1113,59 +1220,10 @@ function exportPoll(pollId){
 	
 }
 	
+
+
+
 	
-	
-//	var exportHTML = '';
-//	
-//	$.each(
-//			dataE,
-//			function(i, item) {
-//				
-//				//console.log(item);
-//				var exportQuestion = item.question
-//				var dataAnswer = item.answers
-//				//alert(exportQuestion);
-//				
-//				
-//				
-//				$.each(
-//						dataAnswer,
-//						function(i, item) {
-//							
-//							//console.log(item);
-//							var exportAnswers = item.answer
-//					
-//							exportHTML += '<tr><td>' + exportQuestion + '</td><td>' + exportAnswers + '</td></tr>';
-//				});
-//
-//				
-//				$('#tbInsightReport').append(exportHTML);
-//				
-//
-//			});
-//	
-//
-//			$("#tbInsightReport").tableToCSV();
-//			
-//}
-
-
-
-
-
-/*
- * PRECARGADOR
- * 
- * var Body = $('body'); Body.addClass('preloader-site');
- * 
- * $(window).load(function() {
- * $('.preloader-wrapper').delay(3000).fadeOut(1000);
- * $('body').removeClass('preloader-site'); });
- */
-
-
-
-
 
 
 

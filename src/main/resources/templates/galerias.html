@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+<link rel="icon" type="image/png" href="../img/icons/inlab_favicon.png">
 <hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
 
 <body class="sidebar-mini">
@@ -35,7 +36,7 @@
 			                <div class="card-header">
 			                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
 			                    <li class="nav-item">
-			                      <a class="nav-link active" data-toggle="tab" href="#tabEncuesta" role="tab"><i class="fab fa-hubspot"></i> Cargar Fotograf&iacute;as</a>
+			                      <a class="nav-link active" data-toggle="tab" href="#tabEncuesta" role="tab"><i class="fab fa-hubspot"></i> Cargar | Borrar Fotograf&iacute;as</a>
 			                    </li>
 			                  </ul>
 			                </div>
@@ -104,44 +105,89 @@
                		<div class="col-sm-10 col-centered">
 		                <div class="input-group">
 						  <div class="custom-file">
-						    <input type="file" class="custom-file-input" id="inputGroupFile04" name="file">
-						    <label class="custom-file-label" for="inputGroupFile04">Cargar Im&aacute;gen</label>
+						    <!-- <input type="file" class="custom-file-input" id="inputGroupFile04" name="file"> -->
+						    <input type="file" class="form-control-file" id="inputGroupFile04" name="file">
+						    <!-- <label class="custom-file-label" for="inputGroupFile04">Cargar Im&aacute;gen</label> -->
 						  </div>
 						</div>
                		</div>
                	</div>
-               	<br>
-               	<div class="row">
-               		<div class="col-sm-10 col-centered">
-		            	<div class="table-responsive">
-		                  	<table class="table" id="tbgallery">
-			                    <tr>
-									<th>Archivo</th>
-			                      	<th class="text-center">Acciones</th>
-			                    </tr>
-			                    <tr>
-			                    	<td><input id="imgMedicionesUrl" name="imgMedicionesUrl" class="form-control" type="text" readonly></td>
-			                      	<td class="text-center">
-						                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
-						            </td>
-			                    </tr>
-		                  </table>
-               			</div>
-               		</div>
-               	</div>
-               	
-               	
-               	
 		  	</div>
 			<div class="modal-footer">
 				<button id="GbtnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-			    <button type="submit" class="btn btn-success">Finalizar</button>
+			    <button id="btnGalleryGuardar" name="btnGalleryGuardar" type="button" class="btn btn-success">Finalizar</button>
 	      </div>
 	    </div>
 	  </div>
 	</form>
 </div>
 <!-- Fin Modal Galería -->
+
+<!-- Inicio Modal Galería -->
+<div class="modal fade" id="modalGaleriaBorrado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="formGaleriaBorrado" class="form" method="POST" enctype="multipart/form-data">
+	      <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+	          <div class="modal-header justify-content-center">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	              <i class="now-ui-icons ui-1_simple-remove"></i>
+	            </button>
+	            <h4 class="title title-up">Galer&iacute;a Fotogr&aacute;fica</h4>
+	          </div>
+	          <div class="modal-body p-5">
+	          	<div class="row">
+		          	<div class="col-sm-10 col-centered">
+		          		<div class="form-group">
+			          		<label class="control-label">Id Campa&ntilde;a</label>
+			            	<input id="campaignIdBorrado" name="campaignIdBorrado" class="form-control" type="text" readonly>
+			            </div>
+	               	</div>
+	            </div>
+               	<div class="row">
+               		<div class="col-sm-10 col-centered">
+		            	<div class="table-responsive">
+		                  	<table class="table" id="tbgallery">
+			                    <tr>
+			                    	<th>Id</th>
+									<th>Nombre Im&aacute;gen</th>
+			                      	<th class="text-center">Borrar</th>
+			                    </tr>
+		                  </table>
+               			</div>
+               		</div>
+               	</div>
+		  	</div>
+			<div class="modal-footer">
+				<button id="GbtnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+	      </div>
+	    </div>
+	  </div>
+	</form>
+</div>
+<!-- Fin Modal Galería -->
+
+
+<!-- Minimodal Borrado  -->
+<div class="modal fade modal-mini" id="modalDeletePic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="formDeletePic" class="form" method="" action="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>Confirmar el borrado</p>
+				<div class="form-group text-center col-centered">
+	          		<label class="control-label">ID</label>
+	            	<input id="deletePicId" name="deletePicId" class="form-control" type="text" readonly>
+            	</div>
+			</div>
+			<div class="modal-footer">
+				<button id="btnCerrarM2" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			    <input type="button" class="btn btn-success" id="btnPicDelete" name="btnPicDelete" value="Confirmar">
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+<!-- /Minimodal Borrado  -->
 
 <!-- NOTIFICACIONES -->
 <div class="modal fade modal-mini modal-success" id="alertSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -173,7 +219,7 @@
         <p>Se present&oacute; un error, intente nuevamente</p>
       </div>
       <div class="modal-footer col-centered">
-        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Cerrar</button>
+        <button type="button" onclick="location.reload();" class="btn btn-link btn-neutral" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
