@@ -22,7 +22,7 @@ jQuery.support.cors = true;
 			success : function(data) {
 				
 				users = data;
-				console.log(data);
+				//console.log(data);
 
 				var trHTML = '';
 				$.each(
@@ -177,7 +177,7 @@ $("#btnPoll").on('click', function() {
 		contentType : 'application/json',
 		data : JSON.stringify(data),
 		success : function(result) {
-			console.log(result);
+			//console.log(result);
 			
 			$('#modalCrearEncuesta').modal('hide');
 			$("#formPoll")[0].reset();
@@ -255,7 +255,7 @@ $("#btnQuestion").on('click', function() {
 		
 	});
 	
-	console.log(questions);
+	//console.log(questions);
 	
     var data = {
     		pollId: pollId,
@@ -270,7 +270,7 @@ $("#btnQuestion").on('click', function() {
 		contentType : 'application/json',
 		data : JSON.stringify(data),
 		success : function(result) {
-			console.log(result);
+			//console.log(result);
 			
 			$('#modalCrearPregunta').modal('hide');
 			$("#formNewQuestion")[0].reset();
@@ -301,7 +301,7 @@ $("#btnAnswer").on('click', function() {
 	$(".answer").each((index, element) => {
 		answers.push({questionId: element.dataset.questionId, answer:element.value});
 	});
-    console.log(answers);
+    //console.log(answers);
 
 	$.ajax({
 		url : '/api/poll/answer',
@@ -309,7 +309,7 @@ $("#btnAnswer").on('click', function() {
 		contentType : 'application/json',
 		data : JSON.stringify(answers),
 		success : function(result) {
-			console.log(result);
+			//console.log(result);
 			
 			$('#modalCrearPregunta').modal('hide');
 			$("#formNewQuestion")[0].reset();
@@ -459,7 +459,7 @@ $("#btnDeleteWord").click(function() {
     	type : "DELETE",
     	contentType : 'application/json',
     	success : function(result) {
-    		console.log(result);
+    		//console.log(result);
     		
     		$('#modalCrearPalabra').modal('hide');
     		$("#word").val("");
@@ -490,7 +490,7 @@ $("#btnDeletePoll").click(function() {
 	    	type : "DELETE",
 	    	contentType : 'application/json',
 	    	success : function(result) {
-	    		console.log(result);
+	    		//console.log(result);
 	    		
 	    		$('#modalBorrar').modal('hide');
 				$("#borrarPregunta")[0].reset();
@@ -615,7 +615,7 @@ $("#btnCampaign").on('click', function() {
 		contentType : 'application/json',
 		data : JSON.stringify(data),
 		success : function(result) {
-			console.log(result);
+			//console.log(result);
 			
 			$('#modalCrearCampana').modal('hide');
 			$("#formNewCampaign")[0].reset();
@@ -645,7 +645,7 @@ $.ajax({
 		success : function(data) {
 
 			campaigns = data;
-			console.log(data);
+			//console.log(data);
 
 			var trHTML3 = '';
 			var trHTML4 = '';
@@ -1059,7 +1059,7 @@ function getUserClient() {
 	
 	
 	const selectedUserClient = users.filter(x => x.roleName === "Cliente");
-	console.log(selectedUserClient);
+	//console.log(selectedUserClient);
 	
 	$.each(selectedUserClient, function(i, item) {
 	
@@ -1078,44 +1078,76 @@ function getUserClient() {
 function exportPoll(pollId){
 	
 	const selectedPoll = polls.filter(x => x.pollId === pollId)[0];
-	//console.log(selectedPoll);
-	var dataE = selectedPoll.questions;
-	var exportAnswer = selectedPoll.answers;
-	//console.log(dataE);
-	  
-	var exportHTML = '';
 	
-	$.each(
-			dataE,
-			function(i, item) {
-				
-				//console.log(item);
-				var exportQuestion = item.question
-				var dataAnswer = item.answers
-				//alert(exportQuestion);
-				
-				
-				
-				$.each(
-						dataAnswer,
-						function(i, item) {
-							
-							//console.log(item);
-							var exportAnswers = item.answer
-					
-							exportHTML += '<tr><td>' + exportQuestion + '</td><td>' + exportAnswers + '</td></tr>';
-				});
-
-				
-				$('#tbInsightReport').append(exportHTML);
-				
-
-			});
+//	console.log(selectedPoll);
+//	var dataE = selectedPoll.questions;
+//	var exportAnswer = selectedPoll.answers;
+//	console.log(dataE);
+	const csvArray = [];
+	//csvArray.push({question: "Nombre de la pregunta", answer: "respuesta de la pregunta"});
+	selectedPoll.questions.map(questionInPoll => {
+		questionInPoll.answers.map(answerInQuestion => {
+			csvArray.push({"INSIGHT": selectedPoll.pollName , "PREGUNTA": questionInPoll.question, "RESPUESTA": answerInQuestion.answer})
+		});
+	});
+	const items = csvArray;
+	const replacer = (key, value) => value === null ? '' : value; // specify how you want to handle null values here
+	const header = Object.keys(items[0]);
+	let csv = items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','));
+	csv.unshift(header.join(','));
+	csv = csv.join('\r\n');
 	
-
-			$("#tbInsightReport").tableToCSV();
-			
+	//console.log(csv);
+	fileName = selectedPoll.pollName + '.csv';
+	
+	
+	//download(csv, fileName, "text/csv");
+	
+	var hiddenElement = document.createElement('a');
+	hiddenElement.href = 'data:text/csv;charset=UTF-8,' + '\uFEFF' + encodeURIComponent(csv);
+    //hiddenElement.href = 'data:text/csv;charset=ANSI,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = fileName;
+    hiddenElement.click();
+	
+	
 }
+	
+	
+	
+//	var exportHTML = '';
+//	
+//	$.each(
+//			dataE,
+//			function(i, item) {
+//				
+//				//console.log(item);
+//				var exportQuestion = item.question
+//				var dataAnswer = item.answers
+//				//alert(exportQuestion);
+//				
+//				
+//				
+//				$.each(
+//						dataAnswer,
+//						function(i, item) {
+//							
+//							//console.log(item);
+//							var exportAnswers = item.answer
+//					
+//							exportHTML += '<tr><td>' + exportQuestion + '</td><td>' + exportAnswers + '</td></tr>';
+//				});
+//
+//				
+//				$('#tbInsightReport').append(exportHTML);
+//				
+//
+//			});
+//	
+//
+//			$("#tbInsightReport").tableToCSV();
+//			
+//}
 
 
 

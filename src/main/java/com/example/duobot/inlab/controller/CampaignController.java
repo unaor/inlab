@@ -94,7 +94,7 @@ public class CampaignController {
 			dbCampaign.setStartDate(form.getStartDate());
 			dbCampaign.setTimelineUrl(form.getTimelineUrl());
 			dbCampaign.setTopDomainsUrl(form.getTopDomainsUrl());
-			dbCampaign.setTopicsUrl(form.getTopDomainsUrl());
+			dbCampaign.setTopicsUrl(form.getTopicsUrl());
 			dbCampaign.setTweetsUrl(form.getTweetsUrl());
 			dbCampaign.setVideoUrl(form.getVideoUrl());
 			dbCampaign.setEmotionsUrl(form.getEmotionsUrl());

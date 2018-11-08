@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -27,6 +28,7 @@ public class Answer implements Serializable {
 	@JsonBackReference
 	private Question question;
 
+	@NotNull
 	private String answer;
 
 	public Answer() {
