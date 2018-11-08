@@ -2,9 +2,12 @@ package com.example.duobot.inlab.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,9 +23,11 @@ import com.example.duobot.inlab.dao.CampaignService;
 import com.example.duobot.inlab.dao.InlabUserService;
 import com.example.duobot.inlab.dao.ProhibitedWordService;
 import com.example.duobot.inlab.dao.QuestionService;
+import com.example.duobot.inlab.dao.SystemLogService;
 import com.example.duobot.inlab.model.Campaign;
 import com.example.duobot.inlab.model.ProhibitedWord;
 import com.example.duobot.inlab.model.Question;
+import com.example.duobot.inlab.model.SystemLog;
 import com.example.duobot.inlab.model.User;
 
 @Controller
@@ -39,6 +44,9 @@ public class LoginController {
 	
 	@Autowired
 	ProhibitedWordService prohibitedWordService;
+	
+	@Autowired
+	SystemLogService systemLogService;
 
 	@RequestMapping(value = { "/", "/login" })
 	public String login() {
@@ -46,7 +54,18 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/homeAdmin")
-	public String welcome(Authentication user, Model model) {
+	public String welcome(HttpServletRequest request, Authentication user, Model model) {
+		SystemLog log = new SystemLog();
+		Long timestamp = new Date().getTime();
+		timestamp = timestamp / 1000;
+		log.setTimestamp(timestamp.intValue());
+		log.setUserEmail(user.getName());
+		log.setLoginIp(request.getRemoteAddr());
+		try {
+			systemLogService.save(log);
+		}catch(Exception ex) {
+			System.out.println("Error saving system log " + ex.getMessage());
+		}
 		String authority = null;
 		for(GrantedAuthority auth : user.getAuthorities()) {
 			authority = auth.getAuthority();
