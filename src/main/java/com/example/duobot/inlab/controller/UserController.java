@@ -63,7 +63,9 @@ public class UserController {
 			}
 			dbUser.setUsername(form.getUsername());
 			dbUser.setEnabled(form.isEnabled());
-			dbUser.setPassword(bCryptPasswordEncoder.encode(form.getPassword()));
+			if(form.getPassword() != null && ! form.getPassword().isEmpty()) {
+				dbUser.setPassword(bCryptPasswordEncoder.encode(form.getPassword()));
+			}
 			dbUser.setRoleName(form.getRoleName());
 			dbUser.setCompleteName(form.getCompleteName());
 			userService.save(dbUser);
