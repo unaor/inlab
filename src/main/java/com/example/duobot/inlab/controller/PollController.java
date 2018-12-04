@@ -152,7 +152,7 @@ public class PollController {
 	public ResponseEntity<?> addAnswer(Principal user, @RequestBody @Valid List<AnswerForm> form) {
 		try {
 			for(AnswerForm answerRequest: form) {
-				if(answerRequest.getAnswer() == null || !answerRequest.getAnswer().isEmpty()) {
+				if(answerRequest.getAnswer() == null || answerRequest.getAnswer().isEmpty()) {
 					continue;
 				}
 				Question question = new Question();
