@@ -72,7 +72,7 @@ public class Campaign implements Serializable {
 	
 	private String emotionsIA;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "campaign", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "campaign", cascade = CascadeType.REMOVE)
 	@JsonManagedReference
 	private List<Gallery> galleries = new ArrayList<Gallery>();
 
