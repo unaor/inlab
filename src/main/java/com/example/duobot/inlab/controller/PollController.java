@@ -93,18 +93,20 @@ public class PollController {
 				dbPoll.setQuestions(new HashSet<Question>());
 			}
 			for(Question questionRequest : form.getQuestions()) {
-				if(dbPoll.getQuestions().contains(questionRequest)) {
+				if(questionRequest.getQuestionId() == null) {
+					Question question = new Question();
+					question.setPoll(dbPoll);
+					question.setQuestion(questionRequest.getQuestion());
+					dbPoll.getQuestions().add(question);
+				} else {
 					for(Question dbQuestion : dbPoll.getQuestions()) {
 						if(dbQuestion.getQuestionId() == questionRequest.getQuestionId()) {
 							dbQuestion.setQuestion(questionRequest.getQuestion());
 						}
 					}
-				} else {
-					Question question = new Question();
-					question.setPoll(dbPoll);
-					question.setQuestion(questionRequest.getQuestion());
-					dbPoll.getQuestions().add(question);
+					
 				}
+
 			}
 			pollService.save(dbPoll);
 			return ResponseEntity.noContent().build();
@@ -150,6 +152,9 @@ public class PollController {
 	public ResponseEntity<?> addAnswer(Principal user, @RequestBody @Valid List<AnswerForm> form) {
 		try {
 			for(AnswerForm answerRequest: form) {
+				if(answerRequest.getAnswer() == null || !answerRequest.getAnswer().isEmpty()) {
+					continue;
+				}
 				Question question = new Question();
 				question.setQuestionId(answerRequest.getQuestionId());
 				Answer answer = new Answer();
