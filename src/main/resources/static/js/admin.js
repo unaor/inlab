@@ -969,7 +969,7 @@ function pollVidConf(campaignId) {
 
         '<button onclick="deleteConference(' +
         conference.conferenceId +
-        ')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaBorrado" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar Fotos" title="Borrar Fotos"><i class="fas fa-folder-minus"></i></button></td></tr>';
+        ')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrarConference" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar Sala" title="Borrar Sala"><i class="fas fa-trash"></i></button></td></tr>';
       $("#tblConferences").append(trHTML5);
     });
   }

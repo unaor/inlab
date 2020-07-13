@@ -28,13 +28,14 @@
 					<div class="col-md-12">
 						<div class="card ">
 							<div class="card-header ">
-								<h5 class="card-title"><i class="now-ui-icons tech_laptop"></i> VIDEO CONFERENCIA</h5>
+								<h5 class="card-title"><i class="now-ui-icons tech_laptop"></i> VIDEO CONFERENCIAS</h5>
 							</div>
 							<div class="card-body ">
 								<!--iframe-->
 
 								<!-- ciclo re resultados -->
 								<div class="row text-center" id="contVidConf"></div>
+								<p>&nbsp;</p>
 
 							</div>
 						</div>
@@ -67,7 +68,7 @@
 			campaign.conferences.map((conference) => {
 
 
-				$("#contVidConf").append('<div class="contenedorEnlace col-md-4"><div class="urlEnlace alert alert-info"><div class="contenedorBtnServicios"><div><a src="' + conference.conferenceUrl + '" target="_blank" class="btn btn-light" onclick="launchZoom(\''  + conference.conferenceUrl + '\')">' + conference.conferenceName + '</a></div></div></div></div>')
+				$("#contVidConf").append('<div class="contenedorEnlace col-md-4"><div class="urlEnlace border border-warning p-3"><div class="contenedorBtnServicios"><div><a src="' + conference.conferenceUrl + '" target="_blank" class="btn btn-light" onclick="launchZoom(\''  + conference.conferenceUrl + '\')">' + conference.conferenceName + '</a></div></div></div></div>')
 
 
 

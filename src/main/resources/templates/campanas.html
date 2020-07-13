@@ -516,10 +516,10 @@
 
 	<!-- fernmarr agregar zoom julio2020 -->
 	<!-- Inicio Modal Crear/Editar VideoConferencias -->
-	<div class="modal fade modal-md" id="modalPollVidConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	<div class="modal fade" id="modalPollVidConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 		aria-hidden="true">
 		<form id="formPollVidConf" class="form" method="POST" action="" enctype="multipart/form-data">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header justify-content-center">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -533,13 +533,13 @@
 							<input id="vidConfCampaignId" name="vidConfCampaignId" class="form-control" type="text"
 								readonly>
 						</div>
-						<div class="table-responsive">
-							<table class="table" id="tblConferences">
+						<div class="table-responsive text-center">
+							<table class="table table-striped" id="tblConferences">
 								<thead>
 									<tr>
-										<th>Nombre</th>
-										<th>Link</th>
-										<th>Borrar</th>
+										<th scope="col"><small>Nombre</small></th>
+										<th scope="col"><small>Link</small></th>
+										<th scope="col"><small>Borrar</small></th>
 									</tr>
 								</thead>
 
@@ -548,12 +548,12 @@
 
 						<hr>
 						<div id="urlContainer" class="input-group">
-							<div class="form-group">
+							<div class="form-group col-md-6">
 								<label class="control-label">Nombre Sala</label>
 								<input id="conferenceName" name="conferenceName" value="" placeholder="Nombre Sala"
 									class="form-control" type="text">
 							</div>
-							<div class="form-group">
+							<div class="form-group col-md-6">
 								<label class="control-label">URL Sala</label>
 								<input id="conferenceUrl" name="conferenceUrl" value="" placeholder="URL Sala"
 									class="form-control" type="text">
@@ -755,11 +755,7 @@
 
 	<!-- /BODY -->
 
-
-
-
-	<var th:insert="fragments/scripts.html :: var"> </var>
-
+	<var th:insert="fragments/scripts.html :: var"></var>
 
 	<script>
 		$('#dp1').datepicker({
