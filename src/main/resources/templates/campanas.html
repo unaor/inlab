@@ -4,713 +4,792 @@
 <hgroup th:insert="fragments/admin/headAdmin.html :: headAdmin"> </hgroup>
 
 <body class="sidebar-mini">
-<div class="wrapper">
-	<!--NAV-->
+	<div class="wrapper">
+		<!--NAV-->
 		<!-- SIDEBAR    -->
 		<aside th:insert="fragments/admin/asideAdmin.html :: asideAdmin" th:with="roleName=${roleName}"> </aside>
 		<!-- /SIDEBAR    -->
-	<!-- TOPBAR    -->
-	<!--/NAV-->
-    <!--MAIN-->
-    <div class="main-panel">
-       <!-- HEADER -->
-       <nav th:insert="fragments/nav.html :: nav"> </nav>
-       <!-- /HEADER -->
-            
-<!-- /TOPBAR    -->
-<!-- CONTENT    -->
-            
-            <!--CONTAINER-->
+		<!-- TOPBAR    -->
+		<!--/NAV-->
+		<!--MAIN-->
+		<div class="main-panel">
+			<!-- HEADER -->
+			<nav th:insert="fragments/nav.html :: nav"> </nav>
+			<!-- /HEADER -->
 
-            
-            <div class="panel-header panel-header-sm">
-            </div>
-            <div class="section">
-	            <div class="content col-md-12 col-centered">
-	            <!-- CONTENIDO PAGINA  -->
-	            	<div class="row">
-		            	<div class="col-md-10 ml-auto col-xl-10 mr-auto">
-			              <p class="category">CAMPA&Ntilde;AS</p>
-			              <!-- Tabs with Background on Card -->
-			              <div class="card">
-			                <div class="card-header">
-			                  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
-			                    <li class="nav-item">
-			                      <a class="nav-link active" data-toggle="tab" href="#tabEncuesta" role="tab"><i class="fab fa-hubspot"></i> Configurar Campa&ntilde;as</a>
-			                    </li>
-			                  </ul>
-			                </div>
-			                <div class="card-body">
-			                  <!-- Tab panes -->
-			                  <div class="tab-content text-center">
-			                    <!-- tab 1 -->
-			                    <div class="tab-pane active" id="tabEncuesta" role="tabpanel">
-			                      <div class="float-left p-2">
-			                      	  <button onclick="getUserClient()" class="btn btn-info" data-toggle="modal" data-target="#modalCrearCampana">Crear Campa&ntilde;a</button>
-			                      </div>
-			                      <div class="table-responsive">
-					                  <table class="table" id="tbCampaign">
-					                    <tr>
-											<th>ID</th>
-					                      	<th>Campa&ntilde;a</th>
-					                      	<th>Cliente</th>
-					                      	<th>Fecha Inicio</th>
-					                      	<th>Fecha fin</th>
-					                      	<th>Acciones</th>
-					                    </tr>
-					                  </table>
-				                	</div>
-			                    </div>
-								<!-- /tab1 -->
-			                  </div>
-			                </div>
-			              </div>
-			              <!-- End Tabs on plain Card -->
-			            </div>
-		        	</div>
-		          <!-- /CONTENIDO PAGINA  -->
-		          
-	          </div>
-	      </div>
-     <!--/CONTAINER-->
-<!-- /CONTENT   -->
+			<!-- /TOPBAR    -->
+			<!-- CONTENT    -->
+
+			<!--CONTAINER-->
 
 
-<!--FOOTER-->
-<footer th:insert="fragments/footer.html :: footer"> </footer>
-<!--/FOOTER-->
-
-
-        </div>
-        <!--/MAIN-->
-</div>
-
-<!-- Inicio Modal Crear Campa&ntilde;a -->
-<div class="modal fade modal-md" id="modalCrearCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <form id="formNewCampaign" class="form" method="" action="">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header justify-content-center">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <h4 class="title title-up">Crear Campa&ntilde;a</h4>
-          </div>
-          <div class="modal-body">
-       	  	<div class="form-group">
-            	<input id="campaignName" name="campaignName" value="" placeholder="Nombre Campa&ntilde;a" class="form-control" type="text">
-            </div>
-            <div class="row">
-            	<div class="datepicker-container col-sm-6">
-            		<label class="control-label">Fecha Inicial</label>
-			        <div class="form-group">
-						<input id="startDate" name="startDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+			<div class="panel-header panel-header-sm">
+			</div>
+			<div class="section">
+				<div class="content col-md-12 col-centered">
+					<!-- CONTENIDO PAGINA  -->
+					<div class="row">
+						<div class="col-md-10 ml-auto col-xl-10 mr-auto">
+							<p class="category">CAMPA&Ntilde;AS</p>
+							<!-- Tabs with Background on Card -->
+							<div class="card">
+								<div class="card-header">
+									<ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist"
+										data-background-color="orange">
+										<li class="nav-item">
+											<a class="nav-link active" data-toggle="tab" href="#tabEncuesta"
+												role="tab"><i class="fab fa-hubspot"></i> Configurar Campa&ntilde;as</a>
+										</li>
+									</ul>
+								</div>
+								<div class="card-body">
+									<!-- Tab panes -->
+									<div class="tab-content text-center">
+										<!-- tab 1 -->
+										<div class="tab-pane active" id="tabEncuesta" role="tabpanel">
+											<div class="float-left p-2">
+												<button onclick="getUserClient()" class="btn btn-info"
+													data-toggle="modal" data-target="#modalCrearCampana">Crear
+													Campa&ntilde;a</button>
+											</div>
+											<div class="table-responsive">
+												<table class="table" id="tbCampaign">
+													<tr>
+														<th>ID</th>
+														<th>Campa&ntilde;a</th>
+														<th>Cliente</th>
+														<th>Fecha Inicio</th>
+														<th>Fecha fin</th>
+														<th>Acciones</th>
+													</tr>
+												</table>
+											</div>
+										</div>
+										<!-- /tab1 -->
+									</div>
+								</div>
+							</div>
+							<!-- End Tabs on plain Card -->
+						</div>
 					</div>
-            	</div>            
-            	<div class="datepicker-container col-sm-6">
-            		<label class="control-label">Fecha Final</label>
-			        <div class="form-group">
-						<input id="endDate" name="endDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
-					</div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">Cliente</label>
-	                  	<input id="campaignCustomer" name="campaignCustomer" value="" placeholder="Nombre Cliente" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">Proyecto</label>
-	                  	<input id="campaignProject" name="campaignProject" value="" placeholder="Nombre Proyecto" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Video</label>
-	                  	<input id="videoUrl" name="videoUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Chat</label>
-	                  	<input id="chatUrl" name="chatUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Mediciones</label>
-	                  	<input id="pollUrl" name="pollUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-            		<div class="form-group">
-	                	<label class="control-label">URL Img Mediciones</label>
-	                  	<input id="pollImageUrl" name="pollImageUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">ID Encuesta INSIGHT</label>
-	                  	<input id="insightId" name="insightId" value="" placeholder="ID" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Power BI</label>
-	                  	<input id="powerBIUrl" name="powerBIUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - timeline</label>
-	                  	<input id="timelineUrl" name="timelineUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - top_tweets</label>
-	                  	<input id="tweetsUrl" name="tweetsUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - topics</label>
-	                  	<input id="topicsUrl" name="topicsUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - influencers</label>
-	                  	<input id="influenceUrl" name="influenceUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - top_domains</label>
-	                  	<input id="topDomainsUrl" name="topDomainsUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - countries</label>
-	                  	<input id="countries" name="countries" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - demographics</label>
-	                  	<input id="demographics" name="demographics" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - posttype</label>
-	                  	<input id="postType" name="postType" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - sources</label>
-	                  	<input id="sources" name="sources" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-				    <label for="exampleFormControlSelect1">Asignar Usuario</label>
-				    <select class="form-control" id="assignedUser" name="assignedUser">
-				    </select>
+					<!-- /CONTENIDO PAGINA  -->
+
 				</div>
-        	</div>
-        	<div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Emociones Video</label>
-	                  	<input id="emotionsUrl" name="emotionsUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Emociones Interna</label>
-	                  	<input id="emotionsIA" name="emotionsIA" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-        </div>
-		  <div class="modal-footer">
-		    <input id="CbtnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
-	    	<input type="button" class="btn btn-success" id="btnCampaign" name="btnCampaign" value="Guardar">
-		  </div>
-	  	</div>
-	  </div>
-  </form>
-</div>
-<!-- Fin Modal Crear Campa&ntilde;a -->
+			</div>
+			<!--/CONTAINER-->
+			<!-- /CONTENT   -->
 
 
-<!-- Inicio Modal Editar Campa&ntilde;a -->
-<div class="modal fade modal-md" id="modalEditarCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <form id="formEditCampaign" class="form" method="" action="">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header justify-content-center">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <h4 class="title title-up">Editar Campa&ntilde;a</h4>
-          </div>
-          <div class="modal-body">
-          	<div class="form-group sm-6">
-          		<label class="control-label">ID Campa&ntilde;a</label>
-            	<input id="editCampaignId" name="editCampaignId" class="form-control" type="text" readonly>
-            </div>
-       	  	<div class="form-group">
-       	  		<label class="control-label">Nombre Campa&ntilde;a</label>
-            	<input id="EcampaignName" name="EcampaignName" value="" placeholder="Nombre Campa&ntilde;a" class="form-control" type="text">
-            </div>
-            <div class="row">
-            	<div class="datepicker-container col-sm-6">
-            		<label class="control-label">Fecha Inicial</label>
-			        <div class="form-group">
-						<input id="EstartDate" name="EstartDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+			<!--FOOTER-->
+			<footer th:insert="fragments/footer.html :: footer"> </footer>
+			<!--/FOOTER-->
+
+
+		</div>
+		<!--/MAIN-->
+	</div>
+
+	<!-- Inicio Modal Crear Campa&ntilde;a -->
+	<div class="modal fade modal-md" id="modalCrearCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<form id="formNewCampaign" class="form" method="" action="">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header justify-content-center">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</button>
+						<h4 class="title title-up">Crear Campa&ntilde;a</h4>
 					</div>
-            	</div>            
-            	<div class="datepicker-container col-sm-6">
-            		<label class="control-label">Fecha Final</label>
-			        <div class="form-group">
-						<input id="EendDate" name="EendDate" class="form-control date-picker" value="04/10/2018" data-datepicker-color="primary" type="text">
+					<div class="modal-body">
+						<div class="form-group">
+							<input id="campaignName" name="campaignName" value="" placeholder="Nombre Campa&ntilde;a"
+								class="form-control" type="text">
+						</div>
+						<div class="row">
+							<div class="datepicker-container col-sm-6">
+								<label class="control-label">Fecha Inicial</label>
+								<div class="form-group">
+									<input id="startDate" name="startDate" class="form-control date-picker"
+										value="04/10/2018" data-datepicker-color="primary" type="text">
+								</div>
+							</div>
+							<div class="datepicker-container col-sm-6">
+								<label class="control-label">Fecha Final</label>
+								<div class="form-group">
+									<input id="endDate" name="endDate" class="form-control date-picker"
+										value="04/10/2018" data-datepicker-color="primary" type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">Cliente</label>
+									<input id="campaignCustomer" name="campaignCustomer" value=""
+										placeholder="Nombre Cliente" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">Proyecto</label>
+									<input id="campaignProject" name="campaignProject" value=""
+										placeholder="Nombre Proyecto" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Video</label>
+									<input id="videoUrl" name="videoUrl" value="" placeholder="URL" class="form-control"
+										type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Chat</label>
+									<input id="chatUrl" name="chatUrl" value="" placeholder="URL" class="form-control"
+										type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Mediciones</label>
+									<input id="pollUrl" name="pollUrl" value="" placeholder="URL" class="form-control"
+										type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Img Mediciones</label>
+									<input id="pollImageUrl" name="pollImageUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">ID Encuesta INSIGHT</label>
+									<input id="insightId" name="insightId" value="" placeholder="ID"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Power BI</label>
+									<input id="powerBIUrl" name="powerBIUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - timeline</label>
+									<input id="timelineUrl" name="timelineUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - top_tweets</label>
+									<input id="tweetsUrl" name="tweetsUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - topics</label>
+									<input id="topicsUrl" name="topicsUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - influencers</label>
+									<input id="influenceUrl" name="influenceUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - top_domains</label>
+									<input id="topDomainsUrl" name="topDomainsUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - countries</label>
+									<input id="countries" name="countries" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - demographics</label>
+									<input id="demographics" name="demographics" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - posttype</label>
+									<input id="postType" name="postType" value="" placeholder="URL" class="form-control"
+										type="text">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - sources</label>
+									<input id="sources" name="sources" value="" placeholder="URL" class="form-control"
+										type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="exampleFormControlSelect1">Asignar Usuario</label>
+								<select class="form-control" id="assignedUser" name="assignedUser">
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Emociones Video</label>
+									<input id="emotionsUrl" name="emotionsUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Emociones Interna</label>
+									<input id="emotionsIA" name="emotionsIA" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
 					</div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">Cliente</label>
-	                  	<input id="EcampaignCustomer" name="EcampaignCustomer" value="" placeholder="Nombre Cliente" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">Proyecto</label>
-	                  	<input id="EcampaignProject" name="EcampaignProject" value="" placeholder="Nombre Proyecto" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Video</label>
-	                  	<input id="EvideoUrl" name="EvideoUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Chat</label>
-	                  	<input id="EchatUrl" name="EchatUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Mediciones</label>
-	                  	<input id="EpollUrl" name="EpollUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-            		<div class="form-group">
-	                	<label class="control-label">URL Img Mediciones</label>
-	                  	<input id="EpollImageUrl" name="EpollImageUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">ID Encuesta INSIGHT</label>
-	                  	<input id="EinsightId" name="EinsightId" value="" placeholder="ID" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Power BI</label>
-	                  	<input id="EpowerBIUrl" name="EpowerBIUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <hr>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - timeline</label>
-	                  	<input id="EtimelineUrl" name="EtimelineUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - top_tweets</label>
-	                  	<input id="EtweetsUrl" name="EtweetsUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - topics</label>
-	                  	<input id="EtopicsUrl" name="EtopicsUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - influencers</label>
-	                  	<input id="EinfluenceUrl" name="EinfluenceUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - top_domains</label>
-	                  	<input id="EtopDomainsUrl" name="EtopDomainsUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - countries</label>
-	                  	<input id="Ecountries" name="Ecountries" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - demographics</label>
-	                  	<input id="Edemographics" name="Edemographics" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - posttype</label>
-	                  	<input id="EpostType" name="EpostType" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-            <div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Redes - sources</label>
-	                  	<input id="Esources" name="Esources" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-				    <label for="exampleFormControlSelect1">Asignar Usuario</label>
-				    <select class="form-control" id="EassignedUser" name="EassignedUser">
-				    </select>
+					<div class="modal-footer">
+						<input id="CbtnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal"
+							value="Cancelar">
+						<input type="button" class="btn btn-success" id="btnCampaign" name="btnCampaign"
+							value="Guardar">
+					</div>
 				</div>
-        	</div>
-        	<hr>
-        	<div class="row">
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Emociones Video</label>
-	                  	<input id="EemotionsUrl" name="EemotionsUrl" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            	<div class="col-sm-6">
-	                <div class="form-group">
-	                	<label class="control-label">URL Emociones Interna</label>
-	                  	<input id="EemotionsIA" name="EemotionsIA" value="" placeholder="URL" class="form-control" type="text">
-	                </div>
-            	</div>
-            </div>
-        </div>
-		  <div class="modal-footer">
-		    <input id="EbtnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
-	    	<input type="button" class="btn btn-success" id="EbtnCampaign" name="EbtnCampaign" value="Guardar">
-		  </div>
-	  	</div>
-	  </div>
-  </form>
-</div>
-<!-- Fin Modal Editar Campa&ntilde;a -->
+			</div>
+		</form>
+	</div>
+	<!-- Fin Modal Crear Campa&ntilde;a -->
 
-<!-- fernmarr agregar zoom julio2020 -->
-<!-- Inicio Modal Crear/Editar VideoConferencias -->
-<div class="modal fade modal-md" id="modalPollVidConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form id="formPollVidConf" class="form" method="POST" action="" enctype="multipart/form-data">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header justify-content-center">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <h4 class="title title-up">Crear Salas</h4>
-          </div>
-          <div class="modal-body">
-			<div class="form-group">
-				<label class="control-label">Id Campa&ntilde;a</label>
-				<input id="vidConfCampaignId" name="vidConfCampaignId" class="form-control" type="text" readonly>
-			</div>
-			<div class="row">
-				<div class="col-md-2 text-center">ID Sala</div>
-				<div class="col-md-4 text-center">Nombre Sala</div>
-				<div class="col-md-4 text-center">URL Sala</div>
-				<div class="col-md-2 text-center">Borrar</div>
-			</div>
-			<div class="row">
-				<div class="col-md-2 text-center align-botton">$roomID</div>
-				<div class="col-md-4 text-center align-botton">$roomName</div>
-				<div class="col-md-4 text-center align-botton">$roomURL</div>
-				<div class="col-md-2 text-center align-top"><button id="btnRoomDelete-0" type="button" onclick="DeleteRoom(ID)" rel="tooltip" data-toggle="modal" data-target="#modalBorrarRoom" class="btn btn-danger btn-icon btn-sm" data-original-title="Borrar Sala" title="Borrar Sala"><i class="far fa-trash-alt"></i></button></div>
-			</div>
-			<hr>
-			<div id="urlContainer" class="input-group">
-				<div class="form-group">
-					<label class="control-label">Nombre Sala</label>
-			   		<input id="conferenceName" name="conferenceName" value="" placeholder="Nombre Sala" class="form-control" type="text">
+
+	<!-- Inicio Modal Editar Campa&ntilde;a -->
+	<div class="modal fade modal-md" id="modalEditarCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<form id="formEditCampaign" class="form" method="" action="">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header justify-content-center">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</button>
+						<h4 class="title title-up">Editar Campa&ntilde;a</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group sm-6">
+							<label class="control-label">ID Campa&ntilde;a</label>
+							<input id="editCampaignId" name="editCampaignId" class="form-control" type="text" readonly>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nombre Campa&ntilde;a</label>
+							<input id="EcampaignName" name="EcampaignName" value="" placeholder="Nombre Campa&ntilde;a"
+								class="form-control" type="text">
+						</div>
+						<div class="row">
+							<div class="datepicker-container col-sm-6">
+								<label class="control-label">Fecha Inicial</label>
+								<div class="form-group">
+									<input id="EstartDate" name="EstartDate" class="form-control date-picker"
+										value="04/10/2018" data-datepicker-color="primary" type="text">
+								</div>
+							</div>
+							<div class="datepicker-container col-sm-6">
+								<label class="control-label">Fecha Final</label>
+								<div class="form-group">
+									<input id="EendDate" name="EendDate" class="form-control date-picker"
+										value="04/10/2018" data-datepicker-color="primary" type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">Cliente</label>
+									<input id="EcampaignCustomer" name="EcampaignCustomer" value=""
+										placeholder="Nombre Cliente" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">Proyecto</label>
+									<input id="EcampaignProject" name="EcampaignProject" value=""
+										placeholder="Nombre Proyecto" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Video</label>
+									<input id="EvideoUrl" name="EvideoUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Chat</label>
+									<input id="EchatUrl" name="EchatUrl" value="" placeholder="URL" class="form-control"
+										type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Mediciones</label>
+									<input id="EpollUrl" name="EpollUrl" value="" placeholder="URL" class="form-control"
+										type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Img Mediciones</label>
+									<input id="EpollImageUrl" name="EpollImageUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">ID Encuesta INSIGHT</label>
+									<input id="EinsightId" name="EinsightId" value="" placeholder="ID"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Power BI</label>
+									<input id="EpowerBIUrl" name="EpowerBIUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - timeline</label>
+									<input id="EtimelineUrl" name="EtimelineUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - top_tweets</label>
+									<input id="EtweetsUrl" name="EtweetsUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - topics</label>
+									<input id="EtopicsUrl" name="EtopicsUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - influencers</label>
+									<input id="EinfluenceUrl" name="EinfluenceUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - top_domains</label>
+									<input id="EtopDomainsUrl" name="EtopDomainsUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - countries</label>
+									<input id="Ecountries" name="Ecountries" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - demographics</label>
+									<input id="Edemographics" name="Edemographics" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - posttype</label>
+									<input id="EpostType" name="EpostType" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Redes - sources</label>
+									<input id="Esources" name="Esources" value="" placeholder="URL" class="form-control"
+										type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="exampleFormControlSelect1">Asignar Usuario</label>
+								<select class="form-control" id="EassignedUser" name="EassignedUser">
+								</select>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Emociones Video</label>
+									<input id="EemotionsUrl" name="EemotionsUrl" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">URL Emociones Interna</label>
+									<input id="EemotionsIA" name="EemotionsIA" value="" placeholder="URL"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input id="EbtnCerrar" type="reset" class="btn btn-danger" data-dismiss="modal"
+							value="Cancelar">
+						<input type="button" class="btn btn-success" id="EbtnCampaign" name="EbtnCampaign"
+							value="Guardar">
+					</div>
 				</div>
-				<div class="form-group">
-       	  			<label class="control-label">URL Sala</label>
-            		<input id="conferenceUrl" name="conferenceUrl" value="" placeholder="URL Sala" class="form-control" type="text">
-            	</div>   
 			</div>
-			<!--<div class="boton form-group col-md-12">
+		</form>
+	</div>
+	<!-- Fin Modal Editar Campa&ntilde;a -->
+
+	<!-- fernmarr agregar zoom julio2020 -->
+	<!-- Inicio Modal Crear/Editar VideoConferencias -->
+	<div class="modal fade modal-md" id="modalPollVidConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<form id="formPollVidConf" class="form" method="POST" action="" enctype="multipart/form-data">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header justify-content-center">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</button>
+						<h4 class="title title-up">Crear Salas</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label class="control-label">Id Campa&ntilde;a</label>
+							<input id="vidConfCampaignId" name="vidConfCampaignId" class="form-control" type="text"
+								readonly>
+						</div>
+						<div class="table-responsive">
+							<table class="table" id="tblConferences">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Link</th>
+										<th>Borrar</th>
+									</tr>
+								</thead>
+
+							</table>
+						</div>
+
+						<hr>
+						<div id="urlContainer" class="input-group">
+							<div class="form-group">
+								<label class="control-label">Nombre Sala</label>
+								<input id="conferenceName" name="conferenceName" value="" placeholder="Nombre Sala"
+									class="form-control" type="text">
+							</div>
+							<div class="form-group">
+								<label class="control-label">URL Sala</label>
+								<input id="conferenceUrl" name="conferenceUrl" value="" placeholder="URL Sala"
+									class="form-control" type="text">
+							</div>
+						</div>
+						<!--<div class="boton form-group col-md-12">
 				<label class="sr-only" for="">Agregar otra Sala</label>
 				<button id="addVidConf" class="btn btn-primary input-sm"><strong>+</strong></button>
 			</div>-->
-		  </div>
-	  	
-		<div class="modal-footer">
-			<button id="btnCerrarM1" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-			<input type="button" class="btn btn-success" id="btnConferenceSave" name="btnPollImg" value="Guardar">
-		</div>
-		</div>
+					</div>
+
+					<div class="modal-footer">
+						<button id="btnCerrarM1" type="button" class="btn btn-danger"
+							data-dismiss="modal">Cancelar</button>
+						<input type="button" class="btn btn-success" id="btnConferenceSave" name="btnPollImg"
+							value="Guardar">
+					</div>
+				</div>
+			</div>
+
+		</form>
 	</div>
-	  
-	</form>
-</div>
-<!-- Fin Modal Crear/Editar VideoConferencias -->
+	<!-- Fin Modal Crear/Editar VideoConferencias -->
 
 
 
-<!-- Inicio Modal Galer�a -->
-<div class="modal fade" id="modalGaleriaCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form id="galeria" class="form" method="" action="">
-	      <div class="modal-dialog modal-lg">
-	        <div class="modal-content">
-	          <div class="modal-header justify-content-center">
-	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-	              <i class="now-ui-icons ui-1_simple-remove"></i>
-	            </button>
-	            <h4 class="title title-up">Galer&iacute;a Fotogr&aacute;fica</h4>
-	          </div>
-	          <div class="modal-body p-5">
-	          	<div class="row">
-		          	<div class="col-sm-10 col-centered">
-		          		<div class="form-group">
-			          		<label class="control-label">Id Campa&ntilde;a</label>
-			            	<input id="galleryCampaignId" name="uploadCampaignId" class="form-control" type="text" readonly>
-			            </div>
-	               	</div>
-	            </div>
-               	<div class="row">
-               		<div class="col-sm-10 col-centered">
-		                <div class="input-group">
-						  <div class="custom-file">
-						    <input type="file" class="custom-file-input" id="inputGroupFile04">
-						    <label class="custom-file-label" for="inputGroupFile04">Cargar Im&aacute;gen</label>
-						  </div>
+	<!-- Inicio Modal Galer�a -->
+	<div class="modal fade" id="modalGaleriaCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<form id="galeria" class="form" method="" action="">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header justify-content-center">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</button>
+						<h4 class="title title-up">Galer&iacute;a Fotogr&aacute;fica</h4>
+					</div>
+					<div class="modal-body p-5">
+						<div class="row">
+							<div class="col-sm-10 col-centered">
+								<div class="form-group">
+									<label class="control-label">Id Campa&ntilde;a</label>
+									<input id="galleryCampaignId" name="uploadCampaignId" class="form-control"
+										type="text" readonly>
+								</div>
+							</div>
 						</div>
-               		</div>
-               	</div>
-               	<br>
-               	<div class="row">
-               		<div class="col-sm-10 col-centered">
-		            	<div class="table-responsive">
-		                  	<table class="table" id="tbgallery">
-			                    <tr>
-									<th>Archivo</th>
-			                      	<th class="text-center">Acciones</th>
-			                    </tr>
-			                    <tr>
-			                    	<td><input id="imgMedicionesUrl" name="imgMedicionesUrl" class="form-control" type="text" readonly></td>
-			                      	<td class="text-center">
-						                <button type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar" title="Borrar"><i class="far fa-trash-alt"></i></button>
-						            </td>
-			                    </tr>
-		                  </table>
-               			</div>
-               		</div>
-               	</div>
-               	
-               	
-               	
-		  	</div>
-			<div class="modal-footer">
-				<button id="GbtnCerrar" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-			    <button type="button" class="btn btn-success">Finalizar</button>
-	      </div>
-	    </div>
-	  </div>
-	</form>
-</div>
-<!-- Fin Modal Galer�a -->
+						<div class="row">
+							<div class="col-sm-10 col-centered">
+								<div class="input-group">
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="inputGroupFile04">
+										<label class="custom-file-label" for="inputGroupFile04">Cargar
+											Im&aacute;gen</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-sm-10 col-centered">
+								<div class="table-responsive">
+									<table class="table" id="tbgallery">
+										<tr>
+											<th>Archivo</th>
+											<th class="text-center">Acciones</th>
+										</tr>
+										<tr>
+											<td><input id="imgMedicionesUrl" name="imgMedicionesUrl"
+													class="form-control" type="text" readonly></td>
+											<td class="text-center">
+												<button type="button" rel="tooltip" data-toggle="modal"
+													data-target="#modalBorrar" class="btn btn-danger btn-icon btn-sm "
+													data-original-title="Borrar" title="Borrar"><i
+														class="far fa-trash-alt"></i></button>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
 
-<!-- Minimodal Borrado  -->
-<div class="modal fade modal-mini" id="modalBorrarCampaign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form id="formDeleteCampaign" class="form" method="" action="">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<p>Confirmar el borrado</p>
-				<div class="form-group text-center col-centered">
-	          		<label class="control-label">ID Campa&ntilde;a</label>
-	            	<input id="deleteCampaignId" name="deleteCampaignId" class="form-control" type="text" readonly>
-            	</div>
+
+
+					</div>
+					<div class="modal-footer">
+						<button id="GbtnCerrar" type="button" class="btn btn-danger"
+							data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-success">Finalizar</button>
+					</div>
+				</div>
 			</div>
-			<div class="modal-footer">
-				<button id="btnCerrarM3" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-			    <input type="button" class="btn btn-success" id="btnCampaignDelete" name="btnCampaignDelete" value="Confirmar">
+		</form>
+	</div>
+	<!-- Fin Modal Galer�a -->
+
+	<!-- Minimodal Borrado  -->
+	<div class="modal fade modal-mini" id="modalBorrarCampaign" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<form id="formDeleteCampaign" class="form" method="" action="">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>Confirmar el borrado</p>
+						<div class="form-group text-center col-centered">
+							<label class="control-label">ID Campa&ntilde;a</label>
+							<input id="deleteCampaignId" name="deleteCampaignId" class="form-control" type="text"
+								readonly>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button id="btnCerrarM3" type="button" class="btn btn-danger"
+							data-dismiss="modal">Cancelar</button>
+						<input type="button" class="btn btn-success" id="btnCampaignDelete" name="btnCampaignDelete"
+							value="Confirmar">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- /Minimodal Borrado  -->
+
+	<!-- Inicio Modal cargar im�gen mediciones -->
+	<div class="modal fade" id="modalPollImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<form id="formPollImg" class="form" method="POST" action="./api/campaign/image" enctype="multipart/form-data">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header justify-content-center">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<i class="now-ui-icons ui-1_simple-remove"></i>
+						</button>
+						<h4 class="title title-up">Cargar Im&aacute;gen Mediciones</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label class="control-label">Id Campa&ntilde;a</label>
+							<input id="uploadCampaignId" name="campaignId" class="form-control" type="text" readonly>
+						</div>
+						<div class="input-group">
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" id="pollImg" name="file">
+								<label class="custom-file-label" for="inputGroupFile04">Cargar im&aacute;gen</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button id="btnCerrarM1" type="button" class="btn btn-danger"
+							data-dismiss="modal">Cancelar</button>
+						<input type="submit" class="btn btn-success" id="btnPollImg" name="btnPollImg" value="Guardar">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- Fin Modal cargar im�gen mediciones -->
+
+
+	<!-- NOTIFICACIONES -->
+	<div class="modal fade modal-mini modal-success" id="alertSuccess" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header justify-content-center">
+					<div class="modal-profile">
+						<i class="fas fa-check"></i>
+					</div>
+				</div>
+				<div class="modal-body">
+					<p id="modalMessage"></p>
+				</div>
+				<div class="modal-footer col-centered">
+					<button type="button" class="btn btn-link btn-neutral" data-dismiss="modal"
+						id="btnOK">Cerrar</button>
+				</div>
 			</div>
 		</div>
 	</div>
-	</form>
-</div>
-<!-- /Minimodal Borrado  -->
-
-<!-- Inicio Modal cargar im�gen mediciones -->
-<div class="modal fade" id="modalPollImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form id="formPollImg" class="form" method="POST" action="./api/campaign/image" enctype="multipart/form-data">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header justify-content-center">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <h4 class="title title-up">Cargar Im&aacute;gen Mediciones</h4>
-          </div>
-          <div class="modal-body">
-          	 <div class="form-group">
-          		<label class="control-label">Id Campa&ntilde;a</label>
-            	<input id="uploadCampaignId" name="campaignId" class="form-control" type="text" readonly>
-            </div>
-            <div class="input-group">
-			  <div class="custom-file">
-			    <input type="file" class="custom-file-input" id="pollImg" name="file">
-			    <label class="custom-file-label" for="inputGroupFile04">Cargar im&aacute;gen</label>
-			  </div>
+	<div class="modal fade modal-mini modal-danger" id="alertError" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header justify-content-center">
+					<div class="modal-profile">
+						<i class="fas fa-times"></i>
+					</div>
+				</div>
+				<div class="modal-body">
+					<p>Se present&oacute; un error, intente nuevamente</p>
+				</div>
+				<div class="modal-footer col-centered">
+					<button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Cerrar</button>
+				</div>
 			</div>
-	  	</div>
-	  <div class="modal-footer">
-	  	<button id="btnCerrarM1" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
-	    <input type="submit" class="btn btn-success" id="btnPollImg" name="btnPollImg" value="Guardar">
-	      </div>
-	    </div>
-	  </div>
-	</form>
-</div>
-<!-- Fin Modal cargar im�gen mediciones -->
+		</div>
+	</div>
+	<!-- FIN NOTIFICACIONES -->
 
-
-<!-- NOTIFICACIONES -->
-<div class="modal fade modal-mini modal-success" id="alertSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header justify-content-center">
-        <div class="modal-profile">
-          <i class="fas fa-check"></i>
-        </div>
-      </div>
-      <div class="modal-body">
-        <p id="modalMessage"></p>
-      </div>
-      <div class="modal-footer col-centered">
-        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal" id="btnOK">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade modal-mini modal-danger" id="alertError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header justify-content-center">
-        <div class="modal-profile">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
-      <div class="modal-body">
-        <p>Se present&oacute; un error, intente nuevamente</p>
-      </div>
-      <div class="modal-footer col-centered">
-        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- FIN NOTIFICACIONES -->
-
-<!-- /BODY -->
+	<!-- /BODY -->
 
 
 
 
-<var th:insert="fragments/scripts.html :: var"> </var>
+	<var th:insert="fragments/scripts.html :: var"> </var>
 
 
-<script>
-	$('#dp1').datepicker({
-		format: 'dd-mm-yyyy'
-	});
+	<script>
+		$('#dp1').datepicker({
+			format: 'dd-mm-yyyy'
+		});
 
-	//fernmarr agregar zoom julio2020
-	//Agrega Nuevos campos URL para registro de Salas
-	var i = 1;
-	var j = 1;
-        $("#addVidConf").click(function(e){
-            e.preventDefault();//eliminamos el evento por defecto
-			$("#urlSalaRow-0").clone().appendTo("#urlContainer").attr("id","urlSalaRow-"+(i++));
+		//fernmarr agregar zoom julio2020
+		//Agrega Nuevos campos URL para registro de Salas
+		var i = 1;
+		var j = 1;
+		$("#addVidConf").click(function (e) {
+			e.preventDefault();//eliminamos el evento por defecto
+			$("#urlSalaRow-0").clone().appendTo("#urlContainer").attr("id", "urlSalaRow-" + (i++));
 			//var j = ("#urlSalaRow-"+i)			;
 			//$("#urlSalaRow-"+i.parent(input)).attr("id","urlVidConf-"+i);
-        });
+		});
 
-		$("#remVidConf").click(function(e){
-            e.preventDefault();//eliminamos el evento por defecto
+		$("#remVidConf").click(function (e) {
+			e.preventDefault();//eliminamos el evento por defecto
 			$(this).parent().remove();
-        });
-
-		
+		});
 
 
-</script>
+
+
+	</script>
 
 
 
 
 </body>
+
 </html>

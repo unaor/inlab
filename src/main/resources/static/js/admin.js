@@ -480,10 +480,10 @@ $(document).ready(function () {
       // Append a new row of code to the "#items" div
       $("#itemsQuestion").append(
         '<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control question" placeholder="Texto Pregunta" type="text" name="inputQuestion' +
-          i +
-          '" id="inputQuestion' +
-          i +
-          '"><button id="btnTrash" type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm delete"><i class="far fa-trash-alt"></i></button></div>'
+        i +
+        '" id="inputQuestion' +
+        i +
+        '"><button id="btnTrash" type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm delete"><i class="far fa-trash-alt"></i></button></div>'
       );
 
       i++;
@@ -634,6 +634,7 @@ $(document).ready(function () {
 
       var trHTML3 = "";
       var trHTML4 = "";
+      
 
       $.each(data, function (i, item) {
         /* convertir dato unix a fecha */
@@ -705,10 +706,12 @@ $(document).ready(function () {
           '<button onclick="deleteGallery(' +
           item.campaignId +
           ')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaBorrado" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar Fotos" title="Borrar Fotos"><i class="fas fa-folder-minus"></i></button></td></tr>';
+
       });
 
       $("#tbCampaign").append(trHTML3);
       $("#tbCampaignGalerias").append(trHTML4);
+
     },
   });
 
@@ -951,6 +954,25 @@ function pollVidConf(campaignId) {
   /* capturar información del registro para cargar */
 
   $("#vidConfCampaignId").val(selectedCampaign.campaignId);
+  $("#tblConferences tbody").empty()
+  if (selectedCampaign.conferences) {
+
+    selectedCampaign.conferences.map(conference => {
+      let trHTML5 =
+        '<tr id="' +
+        selectedCampaign.campaignId +
+        '"><td>' +
+        conference.conferenceName +
+        "</td><td>" +
+        conference.conferenceUrl +
+        "</td><td>" +
+
+        '<button onclick="deleteConference(' +
+        conference.conferenceId +
+        ')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalGaleriaBorrado" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar Fotos" title="Borrar Fotos"><i class="fas fa-folder-minus"></i></button></td></tr>';
+      $("#tblConferences").append(trHTML5);
+    });
+  }
 }
 
 //fernmarr agregar zoom julio2020
@@ -1026,10 +1048,10 @@ function EditCampaign(campaignId) {
     if (selectedCampaign.assignedUser == item.username) {
       $("#EassignedUser").append(
         '<option value="' +
-          item.username +
-          '" selected="selected">' +
-          item.username +
-          "</option>"
+        item.username +
+        '" selected="selected">' +
+        item.username +
+        "</option>"
       );
     } else {
       $("#EassignedUser").append(new Option(item.username, item.username));
@@ -1095,14 +1117,14 @@ function NewQuestion(pollId) {
     for (var i = 0; selectedPoll.questions.length > i; i++) {
       $("#itemsQuestion").append(
         '<div class="form-group no-border btn-group d-flex w-100" role="group"><input class="form-control question" value="' +
-          selectedPoll.questions[i].question +
-          '" type="text" name="inputQuestion' +
-          i +
-          '" id="inputQuestion' +
-          i +
-          '" data-question-id="' +
-          selectedPoll.questions[i].questionId +
-          '"></div>'
+        selectedPoll.questions[i].question +
+        '" type="text" name="inputQuestion' +
+        i +
+        '" id="inputQuestion' +
+        i +
+        '" data-question-id="' +
+        selectedPoll.questions[i].questionId +
+        '"></div>'
       );
     }
   }
@@ -1125,10 +1147,10 @@ function NewAnswer(pollId) {
     for (var i = 0; selectedPoll.questions.length > i; i++) {
       $("#listQuestions").append(
         '<div class="answerContainer"><div class="alert alert-primary" role="alert"><label class="control-label">' +
-          selectedPoll.questions[i].question +
-          '</label></div><textarea class="form-control answer" data-question-id=" ' +
-          selectedPoll.questions[i].questionId +
-          '" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea></div>'
+        selectedPoll.questions[i].question +
+        '</label></div><textarea class="form-control answer" data-question-id=" ' +
+        selectedPoll.questions[i].questionId +
+        '" name="name" rows="4" cols="80" placeholder="Escriba la respuesta"></textarea></div>'
       );
     }
   }

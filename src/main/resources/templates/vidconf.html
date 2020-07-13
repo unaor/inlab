@@ -4,80 +4,85 @@
 <hgroup th:insert="fragments/cliente/headCliente.html :: headCliente"> </hgroup>
 
 <body class="sidebar-mini">
-<div class="wrapper">
-<!--NAV-->
-<!-- SIDEBAR    -->
-<aside th:insert="fragments/cliente/asideCliente.html :: asideCliente"> </aside>
-<!-- /SIDEBAR    -->
-<!-- TOPBAR    -->
-<!--/NAV-->
-    <!--MAIN-->
-    <div class="main-panel">
-       <!-- HEADER -->
-       <nav th:insert="fragments/nav.html :: nav"> </nav>
-        <!-- /HEADER -->
-            
-<!-- /TOPBAR    -->
-<!-- CONTENT    -->            
-            
-            <!--CONTAINER-->
-            <div class="panel-header panel-header-sm">
-            </div>
-            <div class="content">
+	<div class="wrapper">
+		<!--NAV-->
+		<!-- SIDEBAR    -->
+		<aside th:insert="fragments/cliente/asideCliente.html :: asideCliente"> </aside>
+		<!-- /SIDEBAR    -->
+		<!-- TOPBAR    -->
+		<!--/NAV-->
+		<!--MAIN-->
+		<div class="main-panel">
+			<!-- HEADER -->
+			<nav th:insert="fragments/nav.html :: nav"> </nav>
+			<!-- /HEADER -->
+
+			<!-- /TOPBAR    -->
+			<!-- CONTENT    -->
+
+			<!--CONTAINER-->
+			<div class="panel-header panel-header-sm">
+			</div>
+			<div class="content">
 				<div class="row">
-				    <div class="col-md-12">
-				        <div class="card ">
-				            <div class="card-header ">
-				                <h5 class="card-title"><i class="now-ui-icons tech_laptop"></i> VIDEO CONFERENCIA</h5>
-				            </div>
-				            <div class="card-body ">
-				                <!--iframe-->
-									
-									<!-- ciclo re resultados -->
-									<div class="row text-center" id="contVidConf"></div>
+					<div class="col-md-12">
+						<div class="card ">
+							<div class="card-header ">
+								<h5 class="card-title"><i class="now-ui-icons tech_laptop"></i> VIDEO CONFERENCIA</h5>
+							</div>
+							<div class="card-body ">
+								<!--iframe-->
 
-				            </div>
-				        </div>
-				    </div>
+								<!-- ciclo re resultados -->
+								<div class="row text-center" id="contVidConf"></div>
+
+							</div>
+						</div>
+					</div>
 				</div>
-            </div>
-            <!--/CONTAINER-->
-            
-<!-- /CONTENT   -->
+			</div>
+			<!--/CONTAINER-->
+
+			<!-- /CONTENT   -->
 
 
-<!--FOOTER-->
-<footer th:insert="fragments/footer.html :: footer"> </footer>
-<!--/FOOTER-->
+			<!--FOOTER-->
+			<footer th:insert="fragments/footer.html :: footer"> </footer>
+			<!--/FOOTER-->
 
 
-        </div>
-        <!--/MAIN-->
-    </div>
-<!-- /BODY -->
+		</div>
+		<!--/MAIN-->
+	</div>
+	<!-- /BODY -->
 
-<var th:insert="fragments/scripts.html :: var"> </var>
+	<var th:insert="fragments/scripts.html :: var"> </var>
 
 
-<script th:inline="javascript">
-	/*<![CDATA[*/
-	
-		var rooms = /*[[${rooms}]]*/ 'default';
-	   
-		console.log(rooms);
-	   
-		rooms.map((room, index) => {
-			if(index === 0){
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var campaign = /*[[${campaign}]]*/ 'default';
 
-				$("#contVidConf").append('<div class="contenedorEnlace col-md-4"><div class="urlEnlace alert alert-info"><div class="contenedorBtnServicios"><div><a src="' + room.roomURL + '" type="button" class="btn btn-light">' + room.roomName + '</a></div></div></div></div>')
+		if (campaign && campaign.conferences) {
+			campaign.conferences.map((conference) => {
 
-			} 		
-		   
-		});
-	/*]]>*/
+
+				$("#contVidConf").append('<div class="contenedorEnlace col-md-4"><div class="urlEnlace alert alert-info"><div class="contenedorBtnServicios"><div><a src="' + conference.conferenceUrl + '" target="_blank" class="btn btn-light" onclick="launchZoom(\''  + conference.conferenceUrl + '\')">' + conference.conferenceName + '</a></div></div></div></div>')
+
+
+
+			});
+		}
+
+		/*]]>*/
+
+		function launchZoom(url) {
+			window.open(url, '_blank');
+		}
 	</script>
 
 
 
 </body>
+
 </html>
