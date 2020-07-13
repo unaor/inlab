@@ -489,17 +489,21 @@
 				<div class="col-md-4 text-center align-botton">$roomURL</div>
 				<div class="col-md-2 text-center align-top"><button id="btnRoomDelete-0" type="button" onclick="DeleteRoom(ID)" rel="tooltip" data-toggle="modal" data-target="#modalBorrarRoom" class="btn btn-danger btn-icon btn-sm" data-original-title="Borrar Sala" title="Borrar Sala"><i class="far fa-trash-alt"></i></button></div>
 			</div>
+			<hr>
 			<div id="urlContainer" class="input-group">
-				<div id="urlSalaRow-0">
-					<input id="roomName-0" class="form-control" type="text" placeholder="Nombre Sala"> 
-					<input id="roomURL-0" class="form-control" type="text" placeholder="URL Sala">
+				<div class="form-group">
+					<label class="control-label">Nombre Sala</label>
+			   		<input id="roomName" name="roomName" value="" placeholder="Nombre Sala" class="form-control" type="text">
 				</div>
+				<div class="form-group">
+       	  			<label class="control-label">URL Sala</label>
+            		<input id="roomURL" name="roomURL" value="" placeholder="URL Sala" class="form-control" type="text">
+            	</div>   
 			</div>
-			
-			<div class="boton form-group col-md-12">
+			<!--<div class="boton form-group col-md-12">
 				<label class="sr-only" for="">Agregar otra Sala</label>
 				<button id="addVidConf" class="btn btn-primary input-sm"><strong>+</strong></button>
-			</div>
+			</div>-->
 		  </div>
 	  	
 		<div class="modal-footer">
