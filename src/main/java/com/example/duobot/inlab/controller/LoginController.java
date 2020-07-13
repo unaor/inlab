@@ -244,7 +244,24 @@ public class LoginController {
 		}
 	}
 
-	
+	//fernmarr agregar zoom julio2020
+	@RequestMapping(value = "/vidconf")
+	public String vidconf(@RequestParam Integer cp, Authentication user, Model model) {
+		try {
+			Campaign dbCampaign = campaignService.findById(cp).get();
+			if (dbCampaign == null) {
+				return "error";
+			}
+			User client = userService.findByUsername(user.getName());
+			if(!user.getName().equals(dbCampaign.getAssignedUser()) && !client.getRoleName().equals("Admin")) {
+				return "loginCliente";
+			}
+			model.addAttribute("campaign", dbCampaign);
+			return "vidconf";
+		} catch (Exception ex) {
+			return "error";
+		}
+	}
 
 	@RequestMapping(value = "/encuestas")
 	public String encuestas(Authentication user, Model model) {
@@ -306,7 +323,8 @@ public class LoginController {
 	    	return "loginCliente";
 	    }
 	}
-	
+
+
 	@RequestMapping(value = "/homeCliente")
 	public String homeCliente(@RequestParam Integer cp, Authentication user, Model model) {
 		try {

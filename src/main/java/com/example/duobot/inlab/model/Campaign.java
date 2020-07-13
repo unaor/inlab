@@ -69,6 +69,8 @@ public class Campaign implements Serializable {
 	private String pollImageUrl;
 	
 	private String emotionsUrl;
+
+
 	
 	private String emotionsIA;
 	
@@ -259,10 +261,13 @@ public class Campaign implements Serializable {
 		return emotionsUrl;
 	}
 
+
 	public void setEmotionsUrl(String emotionsUrl) {
 		this.emotionsUrl = emotionsUrl;
 	}
+
 	
+
 	public String getEmotionsIA() {
 		return emotionsIA;
 	}

@@ -3,7 +3,7 @@
     <div class="logo">
         
         <a th:href="@{/homeCliente(cp=${campaign.campaignId})}" class="simple-text logo-normal">
-            <img width="150" src="../img/inlab_blanco.png" />
+            <img width="110" src="../img/inlab_blanco.png" />
         </a>
         <div class="navbar-minimize">
             <button id="minimizeSidebar" class="btn btn-simple btn-icon btn-neutral btn-round">
@@ -56,7 +56,13 @@
                     <p>Visual CR</p>
                 </a>
             </li>
-            
+            <!-- fernmarr agregar zoom julio2020 -->
+            <li class=" ">
+                <a id="vidconf" th:href="@{/vidconf(cp=${campaign.campaignId})}">
+                    <i class="now-ui-icons tech_laptop"></i>
+                    <p>Video Conferencia</p>
+                </a>
+            </li>
             <li class=" ">
                 <a id="emociones" th:href="@{/emociones(cp=${campaign.campaignId})}">
                     <i class="now-ui-icons emoticons_satisfied"></i>

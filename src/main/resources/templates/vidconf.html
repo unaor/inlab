@@ -28,18 +28,14 @@
 				    <div class="col-md-12">
 				        <div class="card ">
 				            <div class="card-header ">
-				                <h5 class="card-title"><i class="now-ui-icons emoticons_satisfied"></i> EMOCIONES</h5>
+				                <h5 class="card-title"><i class="now-ui-icons tech_laptop"></i> VIDEO CONFERENCIA</h5>
 				            </div>
 				            <div class="card-body ">
-								<!--iframe-->
-								
-				                <div id="Container" style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
-				                    <iframe id="watson" width="100%" height="100%"
-				                            th:src="${campaign.emotionsIA}"
-				                            frameborder="0"
-				                            style="position:absolute; top:0; left: 0"></iframe>
-				                </div>
-				                <!--/iframe-->
+				                <!--iframe-->
+									
+									<!-- ciclo re resultados -->
+									<div class="row text-center" id="contVidConf"></div>
+
 				            </div>
 				        </div>
 				    </div>
@@ -61,6 +57,27 @@
 <!-- /BODY -->
 
 <var th:insert="fragments/scripts.html :: var"> </var>
+
+
+<script th:inline="javascript">
+	/*<![CDATA[*/
+	
+		var rooms = /*[[${rooms}]]*/ 'default';
+	   
+		console.log(rooms);
+	   
+		rooms.map((room, index) => {
+			if(index === 0){
+
+				$("#contVidConf").append('<div class="contenedorEnlace col-md-4"><div class="urlEnlace alert alert-info"><div class="contenedorBtnServicios"><div><a src="' + room.roomURL + '" type="button" class="btn btn-light">' + room.roomName + '</a></div></div></div></div>')
+
+			} 		
+		   
+		});
+	/*]]>*/
+	</script>
+
+
 
 </body>
 </html>

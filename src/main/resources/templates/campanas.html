@@ -460,8 +460,62 @@
 </div>
 <!-- Fin Modal Editar Campa&ntilde;a -->
 
+<!-- fernmarr agregar zoom julio2020 -->
+<!-- Inicio Modal Crear/Editar VideoConferencias -->
+<div class="modal fade modal-md" id="modalPollVidConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form id="formPollVidConf" class="form" method="POST" action="" enctype="multipart/form-data">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 class="title title-up">Crear Salas</h4>
+          </div>
+          <div class="modal-body">
+			<div class="form-group">
+				<label class="control-label">Id Campa&ntilde;a</label>
+				<input id="vidConfCampaignId" name="vidConfCampaignId" class="form-control" type="text" readonly>
+			</div>
+			<div class="row">
+				<div class="col-md-2 text-center">ID Sala</div>
+				<div class="col-md-4 text-center">Nombre Sala</div>
+				<div class="col-md-4 text-center">URL Sala</div>
+				<div class="col-md-2 text-center">Borrar</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2 text-center align-botton">$roomID</div>
+				<div class="col-md-4 text-center align-botton">$roomName</div>
+				<div class="col-md-4 text-center align-botton">$roomURL</div>
+				<div class="col-md-2 text-center align-top"><button id="btnRoomDelete-0" type="button" onclick="DeleteRoom(ID)" rel="tooltip" data-toggle="modal" data-target="#modalBorrarRoom" class="btn btn-danger btn-icon btn-sm" data-original-title="Borrar Sala" title="Borrar Sala"><i class="far fa-trash-alt"></i></button></div>
+			</div>
+			<div id="urlContainer" class="input-group">
+				<div id="urlSalaRow-0">
+					<input id="roomName-0" class="form-control" type="text" placeholder="Nombre Sala"> 
+					<input id="roomURL-0" class="form-control" type="text" placeholder="URL Sala">
+				</div>
+			</div>
+			
+			<div class="boton form-group col-md-12">
+				<label class="sr-only" for="">Agregar otra Sala</label>
+				<button id="addVidConf" class="btn btn-primary input-sm"><strong>+</strong></button>
+			</div>
+		  </div>
+	  	
+		<div class="modal-footer">
+			<button id="btnCerrarM1" type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+			<input type="submit" class="btn btn-success" id="btnPollImg" name="btnPollImg" value="Guardar">
+		</div>
+		</div>
+	</div>
+	  
+	</form>
+</div>
+<!-- Fin Modal Crear/Editar VideoConferencias -->
 
-<!-- Inicio Modal Galería -->
+
+
+<!-- Inicio Modal Galerï¿½a -->
 <div class="modal fade" id="modalGaleriaCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<form id="galeria" class="form" method="" action="">
 	      <div class="modal-dialog modal-lg">
@@ -522,7 +576,7 @@
 	  </div>
 	</form>
 </div>
-<!-- Fin Modal Galería -->
+<!-- Fin Modal Galerï¿½a -->
 
 <!-- Minimodal Borrado  -->
 <div class="modal fade modal-mini" id="modalBorrarCampaign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -546,7 +600,7 @@
 </div>
 <!-- /Minimodal Borrado  -->
 
-<!-- Inicio Modal cargar imágen mediciones -->
+<!-- Inicio Modal cargar imï¿½gen mediciones -->
 <div class="modal fade" id="modalPollImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<form id="formPollImg" class="form" method="POST" action="./api/campaign/image" enctype="multipart/form-data">
       <div class="modal-dialog">
@@ -577,7 +631,7 @@
 	  </div>
 	</form>
 </div>
-<!-- Fin Modal cargar imágen mediciones -->
+<!-- Fin Modal cargar imï¿½gen mediciones -->
 
 
 <!-- NOTIFICACIONES -->
@@ -629,6 +683,26 @@
 	$('#dp1').datepicker({
 		format: 'dd-mm-yyyy'
 	});
+
+	//fernmarr agregar zoom julio2020
+	//Agrega Nuevos campos URL para registro de Salas
+	var i = 1;
+	var j = 1;
+        $("#addVidConf").click(function(e){
+            e.preventDefault();//eliminamos el evento por defecto
+			$("#urlSalaRow-0").clone().appendTo("#urlContainer").attr("id","urlSalaRow-"+(i++));
+			//var j = ("#urlSalaRow-"+i)			;
+			//$("#urlSalaRow-"+i.parent(input)).attr("id","urlVidConf-"+i);
+        });
+
+		$("#remVidConf").click(function(e){
+            e.preventDefault();//eliminamos el evento por defecto
+			$(this).parent().remove();
+        });
+
+		
+
+
 </script>
 
 
