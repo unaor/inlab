@@ -2,10 +2,19 @@ package com.example.duobot.inlab.controller;
 
 import java.io.File;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
+
+import com.example.duobot.inlab.controller.form.ConferenceForm;
+import com.example.duobot.inlab.dao.CampaignService;
+import com.example.duobot.inlab.dao.ConferenceService;
+import com.example.duobot.inlab.dao.GalleryService;
+import com.example.duobot.inlab.model.Campaign;
+import com.example.duobot.inlab.model.Conference;
+import com.example.duobot.inlab.model.Gallery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.duobot.inlab.dao.CampaignService;
-import com.example.duobot.inlab.dao.GalleryService;
-import com.example.duobot.inlab.model.Campaign;
-import com.example.duobot.inlab.model.Gallery;
-
 @RestController
 public class CampaignController {
 
@@ -33,6 +37,9 @@ public class CampaignController {
 	
 	@Autowired
 	GalleryService galleryService;
+
+	@Autowired
+	ConferenceService conferenceService;
 
 	@GetMapping(value = "/api/campaign")
 	public ResponseEntity<?> getAllCampaigns(Authentication user) {
@@ -147,6 +154,38 @@ public class CampaignController {
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return ResponseEntity.badRequest().body("Error agregando un archivo");
+		}
+	}
+
+	@PostMapping(value = "/api/campaign/conference")
+	public ResponseEntity<?> addCampaignConference( @RequestBody ConferenceForm form) {
+
+
+		if (form == null) {
+			return ResponseEntity.badRequest().body("Empty form");
+		}
+
+		try {
+			Campaign dbCampaign = campaignService.findById(form.getCampaignId()).get();
+			if(dbCampaign == null) {
+				return ResponseEntity.badRequest().body("No encontramos este registro en el base de datos");
+			}
+			
+			if(dbCampaign.getConferences() == null) {
+				List<Conference> conferences = new ArrayList<Conference>();
+				dbCampaign.setConferences(conferences);
+			}
+			Conference conf = new Conference();
+			conf.setConferenceName(form.getConferenceName());
+			conf.setConferenceUrl(form.getConferenceUrl());
+			conf.setCampaign(dbCampaign);
+			dbCampaign.getConferences().add(conf);
+			campaignService.save(dbCampaign);
+			conferenceService.save(conf);
+			return ResponseEntity.noContent().build();
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return ResponseEntity.badRequest().body("Error agregando una conferencia");
 		}
 	}
 	

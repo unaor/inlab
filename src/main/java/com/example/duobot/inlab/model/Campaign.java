@@ -78,6 +78,10 @@ public class Campaign implements Serializable {
 	@JsonManagedReference
 	private List<Gallery> galleries = new ArrayList<Gallery>();
 
+	@OneToMany(mappedBy = "campaign", cascade = CascadeType.REMOVE)
+	@JsonManagedReference
+	private List<Conference> conferences = new ArrayList<Conference>();
+
 	public Campaign() {
 	}
 
@@ -282,5 +286,15 @@ public class Campaign implements Serializable {
 
 	public void setGalleries(List<Gallery> galleries) {
 		this.galleries = galleries;
-	}	
+	}
+
+	public List<Conference> getConferences() {
+		return conferences;
+	}
+
+	public void setConferences(List<Conference> conferences) {
+		this.conferences = conferences;
+	}
+
+	
 }

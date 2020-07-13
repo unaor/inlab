@@ -1,6 +1,5 @@
 package com.example.duobot.inlab.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -13,16 +12,16 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name="USERS",
 uniqueConstraints=@UniqueConstraint(columnNames={"username"}))
-public class User implements Serializable, UserDetails {
+public class User implements  UserDetails {
 
 	private static final long serialVersionUID = -2970340426497543512L;
 	
