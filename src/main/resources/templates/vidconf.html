@@ -85,12 +85,13 @@
 		if (campaign && campaign.conferences) {
 			campaign.conferences.map((conference) => {
 
-
+				var replaceSpace = conference.conferenceName;
+				var conferenceNameTab = replaceSpace.replace(/\s/g, "");
 				
 
-				$("#contVidConf").append('<li class="nav-item"><a class="nav-link" href="#' + conference.conferenceName + '" data-toggle="tab">' + conference.conferenceName + '</a></li>')
+				$("#contVidConf").append('<li class="nav-item"><a class="nav-link" href="#' + conferenceNameTab + '" data-toggle="tab">' + conference.conferenceName + '</a></li>')
 
-				$("#contVidConf2").append('<div class="tab-pane" id="' + conference.conferenceName + '"><div class="col-sm-12 p-3"><div id="Container" style="padding-bottom:65%; position:relative; display:block; width: 100%"><iframe allow="fullscreen;camera;microphone" allowfullscreen id="conferenceRoom" width="100%" height="100%" src="' + conference.conferenceUrl + '" frameborder="0" style="position:absolute; top:20; left:0; padding:40px;"></iframe></div></div></div>')
+				$("#contVidConf2").append('<div class="tab-pane" id="' + conferenceNameTab + '"><div class="col-sm-12 p-3"><div id="Container" style="padding-bottom:65%; position:relative; display:block; width: 100%"><iframe allow="fullscreen;camera;microphone" allowfullscreen id="conferenceRoom" width="100%" height="100%" src="' + conference.conferenceUrl + '" frameborder="0" style="position:absolute; top:20; left:0; padding:40px;"></iframe></div></div></div>')
 
 				
 				
