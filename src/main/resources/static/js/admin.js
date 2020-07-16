@@ -966,11 +966,10 @@ function pollVidConf(campaignId) {
         "</td><td>" +
         conference.conferenceUrl +
         "</td><td>" +
+     
+        '<button onclick="deleteConference(' + conference.conferenceId + ')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrarConference" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar Sala" title="Borrar Sala"><i class="far fa-trash-alt"></i></button></td></tr>';
 
-        '<button onclick="deleteConference(' +
-        conference.conferenceId +
-        ')" type="button" rel="tooltip" data-toggle="modal" data-target="#modalBorrarConference" class="btn btn-danger btn-icon btn-sm " data-original-title="Borrar Sala" title="Borrar Sala"><i class="fas fa-trash"></i></button></td></tr>';
-      $("#tblConferences").append(trHTML5);
+        $("#tblConferences").append(trHTML5);
     });
   }
 }
@@ -978,15 +977,18 @@ function pollVidConf(campaignId) {
 //fernmarr agregar zoom julio2020
 /* DATOS BORRAR VIDEOCONFERENCIAS A CAMPAÑAS */
 
-function pollDelVidConf(campaignId) {
-  //alert(campaignId);
-  const selectedCampaign = campaigns.filter(
-    (x) => x.campaignId === campaignId
-  )[0];
+function deleteConference(conferenceId) {
+  
+  /*const selectedConference = conferences.filter(
+    (x) => x.conferenceId === conferenceId
+  )[0];*/
+  
   /* capturar información del registro para cargar */
-
-  $("#vidConfCampaignId").val(selectedCampaign.campaignId);
+  $('#modalPollVidConf').modal('hide')
+  $("#deleteConferenceId").val(conferenceId);
 }
+
+
 
 /* DATOS PARA BORRAR CAMPAÑA */
 

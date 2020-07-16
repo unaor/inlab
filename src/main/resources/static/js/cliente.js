@@ -16,6 +16,10 @@ $(document).ready(function() {
 				campaigns = data;
 				//console.log(data);
 
+				$room = campaigns[0].conferences[0].conferenceUrl;
+				$('#frameVidConf').attr('src', $room);
+
+
 				var trHTML = '';
 				$.each(
 					data,

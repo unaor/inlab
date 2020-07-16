@@ -515,6 +515,34 @@
 	<!-- Fin Modal Editar Campa&ntilde;a -->
 
 	<!-- fernmarr agregar zoom julio2020 -->
+	<!-- Minimodal Borrado Conference  -->
+	<div class="modal fade modal-mini" id="modalBorrarConference" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<form id="formDeleteConference" class="form" method="" action="">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>Confirmar el borrado</p>
+						<div class="form-group text-center col-centered">
+							<label class="control-label">ID Conference</label>
+							<input id="deleteConferenceId" name="deleteConferenceId" class="form-control" type="text"
+								readonly>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button id="btnCerrarM3" type="button" class="btn btn-danger"
+							data-dismiss="modal">Cancelar</button>
+						<input type="button" class="btn btn-success" id="btnCampaignDelete" name="btnCampaignDelete"
+							value="Confirmar">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- /Minimodal Borrado Conference -->
+
+
+	<!-- fernmarr agregar zoom julio2020 -->
 	<!-- Inicio Modal Crear/Editar VideoConferencias -->
 	<div class="modal fade" id="modalPollVidConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 		aria-hidden="true">
@@ -566,10 +594,8 @@
 					</div>
 
 					<div class="modal-footer">
-						<button id="btnCerrarM1" type="button" class="btn btn-danger"
-							data-dismiss="modal">Cancelar</button>
-						<input type="button" class="btn btn-success" id="btnConferenceSave" name="btnPollImg"
-							value="Guardar">
+						<button id="btnCerrarM1" type="button" class="btn btn-danger close" data-dismiss="modal">Cancelar</button>
+						<input type="button" class="btn btn-success" id="btnConferenceSave" name="btnPollImg" value="Guardar">
 					</div>
 				</div>
 			</div>

@@ -34,7 +34,25 @@
 								<!--iframe-->
 
 								<!-- ciclo re resultados -->
-								<div class="row text-center" id="contVidConf"></div>
+								<div class="card card-nav-tabs card-plain">
+									<div class="card-header card-header-danger">
+										<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+										<div class="nav-tabs-navigation">
+											<div class="nav-tabs-wrapper">
+												<ul class="nav nav-tabs" data-tabs="tabs" id="contVidConf">
+
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="card-body ">
+										<div class="tab-content text-center" id="contVidConf2">
+
+										</div>
+									</div>
+								</div>
+
+								<div class="row text-center" >Selecciona una de las salas</div>
 								<p>&nbsp;</p>
 
 							</div>
@@ -68,7 +86,14 @@
 			campaign.conferences.map((conference) => {
 
 
-				$("#contVidConf").append('<div class="contenedorEnlace col-md-4"><div class="urlEnlace border border-warning p-3"><div class="contenedorBtnServicios"><div><a src="' + conference.conferenceUrl + '" target="_blank" class="btn btn-light" onclick="launchZoom(\''  + conference.conferenceUrl + '\')">' + conference.conferenceName + '</a></div></div></div></div>')
+				
+
+				$("#contVidConf").append('<li class="nav-item"><a class="nav-link" href="#' + conference.conferenceName + '" data-toggle="tab">' + conference.conferenceName + '</a></li>')
+
+				$("#contVidConf2").append('<div class="tab-pane" id="' + conference.conferenceName + '"><div class="col-sm-12 p-3"><div id="Container" style="padding-bottom:65%; position:relative; display:block; width: 100%"><iframe allow="fullscreen;camera;microphone" allowfullscreen id="conferenceRoom" width="100%" height="100%" src="' + conference.conferenceUrl + '" frameborder="0" style="position:absolute; top:20; left:0; padding:40px;"></iframe></div></div></div>')
+
+				
+				
 
 
 
@@ -83,7 +108,7 @@
 	</script>
 
 
-
+<script src='https://meet.jit.si/external_api.js'></script>
 </body>
 
 </html>
