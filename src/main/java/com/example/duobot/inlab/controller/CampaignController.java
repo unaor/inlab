@@ -188,6 +188,21 @@ public class CampaignController {
 			return ResponseEntity.badRequest().body("Error agregando una conferencia");
 		}
 	}
+
+	@DeleteMapping(value = "/api/campaign/conference")
+	public ResponseEntity<?> deleteConference(@RequestParam int conferenceId) {
+		try {
+			Conference dbConference = conferenceService.findById(conferenceId).get();
+			if(dbConference == null) {
+				return ResponseEntity.badRequest().body("No encontramos este registro en el base de datos");
+			}
+			conferenceService.delete(dbConference);
+			return ResponseEntity.noContent().build();
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return ResponseEntity.badRequest().body("Error borrando una conferencia");
+		}
+	}
 	
 	@PostMapping(value = "/api/campaign/galeria")
 	public ResponseEntity<?> addGalleryImage( @RequestParam("file") MultipartFile file, @RequestParam("campaignId") Integer campaignId) {

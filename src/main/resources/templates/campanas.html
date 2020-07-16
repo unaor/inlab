@@ -804,6 +804,22 @@
 			$(this).parent().remove();
 		});
 
+		function deleteConference(confId) {
+			var url = "/api/campaign/conference?conferenceId=" + confId;
+			$.ajax({
+			url: url,
+			type: "DELETE",
+			contentType: "application/json",
+			success: function (result) {
+				$("#modalMessage").text("Registro Borrado Exitosamente");
+				$("#alertSuccess").modal("show");
+			},
+			error: function (xhr, resp, text) {
+				console.log(xhr, resp, text);
+			},
+			});
+		}
+
 
 
 
